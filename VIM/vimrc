@@ -1,0 +1,43 @@
+" No VI compatibility
+set nocompatible
+
+" Helps force plugins to load correctly when it is turned back on below
+filetype off
+
+" Loading plugins
+execute pathogen#infect()
+
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+" File detection / plugin / indent
+filetype plugin indent on
+
+" Enables line number
+set nu
+
+" Indent configuration
+set autoindent
+set smartindent
+set cindent
+set tabstop=4
+set shiftwidth=4
+
+" Syntax highlighting
+syntax on
+
+" Applying a colorscheme
+color industry
+
+" Activate mouse
+set mouse=a
+
+" Activate ruler
+set ruler
+
+" Encoding
+set encoding=utf-8
+
+" Cursor motion
+set scrolloff=3
