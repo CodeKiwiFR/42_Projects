@@ -23,10 +23,8 @@ char	*get_charset(char *str)
 {
 	char	*charset;
 	int		count;
-	int		i;
 	int		len;
 
-	i = 0;
 	charset = (char *)malloc(4 * sizeof(char));
 	if (!charset)
 		return (0);
