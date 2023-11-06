@@ -5,67 +5,49 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/06 14:28:05 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/06 15:06:29 by mhotting         ###   ########.fr        #
+#    Created: 2023/11/06 16:46:15 by mhotting          #+#    #+#              #
+#    Updated: 2023/11/06 17:51:18 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	libft.a
-CC			=	cc
+# GENERAL
+NAME		=	libft_test
+CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
-INCS	=	libft.h
-SRCS	=	ft_isalpha.c		\
-			ft_isdigit.c		\
-			ft_isalnum.c		\
-			ft_isascii.c		\
-			ft_isprint.c		\
-			ft_strlen.c			\
-			ft_memset.c			\
-			ft_bzero.c			\
-			ft_memcpy.c			\
-			ft_memmove.c		\
-			ft_strlcpy.c		\
-			ft_strlcat.c		\
-			ft_toupper.c		\
-			ft_tolower.c		\
-			ft_strchr.c			\
-			ft_strrchr.c		\
-			ft_strncmp.c		\
-			ft_memchr.c			\
-			ft_memcmp.c			\
-			ft_strnstr.c		\
-			ft_atoi.c			\
-			ft_calloc.c			\
-			ft_strdup.c			\
-			ft_substr.c			\
-			ft_strjoin.c		\
-			ft_strtrim.c		\
-			ft_split.c			\
-			ft_itoa.c			\
-			ft_strmapi.c		\
-			ft_striteri.c		\
-			ft_putchar_fd.c		\
-			ft_putstr_fd.c		\
-			ft_putendl_fd.c		\
-			ft_putnbr_fd.c		\
-			ft_lstnew.c			\
-			ft_lstadd_front.c	\
-			ft_lstsize.c		\
-			ft_lstlast.c		\
-			ft_lstadd_back.c	\
-			ft_lstdelone.c		\
-			ft_lstclear.c		\
-			ft_lstiter.c		\
-			ft_lstmap.c
-OBJS	=	$(SRCS:.c=.o)
+
+# HEADERS
+INC_DIR		=	./includes/
+INC_FILES	=	libft_test.h
+INCS		=	$(addprefix $(INC_DIR), $(INC_FILES))
+
+# SOURCES
+SRC_DIR		=	./srcs/
+SRC_FILES	=	main.c
+SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILES))
+
+# OBJECTS
+OBJ_DIR		=	./objs/
+OBJ_FILES	=	$(SRC_FILES:.c=.o)
+OBJS		=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
+
+# LIBRARY
+LIBFT_DIR	=	./libft/
+LIBFT_FILE	=	$(addprefix $(LIBFT_DIR), libft.a)
+LIBFT_FLAGS	=	-L$(LIBFT_DIR) -lft
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+$(NAME): $(OBJ_DIR) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I$(INC_DIR) $(LIBFT_FLAGS)
 
-%.o: %.c $(INCS)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS) $(LIBFT_FILE)
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR) -I$(LIBFT_DIR)
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(LIBFT_FILE):
+	make -sC $(LIBFT_DIR)
 
 clean:
 	rm -f $(OBJS)
@@ -73,6 +55,11 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
+clean-libft:
+	make -sC $(LIBFT_DIR) fclean
+
+ffclean: fclean clean-libft
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean clean-libft ffclean re
