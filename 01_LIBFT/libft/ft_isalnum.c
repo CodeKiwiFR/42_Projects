@@ -6,8 +6,15 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:09:56 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/06 18:15:24 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:03:03 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isalnum(int c);
+#include "libft.h"
+
+int	ft_isalnum(int c)
+{
+	if (ft_isdigit(c) || ft_isalpha(c))
+		return (8);
+	return (0);
+}

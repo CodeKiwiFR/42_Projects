@@ -6,12 +6,12 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 14:28:05 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/07 08:46:27 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/07 12:04:47 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libft.a
-CC			=	cc
+CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
 INCS		=	libft.h
 SRCS		=	ft_isalpha.c			\

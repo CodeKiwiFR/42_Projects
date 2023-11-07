@@ -6,11 +6,11 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:10:14 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/07 10:35:52 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:01:55 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (2048);

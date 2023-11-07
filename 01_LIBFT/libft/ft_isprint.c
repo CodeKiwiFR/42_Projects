@@ -6,8 +6,13 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:10:20 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/06 18:15:40 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:02:06 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isprint(int c);
+int	ft_isprint(int c)
+{
+	if (c >= 32 && c <= 127)
+		return (16384);
+	return (0);
+}

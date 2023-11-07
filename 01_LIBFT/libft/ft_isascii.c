@@ -6,8 +6,11 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:10:09 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/06 18:15:33 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:03:16 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isascii(int c);
+int	ft_isascii(int c)
+{
+	return (c >= 0 && c <= 127);
+}

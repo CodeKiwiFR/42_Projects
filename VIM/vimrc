@@ -41,3 +41,6 @@ set encoding=utf-8
 
 " Cursor motion
 set scrolloff=3
+
+" Disable beeping
+set noeb vb t_vb=
