@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 16:46:15 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/07 10:17:13 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/07 10:52:12 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ INCS		=	$(addprefix $(INC_DIR), $(INC_FILES))
 SRC_DIR		=	./srcs/
 SRC_FILES	=	main.c			\
 				utils.c			\
-				test_isalpha.c
+				test_isalpha.c	\
+				test_isdigit.c
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 # OBJECTS
