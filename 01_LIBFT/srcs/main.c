@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:32:06 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/07 14:42:07 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:15:03 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int	main(void)
 	test_strlen();
 	test_memset();
 	test_bzero();
+	test_memcpy();
 	return (0);
 }

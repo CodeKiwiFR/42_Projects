@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 16:46:15 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/07 14:41:49 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/07 16:14:27 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRC_FILES	=	main.c				\
 				test_isprint.c		\
 				test_strlen.c		\
 				test_memset.c		\
-				test_bzero.c
+				test_bzero.c		\
+				test_memcpy.c
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 # OBJECTS
