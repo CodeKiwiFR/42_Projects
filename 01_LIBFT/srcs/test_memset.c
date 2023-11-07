@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:07:32 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/07 14:27:24 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/07 21:13:56 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,31 @@ void	test_memset(void)
 		print_red("ERROR - MALLOC FAILED\n");
 		exit(0);
 	}
+
+	// Test 1
 	ptr1 = memset(ptr1, 0, 10);
 	ptr2 = ft_memset(ptr2, 0, 10);
 	test_result = memcmp(ptr1, ptr2, 10);
 	print_test_infos(cpt++, test_result == 0, 0);
+
+	// Test 2
 	ptr1 = memset(ptr1, 'a', 9);
 	ptr2 = ft_memset(ptr2, 'a', 9);
 	test_result = memcmp(ptr1, ptr2, 10);
 	print_test_infos(cpt++, test_result == 0, 0);
+
+	// Test 3
 	ptr1 = memset(ptr1, 'b', 3);
 	ptr2 = ft_memset(ptr2, 'b', 3);
 	test_result = memcmp(ptr1, ptr2, 10);
 	print_test_infos(cpt++, test_result == 0, 0);
+
+	// Test 4
 	ptr1 = memset(ptr1, 'c', 0);
 	ptr2 = ft_memset(ptr2, 'c', 0);
 	test_result = memcmp(ptr1, ptr2, 10);
 	print_test_infos(cpt++, test_result == 0, 1);
+
 	free(ptr1);
 	free(ptr2);
 }

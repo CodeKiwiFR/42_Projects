@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:07:32 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/07 16:23:14 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/07 21:13:09 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,27 @@ void	test_memcpy(void)
 	}
 	ptr2 = ptr1 + 3;
 	ptr4 = ptr3 + 3;
+
+	// Test 1
 	bzero(ptr1, 10);
 	bzero(ptr3, 10);
 	memcpy(ptr1, "abcdefghi", 9);
 	memcpy(ptr3, "abcdefghi", 9);
 	test_result = memcmp(ptr1, ptr3, 10);
 	print_test_infos(cpt++, test_result == 0, 0);
+
+	// Test 2
 	memcpy(ptr2, "lol", 3);
 	memcpy(ptr4, "lol", 3);
 	test_result = memcmp(ptr1, ptr3, 10);
 	print_test_infos(cpt++, test_result == 0, 0);
+
+	// Test 3
 	memcpy(ptr1, "aaaaa", 5);
 	memcpy(ptr3, "aaaaa", 5);
 	test_result = memcmp(ptr1, ptr3, 10);
 	print_test_infos(cpt++, test_result == 0, 1);
+
 	free(ptr1);
 	free(ptr3);
 }
