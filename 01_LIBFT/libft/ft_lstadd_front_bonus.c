@@ -1,25 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_test.h                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 17:14:00 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/07 10:22:09 by mhotting         ###   ########.fr       */
+/*   Created: 2023/11/06 18:11:20 by mhotting          #+#    #+#             */
+/*   Updated: 2023/11/06 18:26:40 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_TEST_H
-# define LIBFT_TEST_H
+#include "libft.h"
 
-# include "libft.h"
-# include <stdio.h>
-# include <ctype.h>
-
-void	print_test_intro(char *func_name);
-void	print_test_infos(int test_index, int test_success, int is_last);
-
-void	test_isalpha(void);
-
-#endif
+void	ft_lstadd_front(t_list **lst, t_list *new);

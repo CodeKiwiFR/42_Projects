@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 16:46:15 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/06 17:51:18 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/07 10:17:13 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ INCS		=	$(addprefix $(INC_DIR), $(INC_FILES))
 
 # SOURCES
 SRC_DIR		=	./srcs/
-SRC_FILES	=	main.c
+SRC_FILES	=	main.c			\
+				utils.c			\
+				test_isalpha.c
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 # OBJECTS
