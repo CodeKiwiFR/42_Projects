@@ -6,14 +6,14 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 16:46:15 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/08 08:48:15 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/08 13:11:18 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # GENERAL
 NAME		=	libft_test
 CC			=	gcc
-#CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra
 
 # HEADERS
 INC_DIR		=	./includes/
@@ -33,7 +33,9 @@ SRC_FILES	=	main.c				\
 				test_memset.c		\
 				test_bzero.c		\
 				test_memcpy.c		\
-				test_memmove.c
+				test_memmove.c		\
+				test_strlcpy.c		\
+				test_strlcat.c
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 # OBJECTS
@@ -49,7 +51,7 @@ LIBFT_FLAGS	=	-L$(LIBFT_DIR) -lft
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I$(INC_DIR) $(LIBFT_FLAGS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I$(INC_DIR) $(LIBFT_FLAGS) -lbsd
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS) $(LIBFT_FILE)
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR) -I$(LIBFT_DIR)

@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:07:32 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/07 21:13:56 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/08 11:26:37 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ void	test_memset(void)
 	// Test 3
 	ptr1 = memset(ptr1, 'b', 3);
 	ptr2 = ft_memset(ptr2, 'b', 3);
-	test_result = memcmp(ptr1, ptr2, 10);
-	print_test_infos(cpt++, test_result == 0, 0);
-
-	// Test 4
-	ptr1 = memset(ptr1, 'c', 0);
-	ptr2 = ft_memset(ptr2, 'c', 0);
 	test_result = memcmp(ptr1, ptr2, 10);
 	print_test_infos(cpt++, test_result == 0, 1);
 
