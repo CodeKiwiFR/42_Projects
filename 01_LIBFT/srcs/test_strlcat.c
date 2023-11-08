@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 08:36:04 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/08 13:37:31 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:01:26 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,18 @@ void	test_strlcat(void)
 	// Test 7
 	lib_val = strlcat(dest, "Hello World", 50);
 	my_val = ft_strlcat(dest2, "Hello World", 50);
+	test_result = (lib_val == my_val) && (memcmp(dest, dest2, 50) == 0);
+	print_test_infos(cpt++, test_result, 0);
+
+	// Test 8
+	lib_val = strlcat(dest, "", 50);
+	my_val = ft_strlcat(dest2, "", 50);
+	test_result = (lib_val == my_val) && (memcmp(dest, dest2, 50) == 0);
+	print_test_infos(cpt++, test_result, 0);
+
+	// Test 9
+	lib_val = strlcat(dest, "", 1);
+	my_val = ft_strlcat(dest2, "", 1);
 	test_result = (lib_val == my_val) && (memcmp(dest, dest2, 50) == 0);
 	print_test_infos(cpt++, test_result, 1);
 
