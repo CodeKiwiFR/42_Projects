@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:14:00 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/09 15:27:52 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/09 18:18:26 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	test_strdup(void);
 void	test_substr(void);
 void	test_strjoin(void);
 void	test_strtrim(void);
-void	test_strsplit(void);
+void	test_split(void);
 void	test_itoa(void);
 void	test_strmapi(void);
 void	test_striteri(void);

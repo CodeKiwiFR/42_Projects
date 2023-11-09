@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 16:46:15 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/09 15:21:05 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/09 18:18:45 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRC_FILES	=	main.c				\
 				test_substr.c		\
 				test_strjoin.c		\
 				test_strtrim.c		\
-				test_strsplit.c		\
+				test_split.c		\
 				test_itoa.c			\
 				test_strmapi.c		\
 				test_striteri.c		\
