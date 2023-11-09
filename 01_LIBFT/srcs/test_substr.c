@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 08:36:04 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/09 17:21:29 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:48:00 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,12 @@ void	test_substr(void)
 	else
 	{
 		test_val = (strcmp(res, "hi") == 0);
-		print_test_infos(cpt++, test_val, 1);
+		print_test_infos(cpt++, test_val, 0);
 		free(res);
 	}
 
+	// Test 7
+	res = ft_substr(NULL, 7, 50);
+	test_val = (res == NULL);
+	print_test_infos(cpt++, test_val, 1);
 }

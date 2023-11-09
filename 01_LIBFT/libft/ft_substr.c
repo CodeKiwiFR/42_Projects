@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:13:04 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/09 16:47:17 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:40:43 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*s_start;
 	size_t	tmp_len;
 
+	if (s == NULL)
+		return (NULL);
 	s_start = (char *) s;
 	tmp_len = ft_strlen(s_start);
 	if (start > tmp_len)

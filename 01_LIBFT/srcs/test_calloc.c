@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:21:50 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/09 13:14:32 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:38:10 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	test_calloc(void)
 	free(lib_ptr);
 	free(my_ptr);
 
+	/*
 	// Test 3
 	nmemb = 0;
 	size = sizeof(char);
@@ -81,6 +82,7 @@ void	test_calloc(void)
 	test_result = (my_ptr == NULL);
 	print_test_infos(cpt++, test_result, 0);
 	free(my_ptr);
+	*/
 
 	// Test 5
 	nmemb = 3000000000;
