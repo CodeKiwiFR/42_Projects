@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:09:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/09 13:12:10 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:16:09 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
 
-	if (size == 0 || nmemb == 0 || (size > 0 && nmemb > 2147483647 / size))
+	if (size > 0 && nmemb > 2147483647 / size)
 		return (NULL);
 	ptr = malloc(nmemb * size);
 	if (ptr == NULL)
