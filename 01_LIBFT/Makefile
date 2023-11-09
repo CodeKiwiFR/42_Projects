@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 16:46:15 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/08 14:21:02 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/09 09:27:27 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,16 @@ SRC_FILES	=	main.c				\
 				test_strlcpy.c		\
 				test_strlcat.c		\
 				test_toupper.c		\
-				test_tolower.c
+				test_tolower.c		\
+				test_strchr.c		\
+				test_strrchr.c		\
+				test_strncmp.c		\
+				test_memchr.c		\
+				test_memcmp.c		\
+				test_strnstr.c		\
+				test_atoi.c			\
+				test_calloc.c		\
+				test_strdup.c
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 # OBJECTS
