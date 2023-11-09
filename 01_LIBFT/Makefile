@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 16:46:15 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/09 09:27:27 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/09 15:21:05 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,19 @@ SRC_FILES	=	main.c				\
 				test_strnstr.c		\
 				test_atoi.c			\
 				test_calloc.c		\
-				test_strdup.c
+				test_strdup.c		\
+				test_substr.c		\
+				test_strjoin.c		\
+				test_strtrim.c		\
+				test_strsplit.c		\
+				test_itoa.c			\
+				test_strmapi.c		\
+				test_striteri.c		\
+				test_putchar_fd.c	\
+				test_putstr_fd.c	\
+				test_putendl_fd.c	\
+				test_putnbr_fd.c
+				
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 # OBJECTS
