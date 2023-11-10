@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:14:00 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/09 18:18:26 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/10 13:36:10 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,15 @@ void	test_putchar_fd(void);
 void	test_putstr_fd(void);
 void	test_putendl_fd(void);
 void	test_putnbr_fd(void);
+
+void	test_lstadd_back(void);
+void    test_lstadd_front(void);
+void    test_lstclear(void);
+void    test_lstdelone(void);
+void    test_lstiter(void);
+void    test_lstlast(void);
+void    test_lstmap(void);
+void    test_lstnew(void);
+void    test_lstsize(void);
 
 #endif

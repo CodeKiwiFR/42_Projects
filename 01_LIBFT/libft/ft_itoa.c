@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:10:26 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/10 09:59:50 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:00:28 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_itoa(int n)
 	long	nb;
 	size_t	nb_len;
 
-	nb = n;
+	nb = (long) n;
 	nb_len = get_nb_size(nb);
 	res = (char *) ft_calloc(nb_len + 1, sizeof(char));
 	if (res == NULL)

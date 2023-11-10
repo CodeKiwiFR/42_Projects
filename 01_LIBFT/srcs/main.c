@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:32:06 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/09 18:18:15 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:03:51 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	main(void)
 	printf("*******************\n");
 	printf("**  LIBFT TESTS  **\n");
 	printf("*******************\n\n");
-	test_isalpha();
 
+	test_isalpha();
 	test_isdigit();
 	test_isalnum();
 	test_isascii();
@@ -64,6 +64,7 @@ int	main(void)
 	test_putstr_fd();
 	test_putendl_fd();
 	test_putnbr_fd();
+	printf("\n");
 
 	return (0);
 }

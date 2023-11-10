@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_putnbr_fd.c                                   :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 08:36:04 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/10 12:11:50 by mhotting         ###   ########.fr       */
+/*   Created: 2023/11/06 16:32:06 by mhotting          #+#    #+#             */
+/*   Updated: 2023/11/10 14:03:56 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_test.h"
+#include <stdio.h>
 
-void	test_putnbr_fd(void)
+int	main(void)
 {
-	// int	cpt;
-	// int	test_val;
+	system("clear");
+	printf("***************************\n");
+	printf("**  LIBFT TESTS (BONUS)  **\n");
+	printf("***************************\n\n");
 
-	// cpt = 1;
-	// print_test_intro("putnbr_fd");
-	// 
-	// // Test 1
-	// test_val = cpt;
-	// print_test_infos(cpt++, test_val, 0);
+    test_lstadd_back();
+    test_lstadd_front();
+    test_lstclear();
+    test_lstdelone();
+    test_lstiter();
+    test_lstlast();
+    test_lstmap();
+    test_lstnew();
+    test_lstsize();
+	printf("\n");
+
+	return (0);
 }

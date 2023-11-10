@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 14:28:05 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/07 12:04:47 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/10 12:33:05 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME		=	libft.a
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
 INCS		=	libft.h
+
 SRCS		=	ft_isalpha.c			\
 				ft_isdigit.c			\
 				ft_isalnum.c			\
@@ -47,8 +48,9 @@ SRCS		=	ft_isalpha.c			\
 				ft_putchar_fd.c			\
 				ft_putstr_fd.c			\
 				ft_putendl_fd.c			\
-				ft_putnbr_fd.c			\
-				ft_lstnew_bonus.c		\
+				ft_putnbr_fd.c
+
+SRCS_BONUS	=	ft_lstnew_bonus.c		\
 				ft_lstadd_front_bonus.c	\
 				ft_lstsize_bonus.c		\
 				ft_lstlast_bonus.c		\
@@ -57,9 +59,15 @@ SRCS		=	ft_isalpha.c			\
 				ft_lstclear_bonus.c		\
 				ft_lstiter_bonus.c		\
 				ft_lstmap_bonus.c
+
 OBJS		=	$(SRCS:.c=.o)
 
+OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
+
 all: $(NAME)
+
+bonus: $(OBJS) $(OBJS_BONUS)
+	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS)
 
 $(NAME): $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
@@ -68,11 +76,11 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
