@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 08:36:04 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/10 18:39:57 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/10 19:40:20 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void	test_lstdelone(void)
 			print_test_infos(cpt++, test_val, 0);
 		}
 	}
+
 	print_blue("Memory tests not provided => use Valgrind\n");
 }
