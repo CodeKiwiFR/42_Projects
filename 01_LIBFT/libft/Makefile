@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 14:28:05 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/10 12:33:05 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/10 17:13:25 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,13 +64,19 @@ OBJS		=	$(SRCS:.c=.o)
 
 OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
 
+ifdef WITH_BONUS
+    OBJ = $(OBJS) $(OBJS_BONUS)
+else
+    OBJ = $(OBJS)
+endif
+
 all: $(NAME)
 
-bonus: $(OBJS) $(OBJS_BONUS)
-	ar -rcs $(NAME) $(OBJS) $(OBJS_BONUS)
+bonus:
+	make WITH_BONUS=1 all
 
-$(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+$(NAME): $(OBJ)
+	ar -rcs $(NAME) $(OBJ)
 
 %.o: %.c $(INCS)
 	$(CC) $(CFLAGS) -c $< -o $@
