@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 16:46:15 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/10 14:26:38 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/10 16:30:10 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,10 +116,10 @@ $(OBJ_BONUS_DIR):
 	mkdir -p $(OBJ_BONUS_DIR)
 
 $(LIBFT_FILE):
-	make -sC $(LIBFT_DIR) bonus
+	make -sC $(LIBFT_DIR)
 
 libft-bonus:
-	make -sC $(LIBFT_DIR)
+	make -sC $(LIBFT_DIR) bonus
 
 clean:
 	rm -f $(OBJS)

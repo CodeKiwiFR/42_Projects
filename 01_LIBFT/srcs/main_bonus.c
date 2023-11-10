@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:32:06 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/10 14:03:56 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:32:27 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ int	main(void)
 	printf("**  LIBFT TESTS (BONUS)  **\n");
 	printf("***************************\n\n");
 
-    test_lstadd_back();
-    test_lstadd_front();
-    test_lstclear();
-    test_lstdelone();
-    test_lstiter();
-    test_lstlast();
-    test_lstmap();
     test_lstnew();
+    test_lstadd_front();
     test_lstsize();
+    test_lstlast();
+    test_lstadd_back();
+    test_lstdelone();
+    test_lstclear();
+    test_lstiter();
+    test_lstmap();
 	printf("\n");
 
 	return (0);
