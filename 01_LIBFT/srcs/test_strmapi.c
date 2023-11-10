@@ -6,13 +6,13 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 08:36:04 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/10 11:22:28 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:21:55 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_test.h"
 
-char	my_toupperi(unsigned int i, char c)
+static char	my_toupperi(unsigned int i, char c)
 {
 	if (i > 0)
 		return (ft_toupper(c));

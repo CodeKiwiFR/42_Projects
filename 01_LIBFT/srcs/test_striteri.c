@@ -6,13 +6,13 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 08:36:04 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/10 11:38:43 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:21:20 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_test.h"
 
-void	my_toloweri(unsigned int i, char *str)
+static void	my_toloweri(unsigned int i, char *str)
 {
 	str[i] = ft_tolower(str[i]);
 }

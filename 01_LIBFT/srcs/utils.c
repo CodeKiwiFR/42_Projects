@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:07:14 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/10 14:00:56 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:18:47 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ void	print_red(char *str)
 void	print_green(char *str)
 {
 	printf("\033[0;32m");
+	printf("%s", str);
+	printf("\033[0m");
+}
+
+void	print_blue(char *str)
+{
+	printf("\033[0;34m");
 	printf("%s", str);
 	printf("\033[0m");
 }

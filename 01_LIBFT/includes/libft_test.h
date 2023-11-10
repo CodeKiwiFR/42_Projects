@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:14:00 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/10 13:36:10 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:19:02 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	print_test_intro(char *func_name);
 void	print_test_infos(int test_index, int test_success, int is_last);
 void	print_red(char *str);
 void	print_green(char *str);
+void	print_blue(char *str);
 
 void	test_isalpha(void);
 void	test_isdigit(void);
