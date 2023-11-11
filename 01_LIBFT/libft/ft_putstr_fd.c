@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:21:39 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/06 17:21:42 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/12 00:37:23 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	while (*s != '\0')
-	{
-		ft_putchar_fd(*s, fd);
-		s++;
-	}
+	if (s != NULL)
+		write(fd, s, ft_strlen(s));
 }

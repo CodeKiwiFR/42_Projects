@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:11:17 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/10 17:18:43 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/11 11:11:47 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	if (new == NULL)
 		return ;
 	if (*lst == NULL)
-	{
 		*lst = new;
-		return ;
+	else
+	{
+		current = ft_lstlast(*lst);
+		current->next = new;
 	}
-	current = *lst;
-	while (current->next != NULL)
-		current = current->next;
-	current->next = new;
 }

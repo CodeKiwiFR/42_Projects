@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:12:42 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/10 11:28:05 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/12 00:46:36 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	i = 0;
 	while (s[i] != '\0')
 	{
-		f(i, s);
+		f(i, s + i);
 		i++;
 	}
 }

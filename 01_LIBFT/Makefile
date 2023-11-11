@@ -6,14 +6,14 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 16:46:15 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/10 16:30:10 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/11 10:32:44 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # GENERAL
 NAME				=	libft_test
 NAME_BONUS			=	libft_test_bonus
-CC					=	gcc
+CC					=	clang
 CFLAGS				=	-Wall -Werror -Wextra
 
 # HEADERS

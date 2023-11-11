@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:11:49 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/07 16:07:04 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/12 00:29:02 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	unsigned char	*char_dest;
 	unsigned char	*char_src;
 
+	if (dest == NULL || src == NULL)
+		return (NULL);
 	char_dest = (unsigned char *) dest;
 	char_src = (unsigned char *) src;
 	i = 0;

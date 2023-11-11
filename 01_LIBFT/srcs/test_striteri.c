@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 08:36:04 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/10 18:21:20 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/12 00:48:50 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static void	my_toloweri(unsigned int i, char *str)
 {
-	str[i] = ft_tolower(str[i]);
+	if (i > 0)
+		*str = ft_tolower(*str);
+	*str = ft_tolower(*str);
 }
 
 
