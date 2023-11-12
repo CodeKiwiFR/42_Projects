@@ -5,137 +5,88 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/06 16:46:15 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/11 10:32:44 by mhotting         ###   ########.fr        #
+#    Created: 2023/11/06 14:28:05 by mhotting          #+#    #+#              #
+#    Updated: 2023/11/10 17:13:25 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# GENERAL
-NAME				=	libft_test
-NAME_BONUS			=	libft_test_bonus
-CC					=	clang
-CFLAGS				=	-Wall -Werror -Wextra
+NAME		=	libft.a
+CC			=	gcc
+CFLAGS		=	-Wall -Werror -Wextra
+INCS		=	libft.h
 
-# HEADERS
-INC_DIR				=	./includes/
-INC_FILES			=	libft_test.h
-INCS				=	$(addprefix $(INC_DIR), $(INC_FILES))
+SRCS		=	ft_isalpha.c			\
+				ft_isdigit.c			\
+				ft_isalnum.c			\
+				ft_isascii.c			\
+				ft_isprint.c			\
+				ft_strlen.c				\
+				ft_memset.c				\
+				ft_bzero.c				\
+				ft_memcpy.c				\
+				ft_memmove.c			\
+				ft_strlcpy.c			\
+				ft_strlcat.c			\
+				ft_toupper.c			\
+				ft_tolower.c			\
+				ft_strchr.c				\
+				ft_strrchr.c			\
+				ft_strncmp.c			\
+				ft_memchr.c				\
+				ft_memcmp.c				\
+				ft_strnstr.c			\
+				ft_atoi.c				\
+				ft_calloc.c				\
+				ft_strdup.c				\
+				ft_substr.c				\
+				ft_strjoin.c			\
+				ft_strtrim.c			\
+				ft_split.c				\
+				ft_itoa.c				\
+				ft_strmapi.c			\
+				ft_striteri.c			\
+				ft_putchar_fd.c			\
+				ft_putstr_fd.c			\
+				ft_putendl_fd.c			\
+				ft_putnbr_fd.c
 
-# SOURCES
-SRC_DIR				=	./srcs/
-SRC_FILES			=	main.c				\
-						utils.c				\
-						test_isalpha.c		\
-						test_isdigit.c		\
-						test_isalnum.c		\
-						test_isascii.c		\
-						test_isprint.c		\
-						test_strlen.c		\
-						test_memset.c		\
-						test_bzero.c		\
-						test_memcpy.c		\
-						test_memmove.c		\
-						test_strlcpy.c		\
-						test_strlcat.c		\
-						test_toupper.c		\
-						test_tolower.c		\
-						test_strchr.c		\
-						test_strrchr.c		\
-						test_strncmp.c		\
-						test_memchr.c		\
-						test_memcmp.c		\
-						test_strnstr.c		\
-						test_atoi.c			\
-						test_calloc.c		\
-						test_strdup.c		\
-						test_substr.c		\
-						test_strjoin.c		\
-						test_strtrim.c		\
-						test_split.c		\
-						test_itoa.c			\
-						test_strmapi.c		\
-						test_striteri.c		\
-						test_putchar_fd.c	\
-						test_putstr_fd.c	\
-						test_putendl_fd.c	\
-						test_putnbr_fd.c
-SRCS				=	$(addprefix $(SRC_DIR), $(SRC_FILES))
+SRCS_BONUS	=	ft_lstnew_bonus.c		\
+				ft_lstadd_front_bonus.c	\
+				ft_lstsize_bonus.c		\
+				ft_lstlast_bonus.c		\
+				ft_lstadd_back_bonus.c	\
+				ft_lstdelone_bonus.c	\
+				ft_lstclear_bonus.c		\
+				ft_lstiter_bonus.c		\
+				ft_lstmap_bonus.c
 
-# BONUS SOURCES
-SRC_BONUS_DIR		=	./srcs/
-SRC_BONUS_FILES		=	main_bonus.c				\
-						utils.c						\
-						test_bonus_lstadd_back.c	\
-						test_bonus_lstadd_front.c	\
-						test_bonus_lstclear.c		\
-						test_bonus_lstdelone.c		\
-						test_bonus_lstiter.c		\
-						test_bonus_lstlast.c		\
-						test_bonus_lstmap.c			\
-						test_bonus_lstnew.c			\
-						test_bonus_lstsize.c
-SRCS_BONUS			=	$(addprefix $(SRC_BONUS_DIR), $(SRC_BONUS_FILES))
+OBJS		=	$(SRCS:.c=.o)
 
-# OBJECTS
-OBJ_DIR				=	./objs/
-OBJ_FILES			=	$(SRC_FILES:.c=.o)
-OBJS				=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
+OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
 
-# BONUS OBJECTS
-OBJ_BONUS_DIR		=	./objs_bonus/
-OBJ_BONUS_FILES		=	$(SRC_BONUS_FILES:.c=.o)
-OBJS_BONUS			=	$(addprefix $(OBJ_BONUS_DIR), $(OBJ_BONUS_FILES))
+ifdef WITH_BONUS
+    OBJ = $(OBJS) $(OBJS_BONUS)
+else
+    OBJ = $(OBJS)
+endif
 
-# LIBRARY
-LIBFT_DIR			=	./libft/
-LIBFT_FILE			=	$(addprefix $(LIBFT_DIR), libft.a)
-LIBFT_FLAGS			=	-L$(LIBFT_DIR) -lft
-
-
-# RULES
 all: $(NAME)
 
-$(NAME): $(OBJ_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I$(INC_DIR) $(LIBFT_FLAGS) -lbsd
+bonus:
+	make WITH_BONUS=1 all
 
-bonus: $(NAME_BONUS)
+$(NAME): $(OBJ)
+	ar -rcs $(NAME) $(OBJ)
 
-$(NAME_BONUS): $(OBJ_BONUS_DIR) $(OBJS_BONUS)
-	$(CC) $(CFLAGS) $(OBJS_BONUS) -o $(NAME_BONUS) -I$(INC_DIR) $(LIBFT_FLAGS)
-
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS) $(LIBFT_FILE)
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR) -I$(LIBFT_DIR)
-
-$(OBJ_BONUS_DIR)%.o: $(SRC_BONUS_DIR)%.c $(INCS) libft-bonus
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR) -I$(LIBFT_DIR)
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
-$(OBJ_BONUS_DIR):
-	mkdir -p $(OBJ_BONUS_DIR)
-
-$(LIBFT_FILE):
-	make -sC $(LIBFT_DIR)
-
-libft-bonus:
-	make -sC $(LIBFT_DIR) bonus
+%.o: %.c $(INCS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
-	rm -f $(OBJS_BONUS)
+	rm -f $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(NAME_BONUS)
-
-clean-libft:
-	make -sC $(LIBFT_DIR) fclean
-
-ffclean: fclean clean-libft
 
 re: fclean all
 
-rre: ffclean all
-
-.PHONY: all clean fclean clean-libft ffclean re rre
+.PHONY: all clean fclean re bonus
