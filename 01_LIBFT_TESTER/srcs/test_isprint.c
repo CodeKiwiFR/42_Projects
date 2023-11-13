@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 08:36:04 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/11 11:07:34 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/13 09:05:01 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ void	test_isprint(void)
 	// Test 7
 	lib_val = isprint(31);
 	my_val = ft_isprint(31);
+	test_val = (lib_val == 0 && my_val == 0);
+	print_test_infos(cpt++, test_val, 0);
+
+	// Test 8
+	lib_val = isprint(127);
+	my_val = ft_isprint(127);
 	test_val = (lib_val == 0 && my_val == 0);
 	print_test_infos(cpt++, test_val, 1);
 }

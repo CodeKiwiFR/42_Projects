@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:13:04 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/09 17:40:43 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:33:26 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	s_start = (char *) s;
 	tmp_len = ft_strlen(s_start);
 	if (start > tmp_len)
-		return (NULL);
+		return (ft_strdup(""));
 	s_start += start;
 	s_end = s_start;
 	while (*s_end != '\0' && ((unsigned int)(s_end - s_start) < len))

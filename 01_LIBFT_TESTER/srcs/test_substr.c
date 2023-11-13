@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 08:36:04 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/09 17:48:00 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:47:28 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,14 @@ void	test_substr(void)
 
 	// Test 3
 	res = ft_substr("abcdefghi", 15, 20);
-	test_val = res == NULL;
-	print_test_infos(cpt++, test_val, 0);
+	if (res == NULL)
+		printf("ERROR\n\n");
+	else
+	{
+		test_val = (strcmp(res, "") == 0);
+		print_test_infos(cpt++, test_val, 0);
+		free(res);
+	}
 
 	// Test 4
 	res = ft_substr("abcdefghi", 2, 100);

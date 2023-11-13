@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:12:34 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/12 00:42:01 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/13 09:26:08 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ char	*ft_strchr(const char *s, int c)
 			return (res);
 		res++;
 	}
+	if (*res == c_char)
+		return (res);
 	return (NULL);
 }
