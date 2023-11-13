@@ -6,12 +6,12 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 14:28:05 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/13 09:42:32 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/13 14:41:32 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libft.a
-CC			=	gcc
+CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
 INCS		=	libft.h
 
