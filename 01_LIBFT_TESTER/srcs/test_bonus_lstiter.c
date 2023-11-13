@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 08:36:04 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/10 13:59:40 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:26:55 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ void	test_lstiter(void)
 
 	// Test 1
 	test_val = (cpt == 1);
-	print_test_infos(cpt++, test_val, 1);
+	print_blue("(No test provided yet)\n");
 }
