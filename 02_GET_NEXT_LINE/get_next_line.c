@@ -6,8 +6,15 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:03:38 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/13 16:03:53 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/14 08:37:24 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*get_next_line(int fd)
+{
+	if (fd)
+		return (NULL);
+	return (NULL);
+}
