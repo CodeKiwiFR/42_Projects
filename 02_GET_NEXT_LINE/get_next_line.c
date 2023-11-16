@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:03:38 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/16 15:24:11 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:29:37 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ char	*ft_strchr(const char *s, int c)
 /*
  * Parses the store in order to extract the data from inside of it.
  * Cases:
- * 	- if the store is empty => does nothing
- * 	- if the store contains a string without a nl => res is set to store, store becomes NULL
- * 	- if the store contains a string with a nl
+ * 	-	if the store is empty => does nothing
+ * 	-	if the store contains a string without a nl => res is set to store,
+ * 		store becomes NULL
+ * 	-	if the store contains a string with a nl
  * 		=> res is a new str containing the whole new line
  * 		=> store is the remaining part
  * 		=> old store is freed
@@ -67,7 +68,8 @@ int	get_store(char **res, char **store, char *nl_found)
  * 	- nl_found equals 0:
  * 		=> res is a new str: concatenation between res and all the buffer
  * 	- nl_found equals 1:
- * 		=> res is a concatenation between old res and  new str containing the whole new line
+ * 		=> res is a concatenation between old res and
+ * 		new str containing the whole new line
 */
 int	get_buf(char buf[BUFFER_SIZE + 1], char **res, char **store, char nl_found)
 {
