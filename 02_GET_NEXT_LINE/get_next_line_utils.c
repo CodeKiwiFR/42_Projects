@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:04:47 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/17 11:31:07 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:25:32 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,6 @@ void	clear_buffer(char buffer[BUFFER_SIZE + 1])
 		buffer[i] = '\0';
 		i++;
 	}
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	char			*res;
-	unsigned char	c_char;
-
-	res = (char *) s;
-	c_char = (unsigned char) c;
-	while (*res != '\0')
-	{
-		if (*res == c_char)
-			return (res);
-		res++;
-	}
-	if (*res == c_char)
-		return (res);
-	return (NULL);
 }
 
 char	*gnl_substr(char *src, size_t start, size_t len)
@@ -63,6 +45,13 @@ char	*gnl_substr(char *src, size_t start, size_t len)
 	return (res);
 }
 
+/*
+ *	Appends s2 at the en of s1.
+ *	A new string is allocated and s1 is freed.
+ *	In case of error, nothing happens and 0 is returned.
+ *	If s1 or s2 is NULL, it is considered as empty.
+ *	On success 1 is returned.
+ */
 int	gnl_join(char **s1, char *s2)
 {
 	char	*res;
@@ -92,27 +81,39 @@ int	gnl_join(char **s1, char *s2)
 	return (1);
 }
 
-char	**gnl_split(char buf[BUFFER_SIZE + 1], int *nl_found)
+/*
+ *	Splits str into two strings where the first '\n' is encountered
+ *	Sets nl_found to 1 when a new line has been found
+ *	Returns NULL in case of error
+ *	Edge cases:
+ *		-	if str is NULL, NULL is returned;
+ *		-	if str is empty [NULL, NULL] is returned;
+ *		-	if str does not contain '\n' or does not contain anything
+ *			after '\n' [ptr, NULL] is returned;
+ */
+char	**gnl_split(char *str, int *nl_found)
 {
 	char	**res;
 	size_t	i;
 	size_t	j;
 
+	if (str == NULL)
+		return (NULL);
 	res = (char **) malloc(2 * sizeof(char *));
 	if (res == NULL)
 		return (NULL);
 	i = 0;
-	while (buf[i] != '\0' && buf[i] != '\n')
+	while (str[i] != '\0' && str[i] != '\n')
 		i++;
-	if (buf[i] == '\n')
+	if (str[i] == '\n')
 	{
 		*nl_found = 1;
 		i++;
 	}
-	res[0] = gnl_substr(buf, 0, i);
+	res[0] = gnl_substr(str, 0, i);
 	j = i;
-	while (buf[j] != '\0')
+	while (str[j] != '\0')
 		j++;
-	res[1] = gnl_substr(buf, i, j - i);
+	res[1] = gnl_substr(str, i, j - i);
 	return (res);
 }
