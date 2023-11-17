@@ -6,41 +6,11 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:03:38 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/16 15:29:37 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/17 11:30:41 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	clear_buffer(char buffer[BUFFER_SIZE + 1])
-{
-	size_t	i;
-
-	i = 0;
-	while (i < BUFFER_SIZE + 1)
-	{
-		buffer[i] = '\0';
-		i++;
-	}
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	char			*res;
-	unsigned char	c_char;
-
-	res = (char *) s;
-	c_char = (unsigned char) c;
-	while (*res != '\0')
-	{
-		if (*res == c_char)
-			return (res);
-		res++;
-	}
-	if (*res == c_char)
-		return (res);
-	return (NULL);
-}
 
 /*
  * Parses the store in order to extract the data from inside of it.
@@ -54,10 +24,22 @@ char	*ft_strchr(const char *s, int c)
  * 		=> old store is freed
  * 		=> nl_found is set to 1
 */
-int	get_store(char **res, char **store, char *nl_found)
+int	get_store(char **res, char **store, int *nl_found)
 {
-	if (res || store || nl_found)
+	char	**gnl_split_res;
+
+	if (*store == NULL)
 		return (1);
+	gnl_split_res = gnl_split(*store, nl_found);
+	free(*store);
+	*store = NULL;
+	if (gnl_split_res == NULL)
+		return (0); // Temporary - Needs to clean memory
+	if (gnl_split_res[0] != NULL)
+		*res = gnl_split_res[0];
+	if (gnl_split_res[1] != NULL)
+		*store = gnl_split_res[1];
+	free(gnl_split_res);
 	return (1);
 }
 
@@ -71,10 +53,29 @@ int	get_store(char **res, char **store, char *nl_found)
  * 		=> res is a concatenation between old res and
  * 		new str containing the whole new line
 */
-int	get_buf(char buf[BUFFER_SIZE + 1], char **res, char **store, char nl_found)
+int	get_buf(char buf[BUFFER_SIZE + 1], char **res, char **store, int *nl_found)
 {
-	if (buf || res || store || nl_found)
-		return (1);
+	char	**gnl_split_res;
+
+	gnl_split_res = gnl_split(buf, nl_found);
+	if (gnl_split_res == NULL)
+		return (0); // Temporary - Needs to clean memory
+	if (gnl_split_res[0] != NULL)
+	{
+		if (!gnl_join(res, gnl_split_res[0]))
+		{
+			free(*res);
+			free(gnl_split_res[0]);
+			if (gnl_split_res[1] != NULL)
+				free(gnl_split_res[1]);
+			free(gnl_split_res);
+			return (0);
+		}
+		free(gnl_split_res[0]);
+	}
+	if (gnl_split_res[1] != NULL)
+		*store = gnl_split_res[1];
+	free(gnl_split_res);
 	return (1);
 }
 
@@ -82,7 +83,7 @@ char	*get_next_line(int fd)
 {
 	char		*res;
 	char		buf[BUFFER_SIZE + 1];
-	char		nl_found;
+	int			nl_found;
 	static char	*store = NULL;
 	ssize_t		nb_read;
 
@@ -97,9 +98,7 @@ char	*get_next_line(int fd)
 		nb_read = read(fd, buf, BUFFER_SIZE);
 		if (nb_read == -1)
 			return (NULL); // Temporary - Needs to clean memory
-		if (ft_strchr(buf, '\n') != NULL)
-			nl_found = 1;
-		if (!get_buf(buf, &res, &store, nl_found))
+		if (!get_buf(buf, &res, &store, &nl_found))
 			return (NULL);
 	}
 	return (res);
