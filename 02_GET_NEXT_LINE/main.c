@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:05:07 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/17 11:31:28 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/20 09:32:29 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	read_line = get_next_line(fd);
 	while (read_line != NULL)
 	{
-		printf("LINE %3d: \"%s\"\n", count, read_line);
+		printf("LINE %3d: %s", count, read_line);
 		count++;
 		free(read_line);
 		read_line = get_next_line(fd);

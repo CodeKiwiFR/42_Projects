@@ -6,11 +6,35 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:04:47 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/17 15:25:32 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/20 08:26:11 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	clear_memory(char **res, char **store, char **split_result)
+{
+	if (res == NULL || store == NULL)
+		return ;
+	if (*res != NULL)
+	{
+		free(*res);
+		*res = NULL;
+	}
+	if (*store != NULL)
+	{
+		free(*store);
+		*store = NULL;
+	}
+	if (split_result != NULL)
+	{
+		if (split_result[0] != NULL)
+			free(split_result[0]);
+		if (split_result[1] != NULL)
+			free(split_result[1]);
+		free(split_result);
+	}
+}
 
 void	clear_buffer(char buffer[BUFFER_SIZE + 1])
 {
