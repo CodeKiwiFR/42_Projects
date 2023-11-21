@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:04:47 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/20 15:35:12 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/21 10:09:58 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,88 +16,54 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	count;
 
+	if (s == NULL)
+		return (0);
 	count = 0;
 	while (s[count] != '\0')
 		count++;
 	return (count);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
+	char			*res;
+	unsigned char	c_char;
 
-	if (size == 0)
-		return (ft_strlen(src));
-	i = 0;
-	while (src[i] != '\0' && i + 1 < size)
+	res = (char *) s;
+	c_char = (unsigned char) c;
+	while (*res != '\0')
 	{
-		dst[i] = src[i];
-		i++;
+		if (*res == c_char)
+			return (res);
+		res++;
 	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
-}
-
-char	*ft_strdup(const char *s)
-{
-	char	*dup;
-	size_t	s_len;
-
-	s_len = ft_strlen(s);
-	dup = (char *) malloc((s_len + 1) * sizeof(char));
-	if (dup == NULL)
-		return (NULL);
-	ft_strlcpy(dup, s, s_len + 1);
-	return (dup);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*res;
-	char	*s_end;
-	char	*s_start;
-	size_t	tmp_len;
-
-	if (s == NULL)
-		return (NULL);
-	s_start = (char *) s;
-	tmp_len = ft_strlen(s_start);
-	if (start > tmp_len)
-		return (ft_strdup(""));
-	s_start += start;
-	s_end = s_start;
-	while (*s_end != '\0' && ((unsigned int)(s_end - s_start) < len))
-		s_end++;
-	tmp_len = s_end - s_start;
-	res = (char *) malloc((tmp_len + 1) * sizeof(char));
-	if (res == NULL)
-		return (NULL);
-	ft_strlcpy(res, s_start, tmp_len + 1);
-	return (res);
+	if (*res == c_char)
+		return (res);
+	return (NULL);
 }
 
 /*
  *	Appends s2 at the end of s1.
- *	A new string is allocated and s1 is freed.
+ *	Only len_s2 chars of s2 are appended (len_s2 = max(len_s2, ft_strlen(s2)))
+ *	A new string is allocated and old s1 is freed.
  *	In case of error, nothing happens and 0 is returned.
- *	If s1 or s2 is NULL, it is considered as empty.
  *	On success 1 is returned.
  */
-int	gnl_join(char **s1, char *s2)
+int	gnl_join(char **s1, char *s2, size_t len_s2)
 {
 	char	*res;
 	size_t	len_s1;
-	size_t	len_s2;
+	size_t	len_temp;
 	size_t	i;
 
-	len_s1 = 0;
-	len_s2 = 0;
-	if (*s1 != NULL)
-		while ((*s1)[len_s1] != '\0')
-			len_s1++;
-	if (s2 != NULL)
-		while (s2[len_s2] != '\0')
-			len_s2++;
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	if (len_s2 == 0)
+		return (1);
+	len_temp = ft_strlen(s2);
+	if (len_s2 > len_temp)
+		len_s2 = len_temp;
+	len_s1 = ft_strlen(*s1);
 	res = (char *) malloc((len_s1 + len_s2 + 1) * sizeof(char));
 	if (res == NULL)
 		return (0);
@@ -112,4 +78,29 @@ int	gnl_join(char **s1, char *s2)
 	return (1);
 }
 
+void	*gnl_clean_memory(t_list *store, char *buffer, char *res)
+{
+	t_list			*next;
+	t_buffer_save	*buffer_save;
 
+	if (buffer != NULL)
+		free(buffer);
+	if (res != NULL)
+		free(res);
+	if (store != NULL)
+	{
+		while (store != NULL)
+		{
+			next = store->next;
+			buffer_save = (t_buffer_save *)(store->content);
+			if (buffer_save != NULL)
+			{
+				free(buffer_save->buffer);
+				free(buffer_save);
+			}
+			free(store);
+			store = next;
+		}
+	}
+	return (NULL);
+}

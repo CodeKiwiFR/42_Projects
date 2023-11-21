@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:03:38 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/20 15:40:50 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/21 10:12:36 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 /*
  *	Retrieves a buffer from the given store, searching for the given fd.
- *	If a buffer is found, it removes the corresponding node and returns the buffer>
+ *	If a buffer is found, it removes the corresponding node
+ *	and returns the buffer.
  *	Returns NULL if no buffer was found.
  */
-char	*store_get_buffer(t_list **store, int fd)
+static char	*store_get_buffer(t_list **store, int fd)
 {
 	t_list	*prev;
 	t_list	*current;
@@ -50,13 +51,18 @@ char	*store_get_buffer(t_list **store, int fd)
  *	Saves a buffer into the store by creating a new node of type t_buffer_save.
  *	The new buffer is added at the beginning of the store.
  */
-int	store_save(t_list **store, char *buffer, int fd)
+static int	store_save(t_list **store, char *buffer, int fd)
 {
 	t_list			*node;
 	t_buffer_save	*save;
 
 	if (store == NULL || buffer == NULL)
+		return (0);
+	if (buffer[0] == '\0')
+	{
+		free(buffer);
 		return (1);
+	}
 	save = (t_buffer_save *) malloc(sizeof(t_buffer_save));
 	if (save == NULL)
 		return (0);
@@ -82,20 +88,42 @@ int	store_save(t_list **store, char *buffer, int fd)
  * 		- nl_found is set to 1;
  * 	Else:
  * 		- the whole buffer is appended to res;
- * 		- res is cleaned;
+ * 		- buffer is cleaned;
  */
-int	buffer_get(char **buffer, char **res, int *nl_found)
+static int	buffer_get(char *buffer, char **res, int *nl_found)
 {
+	char	*nl_buffer;
+	size_t	buffer_len;
+
+	nl_buffer = ft_strchr(buffer, '\n');
+	if (nl_buffer == NULL)
+		buffer_len = ft_strlen(buffer);
+	else
+	{
+		nl_buffer++;
+		*nl_found = 1;
+		buffer_len = nl_buffer - buffer;
+	}
+	if (!gnl_join(res, buffer, buffer_len))
+		return (0);
+	if (nl_buffer != NULL)
+	{
+		while (*nl_buffer)
+			*(buffer++) = *(nl_buffer++);
+	}
+	while (*buffer != '\0')
+		*(buffer++) = '\0';
 	return (1);
 }
 
 /*
- *	Returns a buffer by getting its previous value from the store or by creating a new one.
+ *	Returns a buffer by getting its previous value from the store
+ *	or by creating a new one.
  *	If a previous state of buffer is found, the first line is extracted from it
  *	and put into res, buffer is then the remaining part from extraction or empty.
  *	If a new line is encountered during the extraction, nl_found is set to 1.
  */
-char	*buffer_init(t_list **store, int fd, char **res, int *nl_found)
+static char	*buffer_init(t_list **store, int fd, char **res, int *nl_found)
 {
 	char	*buffer;
 	size_t	i;
@@ -110,7 +138,7 @@ char	*buffer_init(t_list **store, int fd, char **res, int *nl_found)
 				buffer[i++] = '\0';
 		return (buffer);
 	}
-	if (!buffer_get(&buffer, res, nl_found))
+	if (!buffer_get(buffer, res, nl_found))
 	{
 		free(buffer);
 		return (NULL);
@@ -136,16 +164,16 @@ char	*get_next_line(int fd)
 	nl_found = 0;
 	buffer = buffer_init(&store, fd, &res, &nl_found);
 	if (buffer == NULL)
-		return (NULL); // MEMORY TO CLEAN
+		return (gnl_clean_memory(store, buffer, res));
 	while (nb_read != 0 && !nl_found)
 	{
 		nb_read = read(fd, buffer, BUFFER_SIZE);
 		if (nb_read == -1)
-			return (NULL); // MEMORY TO CLEAN
-		if (!buffer_get(&buffer, &res, &nl_found))
-			return (NULL); // MEMORY TO CLEAN
+			return (gnl_clean_memory(NULL, buffer, res));
+		if (!buffer_get(buffer, &res, &nl_found))
+			return (gnl_clean_memory(store, buffer, res));
 	}
 	if (!store_save(&store, buffer, fd))
-		return (NULL); // MEMORY TO CLEAN
+		return (gnl_clean_memory(store, buffer, res));
 	return (res);
 }

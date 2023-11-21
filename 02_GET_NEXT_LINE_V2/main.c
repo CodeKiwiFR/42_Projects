@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:05:07 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/20 15:08:13 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/21 09:21:12 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
-void	disp_list(t_list *lst)
-{
-	size_t	count;
-
-	count = 0;
-	while (lst != NULL)
-	{
-		printf("NODE %zu: \"%s\"\n", count, ((t_buffer_save *)lst->content)->buffer);
-		count++;
-		lst = lst->next;
-	}
-}
 
 int	main(int argc, char **argv)
 {
@@ -47,18 +34,6 @@ int	main(int argc, char **argv)
 	}
 	count = 0;
 	read_line = get_next_line(fd);
-	printf("MAIN: %s", read_line);
-	read_line = get_next_line(fd);
-	printf("MAIN: %s", read_line);
-	read_line = get_next_line(fd);
-	printf("MAIN: %s", read_line);
-	read_line = get_next_line(fd);
-	printf("MAIN: %s", read_line);
-	read_line = get_next_line(fd);
-	printf("MAIN: %s", read_line);
-	read_line = get_next_line(fd);
-	printf("MAIN: %s", read_line);
-	/*
 	while (read_line != NULL)
 	{
 		printf("LINE %3d: %s", count, read_line);
@@ -66,7 +41,6 @@ int	main(int argc, char **argv)
 		free(read_line);
 		read_line = get_next_line(fd);
 	}
-	*/
 	close(fd);
 	return (0);
 }

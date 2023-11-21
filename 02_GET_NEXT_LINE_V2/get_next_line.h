@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:03:57 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/20 14:51:02 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/21 10:10:30 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-
-
-#include <stdio.h>
-
 typedef struct s_list
 {
 	void			*content;
@@ -36,17 +32,10 @@ typedef struct s_buffer_save
 	char	*buffer;
 }	t_buffer_save;
 
-
-char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-char	*ft_strdup(const char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-int		gnl_join(char **s1, char *s2);
-
-
-// TO REMOVE OR SET TO STATIC
-char	*store_get_buffer(t_list **store, int fd);
-int		store_save(t_list **store, char *buffer, int fd);
+char	*ft_strchr(const char *s, int c);
+int		gnl_join(char **s1, char *s2, size_t s2_len);
+void	*gnl_clean_memory(t_list *store, char *buffer, char *res);
+char	*get_next_line(int fd);
 
 #endif
