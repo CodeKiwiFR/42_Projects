@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:11:43 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/08 15:10:16 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:21:46 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	unsigned char	c_char;
 	unsigned char	*s_char;
 
+	if (s == NULL)
+		return (NULL);
 	c_char = (unsigned char) c;
 	s_char = (unsigned char *) s;
 	while (n > 0)

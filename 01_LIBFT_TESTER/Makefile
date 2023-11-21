@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 16:46:15 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/13 15:12:16 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/21 11:16:34 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ OBJS_BONUS			=	$(addprefix $(OBJ_BONUS_DIR), $(OBJ_BONUS_FILES))
 
 # LIBRARY
 LIBFT_DIR			=	./libft/
+LIBFT_INC_DIR		=	./libft/includes/
 LIBFT_FILE			=	$(addprefix $(LIBFT_DIR), libft.a)
 LIBFT_FLAGS			=	-L$(LIBFT_DIR) -lft
 
@@ -104,10 +105,10 @@ $(NAME_BONUS): $(OBJ_BONUS_DIR) $(OBJS_BONUS)
 	$(CC) $(CFLAGS) $(OBJS_BONUS) -o $(NAME_BONUS) -I$(INC_DIR) $(LIBFT_FLAGS)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS) $(LIBFT_FILE)
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR) -I$(LIBFT_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR) -I$(LIBFT_INC_DIR)
 
 $(OBJ_BONUS_DIR)%.o: $(SRC_BONUS_DIR)%.c $(INCS) libft-bonus
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR) -I$(LIBFT_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(INC_DIR) -I$(LIBFT_INC_DIR)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
@@ -122,8 +123,7 @@ libft-bonus:
 	make -sC $(LIBFT_DIR) bonus
 
 clean:
-	rm -f $(OBJS)
-	rm -f $(OBJS_BONUS)
+	rm -rf $(OBJ_DIR) $(OBJ_BONUS_DIR)
 
 fclean: clean
 	rm -f $(NAME)

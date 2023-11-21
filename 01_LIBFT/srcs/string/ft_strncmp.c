@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:12:55 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/13 11:53:30 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:08:47 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	unsigned char	*s1_char;
 	unsigned char	*s2_char;
 
+	if (s1 == NULL && s2 == NULL)
+		return (0);
+	else if (s1 == NULL)
+		return (0 - *s2);
+	else if (s2 == NULL)
+		return (*s1);
 	s1_char = (unsigned char *) s1;
 	s2_char = (unsigned char *) s2;
 	i = 0;

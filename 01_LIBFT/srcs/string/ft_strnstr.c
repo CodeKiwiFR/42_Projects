@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:12:58 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/08 16:55:58 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:09:43 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	char	*big_str;
 	char	*little_str;
 
+	if (little == NULL)
+		return ((char *) big);
+	if (big == NULL)
+		return (NULL);
 	i = 0;
 	big_str = (char *) big;
 	little_str = (char *) little;
