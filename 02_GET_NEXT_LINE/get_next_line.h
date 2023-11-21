@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:03:57 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/20 10:55:47 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/21 10:42:35 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,28 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 1000
 # endif
 
 # include <unistd.h>
 # include <stdlib.h>
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
+typedef struct s_buffer_save
+{
+	int		fd;
+	char	*buffer;
+}	t_buffer_save;
+
+size_t	ft_strlen(const char *s);
+char	*ft_strchr(const char *s, int c);
+int		gnl_join(char **s1, char *s2, size_t s2_len);
+void	*gnl_clean_memory(t_list *store, char *buffer, char *res);
 char	*get_next_line(int fd);
-void	clear_buffer(char buffer[BUFFER_SIZE + 1]);
-char	**gnl_split(char *str, int *nl_found);
-int		gnl_join(char **s1, char *s2);
-void	clear_memory(char **res, char **store, char **split_result);
 
 #endif

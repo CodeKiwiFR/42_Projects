@@ -6,13 +6,17 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/14 11:49:03 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/17 15:35:20 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/20 11:48:42 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	prog
 CC		=	cc
-CFLAGS	=	-Wall -Werror -Wextra
+ifndef NO_FLAGS
+	CFLAGS	=	-Wall -Werror -Wextra
+else
+	CFLAGS	=	-w
+endif
 HEADERS	=	get_next_line.h
 SRCS	=	main.c					\
 			get_next_line.c			\
