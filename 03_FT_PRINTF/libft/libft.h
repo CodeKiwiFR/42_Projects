@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:29:33 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/23 10:32:25 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:53:04 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stddef.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
 typedef struct s_list
 {
