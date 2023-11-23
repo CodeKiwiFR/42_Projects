@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 14:28:05 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/23 09:52:47 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/23 10:11:36 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC				=	cc
 CFLAGS			=	-Wall -Werror -Wextra
 
 # HEADERS
-HEADERS_DIR		=	includes/
+HEADERS_DIR		=	./
 HEADERS_FILES	=	libft.h
 HEADERS			=	$(addprefix $(HEADERS_DIR), $(HEADERS_FILES))
 

@@ -1,0 +1,70 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/11/23 09:49:51 by mhotting          #+#    #+#              #
+#    Updated: 2023/11/23 10:18:28 by mhotting         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# GENERAL
+NAME			=	libftprintf.a
+CC				=	cc
+CFLAGS			=	-Wall -Werror -Wextra
+
+# LIBFT
+LIBFT_DIR		=	libft/
+LIBFT_FILE		=	$(LIBFT_DIR)libft.a
+
+# HEADERS
+HEADERS_DIR		=	includes/
+HEADERS_FILES	=	ft_printf.h
+HEADERS			=	$(addprefix $(HEADERS_DIR), $(HEADERS_FILES))
+
+# SOURCES
+SRCS_DIR		=	srcs/
+SRCS_FILES		=	ft_printf.c
+SRCS			=	$(addprefix $(SRCS_DIR), $(SRCS_FILES))
+
+# OBJECTS
+OBJS_DIR		=	objs/
+OBJS_FILES		=	$(SRCS_FILES:.c=.o)
+OBJS			=	$(addprefix $(OBJS_DIR), $(OBJS_FILES))
+
+#################################################
+
+# RULES
+all: $(NAME)
+
+$(NAME): $(LIBFT_FILE) $(OBJS_DIR) $(OBJS)
+	cp $(LIBFT_FILE) $(NAME)
+	ar -rcs $(NAME) $(OBJS)
+
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(HEADERS_DIR) -I$(LIBFT_DIR)
+
+$(OBJS_DIR):
+	mkdir -p $@
+
+$(LIBFT_FILE):
+	make -sC $(LIBFT_DIR)
+
+clean:
+	rm -rf $(OBJS_DIR)
+
+clean-libft:
+	make -sC $(LIBFT_DIR) fclean
+
+fclean: clean
+	rm -f $(NAME)
+
+ffclean: fclean clean-libft
+
+re: fclean all
+
+rre: ffclean all
+
+.PHONY: all clean clean-libft fclean ffclean re rre
