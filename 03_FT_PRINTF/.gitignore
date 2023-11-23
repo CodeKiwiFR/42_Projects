@@ -2,4 +2,6 @@
 srcs/ft_printf.h
 srcs/libft.h
 includes/libft.h
+tests/ft_printf.h
+tests/libft.h
 
