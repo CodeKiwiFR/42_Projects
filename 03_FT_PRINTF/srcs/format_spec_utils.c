@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   format_spec_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 10:43:08 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/25 11:04:53 by mhotting         ###   ########.fr       */
+/*   Created: 2023/11/25 11:11:03 by mhotting          #+#    #+#             */
+/*   Updated: 2023/11/25 15:54:37 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int	main(void)
+void	init_format_spec(t_format_spec format[NB_CONVERSION])
 {
-	ft_printf("%10d, %5d\n", 124, 58);
-	return (0);
+	format[0].flag = 'd';
+	format[0].f = NULL;
+	format[1].flag = 'i';
+	format[1].f = NULL;
 }

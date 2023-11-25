@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/23 14:42:13 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/25 15:35:25 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdarg.h>
 # include "libft.h"
+
+# define NB_CONVERSION 1
 
 typedef struct s_intput_format
 {
@@ -27,12 +29,13 @@ typedef struct s_intput_format
 	bool	zero;
 }	t_input_format;
 
-typedef struct s_format_specifier
+typedef struct s_format_spec
 {
 	char	flag;
 	int		(*f)(va_list args, t_input_format *input);
-}	t_format_specifier;
+}	t_format_spec;
 
-int	ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...);
+void	init_format_spec(t_format_spec format[NB_CONVERSION]);
 
 #endif

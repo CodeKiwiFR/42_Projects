@@ -6,14 +6,16 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 09:49:51 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/23 10:18:28 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/25 15:43:20 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # GENERAL
 NAME			=	libftprintf.a
 CC				=	cc
-CFLAGS			=	-Wall -Werror -Wextra
+ifndef NOFLAGS
+	CFLAGS		=	-Wall -Werror -Wextra
+endif
 
 # LIBFT
 LIBFT_DIR		=	libft/
@@ -26,7 +28,8 @@ HEADERS			=	$(addprefix $(HEADERS_DIR), $(HEADERS_FILES))
 
 # SOURCES
 SRCS_DIR		=	srcs/
-SRCS_FILES		=	ft_printf.c
+SRCS_FILES		=	ft_printf.c				\
+					format_spec_utils.c
 SRCS			=	$(addprefix $(SRCS_DIR), $(SRCS_FILES))
 
 # OBJECTS
