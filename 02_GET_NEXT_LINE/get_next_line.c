@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:03:38 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/25 10:26:52 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/25 14:33:29 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ char	*get_next_line(int fd)
 	nb_read = 1;
 	nl_found = 0;
 	buffer = buffer_init(&store, fd, &res, &nl_found);
-	if (buffer == NULL)
+	if (fd == -1 || buffer == NULL)
 		return (gnl_clean_memory(store, buffer, res));
 	while (nb_read != 0 && !nl_found)
 	{
