@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:03:38 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/21 10:12:36 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/25 10:26:52 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ static char	*buffer_init(t_list **store, int fd, char **res, int *nl_found)
 	char	*buffer;
 	size_t	i;
 
+	if (BUFFER_SIZE <= 0)
+		return (NULL);
 	buffer = store_get_buffer(store, fd);
 	if (buffer == NULL)
 	{
