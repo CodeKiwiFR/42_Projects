@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 09:49:51 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/25 15:43:20 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/27 17:19:18 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,17 +43,19 @@ OBJS			=	$(addprefix $(OBJS_DIR), $(OBJS_FILES))
 all: $(NAME)
 
 $(NAME): $(LIBFT_FILE) $(OBJS_DIR) $(OBJS)
-	cp $(LIBFT_FILE) $(NAME)
-	ar -rcs $(NAME) $(OBJS)
+	cp $(LIBFT_FILE) $@
+	ar -rcs $@ $(OBJS)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADERS)
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(HEADERS_DIR) -I$(LIBFT_DIR)
+	$(CC) $(CFLAGS) -I$(HEADERS_DIR) -I$(LIBFT_DIR) -c $< -o $@
 
 $(OBJS_DIR):
 	mkdir -p $@
 
-$(LIBFT_FILE):
+$(LIBFT_FILE): FORCE
 	make -sC $(LIBFT_DIR)
+
+FORCE:
 
 clean:
 	rm -rf $(OBJS_DIR)
@@ -70,4 +72,4 @@ re: fclean all
 
 rre: ffclean all
 
-.PHONY: all clean clean-libft fclean ffclean re rre
+.PHONY: all clean clean-libft fclean ffclean re rre FORCE

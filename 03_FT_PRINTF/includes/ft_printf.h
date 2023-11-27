@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/25 15:35:25 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/27 09:44:48 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 # include <stdarg.h>
 # include "libft.h"
 
-# define NB_CONVERSION 1
+
+# include <stdio.h>
+
+# define NB_CONVERSION 2
+# define AVAILABLE_CONVERSIONS "di"
 
 typedef struct s_intput_format
 {

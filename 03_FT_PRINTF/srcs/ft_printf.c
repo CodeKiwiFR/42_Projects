@@ -6,15 +6,40 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:41:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/25 15:47:16 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:24:26 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	print_content(char **str, va_list args, t_format_spec selector[NB_CONVERSION])
+static int	is_available_conversion(char c)
 {
-	return (1);
+	return (c != '\0' && ft_strchr(AVAILABLE_CONVERSIONS, c) != NULL);
+}
+
+static int	print_content(const char **format_ptr, va_list args, t_format_spec selector[NB_CONVERSION])
+{
+	const char	*format;
+	size_t		i;
+	size_t		j;
+
+	format = *format_ptr;
+	if (args == NULL || selector == NULL)
+		return (-1);
+	i = 0;
+	while (format[i] != '\0' && !(i != 0 && format[i] == '%') && !is_available_conversion(format[i]))
+		i++;
+	if (is_available_conversion(format[i]))
+	{
+		// Deal with given flag
+		*format_ptr += i;
+		return (1);
+	}
+	j = 0;
+	while (j < i)
+		ft_putchar_fd(format[j++], 1);
+	*format_ptr += i;
+	return (i);
 }
 
 int	ft_printf(const char *format, ...)
@@ -29,10 +54,7 @@ int	ft_printf(const char *format, ...)
 	while (*format != '\0')
 	{
 		if (*format == '%')
-		{
-			count += print_content((char **) &format, args, selector);
-			format++;
-		}
+			count += print_content(&format, args, selector);
 		else
 		{
 			ft_putchar_fd(*format, 1);
