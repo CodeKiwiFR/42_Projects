@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 09:49:51 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/27 17:19:18 by mhotting         ###   ########.fr        #
+#    Updated: 2023/11/28 10:41:23 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(OBJS_DIR):
 	mkdir -p $@
 
 $(LIBFT_FILE): FORCE
-	make -sC $(LIBFT_DIR)
+	make -C $(LIBFT_DIR)
 
 FORCE:
 

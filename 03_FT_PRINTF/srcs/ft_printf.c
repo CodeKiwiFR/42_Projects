@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:41:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/27 17:24:26 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/28 10:03:13 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ static int	is_available_conversion(char c)
 	return (c != '\0' && ft_strchr(AVAILABLE_CONVERSIONS, c) != NULL);
 }
 
-static int	print_content(const char **format_ptr, va_list args, t_format_spec selector[NB_CONVERSION])
+static int	print_content(
+		const char **format_ptr,
+		va_list args,
+		t_format_spec selector[NB_CONVERSION]
+)
 {
 	const char	*format;
 	size_t		i;
@@ -27,11 +31,11 @@ static int	print_content(const char **format_ptr, va_list args, t_format_spec se
 	if (args == NULL || selector == NULL)
 		return (-1);
 	i = 0;
-	while (format[i] != '\0' && !(i != 0 && format[i] == '%') && !is_available_conversion(format[i]))
+	while (format[i] != '\0' && !(i != 0 && format[i] == '%')
+		&& !is_available_conversion(format[i]))
 		i++;
 	if (is_available_conversion(format[i]))
 	{
-		// Deal with given flag
 		*format_ptr += i;
 		return (1);
 	}
@@ -47,7 +51,7 @@ int	ft_printf(const char *format, ...)
 	va_list			args;
 	t_format_spec	selector[NB_CONVERSION];
 	int				count;
-	
+
 	init_format_spec(selector);
 	va_start(args, format);
 	count = 0;

@@ -6,14 +6,15 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:21:39 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/12 00:37:23 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/28 10:15:18 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+ssize_t	ft_putstr_fd(char *s, int fd)
 {
 	if (s != NULL)
-		write(fd, s, ft_strlen(s));
+		return (write(fd, s, ft_strlen(s)));
+	return (0);
 }
