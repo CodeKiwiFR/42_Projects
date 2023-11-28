@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/27 09:44:48 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/28 12:05:21 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # define NB_CONVERSION 2
 # define AVAILABLE_CONVERSIONS "di"
+# define VALID_FORMAT "0123456789 +-#."
 
 typedef struct s_intput_format
 {
