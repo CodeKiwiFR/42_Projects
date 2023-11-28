@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:03:38 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/25 14:33:29 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:00:43 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ static char	*buffer_init(t_list **store, int fd, char **res, int *nl_found)
 	char	*buffer;
 	size_t	i;
 
-	if (BUFFER_SIZE <= 0)
+	if (BUFFER_SIZE <= 0 || BUFFER_SIZE > SIZE_MAX)
 		return (NULL);
 	buffer = store_get_buffer(store, fd);
 	if (buffer == NULL)
@@ -166,16 +166,16 @@ char	*get_next_line(int fd)
 	nl_found = 0;
 	buffer = buffer_init(&store, fd, &res, &nl_found);
 	if (fd == -1 || buffer == NULL)
-		return (gnl_clean_memory(store, buffer, res));
+		return (gnl_clean_memory(&store, buffer, res));
 	while (nb_read != 0 && !nl_found)
 	{
 		nb_read = read(fd, buffer, BUFFER_SIZE);
 		if (nb_read == -1)
 			return (gnl_clean_memory(NULL, buffer, res));
 		if (!buffer_get(buffer, &res, &nl_found))
-			return (gnl_clean_memory(store, buffer, res));
+			return (gnl_clean_memory(&store, buffer, res));
 	}
 	if (!store_save(&store, buffer, fd))
-		return (gnl_clean_memory(store, buffer, res));
+		return (gnl_clean_memory(&store, buffer, res));
 	return (res);
 }

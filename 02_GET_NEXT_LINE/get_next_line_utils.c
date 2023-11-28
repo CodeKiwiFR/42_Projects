@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:04:47 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/21 10:20:25 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:59:17 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	gnl_join(char **s1, char *s2, size_t len_s2)
  *	If a pointer is NULL, free is not called (adds flexibility to the function).
  *	If store is provided, all the store list and its content are freed.
  */
-void	*gnl_clean_memory(t_list *store, char *buffer, char *res)
+void	*gnl_clean_memory(t_list **store, char *buffer, char *res)
 {
 	t_list			*next;
 	t_buffer_save	*buffer_save;
@@ -92,19 +92,19 @@ void	*gnl_clean_memory(t_list *store, char *buffer, char *res)
 		free(buffer);
 	if (res != NULL)
 		free(res);
-	if (store != NULL)
+	if (store != NULL && *store != NULL)
 	{
-		while (store != NULL)
+		while (*store != NULL)
 		{
-			next = store->next;
-			buffer_save = (t_buffer_save *)(store->content);
+			next = (*store)->next;
+			buffer_save = (t_buffer_save *)((*store)->content);
 			if (buffer_save != NULL)
 			{
 				free(buffer_save->buffer);
 				free(buffer_save);
 			}
-			free(store);
-			store = next;
+			free(*store);
+			*store = next;
 		}
 	}
 	return (NULL);
