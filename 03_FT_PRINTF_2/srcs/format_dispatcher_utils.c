@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   format_dispatcher_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 10:43:08 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/07 11:05:07 by mhotting         ###   ########.fr       */
+/*   Created: 2023/12/07 10:49:41 by mhotting          #+#    #+#             */
+/*   Updated: 2023/12/07 10:58:45 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int	main(void)
+void	init_format_dispatcher(t_format_dispatcher dispatcher[NB_CONVERSION])
 {
-	int		v1;
-	int		v2;
-	const char	*format = "%wy %wyHello World %www!%\n";
-
-	v1 = ft_printf(format, 50);
-	v2 = printf(format, 50);
-	printf("V1: %d - V2: %d - LEN: %zu\n", v1, v2, ft_strlen(format));
-	return (0);
+	dispatcher[0].flags = "di";
+	dispatcher[0].f = NULL;
 }

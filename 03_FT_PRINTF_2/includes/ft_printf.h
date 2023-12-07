@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/06 18:47:47 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/07 11:00:46 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ typedef struct s_intput_format
 
 typedef struct s_format_dispatcher
 {
-	char	flag;
+	char	*flags;
 	int		(*f)(va_list args, t_input_format *input);
 }	t_format_dispatcher;
 
 int		ft_printf(const char *format, ...);
-// void	init_format_spec(t_format_spec format[NB_CONVERSION]);
+void	init_format_dispatcher(t_format_dispatcher dispatcher[NB_CONVERSION]);
 
 #endif
