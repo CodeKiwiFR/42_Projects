@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 10:50:12 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/06 19:39:22 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:04:04 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_fpf_buffer	buffer_init(void)
 	buffer.error = false;
 	buffer.flush = buffer_flush;
 	buffer.get_available_size = buffer_get_available_size;
+	buffer.set_error = buffer_set_error;
 	buffer.add_char = buffer_add_char;
 	buffer.add_char_secure = buffer_add_char_secure;
 	buffer.add_str = buffer_add_str;
@@ -63,4 +64,11 @@ void	buffer_put_fd(t_fpf_buffer *buffer, int fd)
 	returned = ft_putstr_fd(buffer->content, fd);
 	if (returned == -1)
 		buffer->error = true;
+}
+
+void	buffer_set_error(t_fpf_buffer *buffer)
+{
+	if (buffer == NULL)
+		return ;
+	buffer->error = true;
 }

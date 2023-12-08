@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/07 11:00:46 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:23:56 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@
 # include <stdarg.h>
 # include <stdbool.h>
 
-
-# include <stdio.h>
-
-# define NB_CONVERSION 2
-# define AVAILABLE_CONVERSIONS "di"
+# define NB_CONV 2
+# define AVAILABLE_CONVS "di"
 # define VALID_FORMAT "0123456789 +-#."
 
 typedef struct s_intput_format
@@ -36,13 +33,22 @@ typedef struct s_intput_format
 	bool	zero;
 }	t_input_format;
 
-typedef struct s_format_dispatcher
+typedef struct s_format_dispatch
 {
 	char	*flags;
-	int		(*f)(va_list args, t_input_format *input);
-}	t_format_dispatcher;
+	char	*(*f)(va_list args, t_input_format *input);
+}	t_format_dispatch;
+
+char	*(*dispatch_get_func(t_format_dispatch dispatch[NB_CONV], char flag))(
+			va_list args, t_input_format *input);
 
 int		ft_printf(const char *format, ...);
-void	init_format_dispatcher(t_format_dispatcher dispatcher[NB_CONVERSION]);
+void	init_format_dispatch(t_format_dispatch dispatch[NB_CONV]);
+
+size_t	fpf_get_format_end(const char *format);
+bool	fpf_is_valid_format(char c);
+bool	fpf_is_available_conversion(char c);
+
+char	*fpf_int_manager(va_list args, t_input_format *input);
 
 #endif

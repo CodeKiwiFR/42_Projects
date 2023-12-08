@@ -6,39 +6,46 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:41:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/07 19:49:00 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:16:46 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static bool	is_available_conversion(char c)
+static void	print_formatted_content(
+	const char *format,
+	va_list args,
+	t_format_dispatch dispatch[NB_CONV],
+	t_fpf_buffer *buffer
+)
 {
-	return (c != '\0' && ft_strchr(AVAILABLE_CONVERSIONS, c) != NULL);
-}
+	size_t			format_end;
+	char			*(*f)(va_list args, t_input_format *input);
+	char			*res;
+	t_input_format	format_info;
 
-static bool	is_valid_format(char c)
-{
-	return (c != '\0' && ft_strchr(VALID_FORMAT, c) != NULL);
-}
-
-static size_t	get_format_end(char *format)
-{
-	size_t	i;
-
-	if (format == NULL)
-		return (0);
-	i = 1;
-	while (format[i] != '\0' && !(i != 0 && format[i] == '%')
-		&& !is_available_conversion(format[i]) && is_valid_format(format[i]))
-		i++;
-	return (i);
+	if (buffer == NULL)
+		return ;
+	if (format == NULL || args == NULL || dispatch == NULL)
+		return (buffer->set_error(buffer));
+	format_end = fpf_get_format_end(format);
+	if (format_end == 0)
+		return (buffer->set_error(buffer));
+	f = dispatch_get_func(dispatch, format[format_end]);
+	if (f == NULL)
+		return (buffer->set_error(buffer));
+	//input_format_get_info(&format_info, format, format_end);
+	res = f(args, &format_info);
+	if (res == NULL)
+		return (buffer->set_error(buffer));
+	buffer->add_str_secure(buffer, res, 1);
+	free(res);
 }
 
 static void	print_content(
 	const char **format_ptr,
 	va_list args,
-	t_format_dispatcher dispatcher[NB_CONVERSION],
+	t_format_dispatch dispatch[NB_CONV],
 	t_fpf_buffer *buffer
 )
 {
@@ -47,12 +54,14 @@ static void	print_content(
 	size_t		j;
 
 	format = *format_ptr;
-	if (args == NULL || dispatcher == NULL || buffer == NULL)
+	if (buffer == NULL)
 		return ;
-	i = get_format_end(format);
-	if (is_available_conversion(format[i]))
+	if (args == NULL || dispatch == NULL)
+		return (buffer->set_error(buffer));
+	i = fpf_get_format_end(format);
+	if (fpf_is_available_conversion(format[i]))
 	{
-		//returned = print_content_formatted(format, i, dispatcher, args);
+		print_formatted_content(format, args, dispatch, buffer);
 		*format_ptr += i + 1;
 		return ;
 	}
@@ -65,18 +74,18 @@ static void	print_content(
 int	ft_printf(const char *format, ...)
 {
 	t_fpf_buffer		buffer;
-	t_format_dispatcher	dispatcher[NB_CONVERSION];
+	t_format_dispatch	dispatch[NB_CONV];
 	va_list				args;
 
 	buffer = buffer_init();
-	init_format_dispatcher(dispatcher);
+	init_format_dispatch(dispatch);
 	va_start(args, format);
 	while (*format != '\0')
 	{
 		if (*format == '%')
 		{
-			print_content(&format, args, dispatcher, &buffer);
-			continue;
+			print_content(&format, args, dispatch, &buffer);
+			continue ;
 		}
 		buffer.add_char_secure(&buffer, *format, 1);
 		format++;

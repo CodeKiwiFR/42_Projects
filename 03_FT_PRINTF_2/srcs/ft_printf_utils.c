@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_dispatcher_utils.c                          :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 10:49:41 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/08 17:24:24 by mhotting         ###   ########.fr       */
+/*   Created: 2023/12/08 15:31:18 by mhotting          #+#    #+#             */
+/*   Updated: 2023/12/08 16:50:15 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_format_dispatch(t_format_dispatch dispatch[NB_CONV])
+bool	fpf_is_available_conversion(char c)
 {
-	dispatch[0].flags = "di";
-	dispatch[0].f = fpf_int_manager;
+	return (c != '\0' && ft_strchr(AVAILABLE_CONVS, c) != NULL);
 }
 
-char	*(*dispatch_get_func(t_format_dispatch dispatch[NB_CONV], char flag))(
-	va_list args,
-	t_input_format *input
-)
+bool	fpf_is_valid_format(char c)
+{
+	return (c != '\0' && ft_strchr(VALID_FORMAT, c) != NULL);
+}
+
+size_t	fpf_get_format_end(const char *format)
 {
 	size_t	i;
 
-	if (dispatch == NULL)
-		return (NULL);
-	i = 0;
-	while (i < NB_CONV)
-	{
-		if (ft_strchr(dispatch[i].flags, flag) != NULL)
-			return (dispatch[i].f);
+	if (format == NULL)
+		return (0);
+	i = 1;
+	while (format[i] != '\0' && !(i != 0 && format[i] == '%')
+		&& !fpf_is_available_conversion(format[i])
+		&& fpf_is_valid_format(format[i]))
 		i++;
-	}
-	return (NULL);
+	return (i);
 }

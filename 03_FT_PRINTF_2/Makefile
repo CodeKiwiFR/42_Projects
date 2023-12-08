@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 09:49:51 by mhotting          #+#    #+#              #
-#    Updated: 2023/12/07 11:06:30 by mhotting         ###   ########.fr        #
+#    Updated: 2023/12/08 17:25:42 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,11 @@ HEADERS			=	$(addprefix $(HEADERS_DIR), $(HEADERS_FILES))
 # SOURCES
 SRCS_DIR		=	srcs/
 SRCS_FILES		=	ft_printf.c					\
+					ft_printf_utils.c			\
 					format_dispatcher_utils.c	\
 					fpf_buffer_utils1.c			\
-					fpf_buffer_utils2.c
+					fpf_buffer_utils2.c			\
+					fpf_int_manager.c
 SRCS			=	$(addprefix $(SRCS_DIR), $(SRCS_FILES))
 
 # OBJECTS
