@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 14:28:05 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/23 10:11:36 by mhotting         ###   ########.fr        #
+#    Updated: 2023/12/11 16:46:05 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ STRING_FILES	=	ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c			\
 					ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c		\
 					ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c			\
 					ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c			\
-					ft_toupper.c
+					ft_toupper.c ft_ctoa.c
 STRING			=	$(addprefix $(STRING_DIR), $(STRING_FILES))
 
 # MEMORY

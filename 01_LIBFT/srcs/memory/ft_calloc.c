@@ -6,17 +6,18 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:09:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/09 17:16:09 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:32:37 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdint.h>
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
 
-	if (size > 0 && nmemb > 2147483647 / size)
+	if (size > 0 && nmemb > SIZE_MAX / size)
 		return (NULL);
 	ptr = malloc(nmemb * size);
 	if (ptr == NULL)

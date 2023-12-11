@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 09:49:51 by mhotting          #+#    #+#              #
-#    Updated: 2023/12/08 17:25:42 by mhotting         ###   ########.fr        #
+#    Updated: 2023/12/11 16:02:39 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRCS_FILES		=	ft_printf.c					\
 					format_dispatcher_utils.c	\
 					fpf_buffer_utils1.c			\
 					fpf_buffer_utils2.c			\
-					fpf_int_manager.c
+					fpf_int_manager.c			\
+					fpf_string_manager.c
 SRCS			=	$(addprefix $(SRCS_DIR), $(SRCS_FILES))
 
 # OBJECTS
