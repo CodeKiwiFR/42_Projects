@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 10:49:41 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/12 17:13:21 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:59:57 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	init_format_dispatch(t_format_dispatch dispatch[NB_CONV])
 	dispatch[2].f = fpf_char_manager;
 	dispatch[3].flags = "%";
 	dispatch[3].f = fpf_percent_manager;
+	dispatch[4].flags = "u";
+	dispatch[4].f = fpf_uint_manager;
 }
 
 char	*(*dispatch_get_func(t_format_dispatch dispatch[NB_CONV], char flag))(

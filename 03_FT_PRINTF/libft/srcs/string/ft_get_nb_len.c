@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_get_nb_len.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 18:10:26 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/12 17:44:30 by mhotting         ###   ########.fr       */
+/*   Created: 2023/12/12 17:23:46 by mhotting          #+#    #+#             */
+/*   Updated: 2023/12/12 17:45:29 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+size_t	ft_get_nb_len(long nb)
 {
-	return (ft_ltoa((long) n));
+	size_t	size;
+
+	if (nb == LONG_MIN)
+		return (20);
+	size = 1;
+	if (nb < 0)
+	{
+		nb *= -1;
+		size++;
+	}
+	while (nb / 10 > 0)
+	{
+		size++;
+		nb /= 10;
+	}
+	return (size);
 }

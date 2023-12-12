@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:29:33 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/12 16:40:39 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:45:20 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -34,6 +35,7 @@ void	*ft_memset(void *s, int c, size_t n);
 
 int		ft_atoi(const char *nptr);
 char	*ft_ctoa(int c);
+size_t	ft_get_nb_len(long nb);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
@@ -41,6 +43,7 @@ int		ft_isdigit(int c);
 int		ft_isprint(int c);
 int		ft_isspace(int c);
 char	*ft_itoa(int n);
+char	*ft_ltoa(long nb);
 ssize_t	ft_putchar_fd(char c, int fd);
 ssize_t	ft_putendl_fd(char *s, int fd);
 ssize_t	ft_putnbr_fd(int n, int fd);

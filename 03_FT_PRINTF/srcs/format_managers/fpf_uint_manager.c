@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   fpf_uint_manager.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 18:10:26 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/12 17:44:30 by mhotting         ###   ########.fr       */
+/*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
+/*   Updated: 2023/12/12 17:58:17 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_itoa(int n)
+char	*fpf_uint_manager(va_list args, t_input_format *input)
 {
-	return (ft_ltoa((long) n));
+	unsigned int	nb;
+
+	// TEMP
+	if (input && 0)
+		return (NULL);
+	nb = va_arg(args, unsigned int);
+	return (ft_ltoa(nb));
 }
