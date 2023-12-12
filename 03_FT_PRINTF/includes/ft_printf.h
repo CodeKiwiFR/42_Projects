@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/12 16:40:26 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:13:45 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdarg.h>
 # include <stdbool.h>
 
-# define NB_CONV 2
-# define AVAILABLE_CONVS "dis"
+# define NB_CONV 4
+# define AVAILABLE_CONVS "disc%"
 # define VALID_FORMAT "0123456789 +-#."
 
 typedef struct s_intput_format
@@ -51,5 +51,7 @@ bool	fpf_is_available_conversion(char c);
 
 char	*fpf_int_manager(va_list args, t_input_format *input);
 char	*fpf_string_manager(va_list args, t_input_format *input);
+char	*fpf_char_manager(va_list args, t_input_format *input);
+char	*fpf_percent_manager(va_list args, t_input_format *input);
 
 #endif

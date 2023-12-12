@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 09:49:51 by mhotting          #+#    #+#              #
-#    Updated: 2023/12/12 16:36:05 by mhotting         ###   ########.fr        #
+#    Updated: 2023/12/12 17:11:04 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ BUFFER			=	$(addprefix $(BUFFER_DIR), $(BUFFER_FILES))
 # FORMAT
 FORMAT_DIR		=	format_managers/
 FORMAT_FILES	=	fpf_string_manager.c		\
+					fpf_char_manager.c			\
+					fpf_percent_manager.c		\
 					fpf_int_manager.c
 FORMAT			=	$(addprefix $(FORMAT_DIR), $(FORMAT_FILES))
 
@@ -43,7 +45,7 @@ FORMAT			=	$(addprefix $(FORMAT_DIR), $(FORMAT_FILES))
 FT_PRINTF_DIR	=	ft_printf/
 FT_PRINTF_FILES	=	ft_printf.c					\
 					ft_printf_utils.c			\
-					format_dispatcher_utils.c	\
+					format_dispatcher_utils.c
 FT_PRINTF		=	$(addprefix $(FT_PRINTF_DIR), $(FT_PRINTF_FILES))
 
 # SOURCES

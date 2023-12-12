@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fpf_char_manager.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 10:43:08 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/12 17:14:23 by mhotting         ###   ########.fr       */
+/*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
+/*   Updated: 2023/12/12 17:07:30 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int	main(void)
+char	*fpf_char_manager(va_list args, t_input_format *input)
 {
-	int		v1;
-	int		v2;
-	const char	*format = "%d %wy %wyHello%%%%% World %c!%\n";
+	char	c;
 
-	v1 = ft_printf(format, 50, 'a');
-	v2 = printf(format, 50, 'a');
-	printf("V1: %d - V2: %d - LEN: %zu\n", v1, v2, ft_strlen(format));
-	return (0);
+	// TEMP
+	if (input && 0)
+		return (NULL);
+	c = va_arg(args, int);
+	return (ft_ctoa(c));
 }
