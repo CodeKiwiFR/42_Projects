@@ -1,7 +1,7 @@
 # Ignores sym link created in order to enable ALE for VIM
-srcs/ft_printf.h
-srcs/fpf_buffer.h
-srcs/libft.h
+srcs/*/ft_printf.h
+srcs/*/fpf_buffer.h
+srcs/*/libft.h
 includes/libft.h
 tests/ft_printf.h
 tests/libft.h

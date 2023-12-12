@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 09:49:51 by mhotting          #+#    #+#              #
-#    Updated: 2023/12/11 16:02:39 by mhotting         ###   ########.fr        #
+#    Updated: 2023/12/12 16:36:05 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,39 +23,55 @@ LIBFT_FILE		=	$(LIBFT_DIR)libft.a
 
 # HEADERS
 HEADERS_DIR		=	includes/
-HEADERS_FILES	=	ft_printf.h				\
+HEADERS_FILES	=	ft_printf.h					\
 					fpf_buffer.h
 HEADERS			=	$(addprefix $(HEADERS_DIR), $(HEADERS_FILES))
 
-# SOURCES
-SRCS_DIR		=	srcs/
-SRCS_FILES		=	ft_printf.c					\
+# BUFFER
+BUFFER_DIR		=	buffer/
+BUFFER_FILES	=	fpf_buffer_utils1.c			\
+					fpf_buffer_utils2.c
+BUFFER			=	$(addprefix $(BUFFER_DIR), $(BUFFER_FILES))
+
+# FORMAT
+FORMAT_DIR		=	format_managers/
+FORMAT_FILES	=	fpf_string_manager.c		\
+					fpf_int_manager.c
+FORMAT			=	$(addprefix $(FORMAT_DIR), $(FORMAT_FILES))
+
+# FT_PRINTF
+FT_PRINTF_DIR	=	ft_printf/
+FT_PRINTF_FILES	=	ft_printf.c					\
 					ft_printf_utils.c			\
 					format_dispatcher_utils.c	\
-					fpf_buffer_utils1.c			\
-					fpf_buffer_utils2.c			\
-					fpf_int_manager.c			\
-					fpf_string_manager.c
-SRCS			=	$(addprefix $(SRCS_DIR), $(SRCS_FILES))
+FT_PRINTF		=	$(addprefix $(FT_PRINTF_DIR), $(FT_PRINTF_FILES))
+
+# SOURCES
+SRCS_MAIN_DIR	=	srcs/
+SRCS_FILES		=	$(BUFFER) $(FORMAT) $(FT_PRINTF)
+SRCS_DIRS		=	$(BUFFER_DIR) $(FORMAT_DIR) $(FT_PRINTF_DIR)
+SRCS			=	$(addprefix $(SRCS_MAIN_DIR), $(SRCS_FILES))
 
 # OBJECTS
-OBJS_DIR		=	objs/
+OBJS_MAIN_DIR	=	objs/
+OBJS_DIRS		=	$(addprefix $(OBJS_MAIN_DIR), $(SRCS_DIRS))
+OBJS_ALL_DIRS	=	$(OBJS_MAIN_DIR) $(OBJS_DIRS)
 OBJS_FILES		=	$(SRCS_FILES:.c=.o)
-OBJS			=	$(addprefix $(OBJS_DIR), $(OBJS_FILES))
+OBJS			=	$(addprefix $(OBJS_MAIN_DIR), $(OBJS_FILES))
 
 #################################################
 
 # RULES
 all: $(NAME)
 
-$(NAME): $(LIBFT_FILE) $(OBJS_DIR) $(OBJS)
+$(NAME): $(LIBFT_FILE) $(OBJS_ALL_DIRS) $(OBJS)
 	cp $(LIBFT_FILE) $@
 	ar -rcs $@ $(OBJS)
 
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADERS)
+$(OBJS_MAIN_DIR)%.o: $(SRCS_MAIN_DIR)%.c $(HEADERS)
 	$(CC) $(CFLAGS) -I$(HEADERS_DIR) -I$(LIBFT_DIR) -c $< -o $@
 
-$(OBJS_DIR):
+$(OBJS_ALL_DIRS):
 	mkdir -p $@
 
 $(LIBFT_FILE): FORCE
@@ -64,7 +80,7 @@ $(LIBFT_FILE): FORCE
 FORCE:
 
 clean:
-	rm -rf $(OBJS_DIR)
+	rm -rf $(OBJS_MAIN_DIR)
 
 clean-libft:
 	make -sC $(LIBFT_DIR) fclean
