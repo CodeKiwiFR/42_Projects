@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 09:49:51 by mhotting          #+#    #+#              #
-#    Updated: 2023/11/28 20:08:32 by mhotting         ###   ########.fr        #
+#    Updated: 2023/12/11 16:02:39 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,15 +23,19 @@ LIBFT_FILE		=	$(LIBFT_DIR)libft.a
 
 # HEADERS
 HEADERS_DIR		=	includes/
-HEADERS_FILES	=	ft_printf.h
+HEADERS_FILES	=	ft_printf.h				\
+					fpf_buffer.h
 HEADERS			=	$(addprefix $(HEADERS_DIR), $(HEADERS_FILES))
 
 # SOURCES
 SRCS_DIR		=	srcs/
 SRCS_FILES		=	ft_printf.c					\
-					format_specifier_utils.c	\
-					flags_manager_utils.c		\
-					buffer_utils.c
+					ft_printf_utils.c			\
+					format_dispatcher_utils.c	\
+					fpf_buffer_utils1.c			\
+					fpf_buffer_utils2.c			\
+					fpf_int_manager.c			\
+					fpf_string_manager.c
 SRCS			=	$(addprefix $(SRCS_DIR), $(SRCS_FILES))
 
 # OBJECTS
