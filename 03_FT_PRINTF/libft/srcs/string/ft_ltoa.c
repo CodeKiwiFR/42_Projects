@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:20:15 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/12 17:55:47 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:52:17 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_ltoa(long nb)
 
 	if (nb == LONG_MIN)
 		return (ft_strdup("-9223372036854775808"));
-	nb_len = ft_get_nb_len(nb);
+	nb_len = ft_get_nb_len(nb, 10);
 	res = (char *) ft_calloc(nb_len + 1, sizeof(char));
 	if (res == NULL)
 		return (NULL);
