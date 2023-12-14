@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/14 13:27:56 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:41:12 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*fpf_ptr_manager(va_list args, t_input_format *input)
 	char	*res;
 	char	*temp;
 
-	// TEMP
 	if (input && 0)
 		return (NULL);
 	ptr = va_arg(args, void *);

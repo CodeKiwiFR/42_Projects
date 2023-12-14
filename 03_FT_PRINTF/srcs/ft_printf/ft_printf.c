@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:41:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/14 14:17:35 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:35:33 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	print_formatted_content(
 	f = dispatch_get_func(dispatch, format[format_end]);
 	if (f == NULL)
 		return (buffer->set_error(buffer));
-	//input_format_get_info(&format_info, format, format_end);
+	input_format_get_info(&format_info, format, format_end);
 	res = f(args, &format_info);
 	if (res == NULL)
 		return (buffer->set_error(buffer));

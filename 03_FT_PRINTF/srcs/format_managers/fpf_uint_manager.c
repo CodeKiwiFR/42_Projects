@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/12 17:58:17 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:41:22 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*fpf_uint_manager(va_list args, t_input_format *input)
 {
 	unsigned int	nb;
 
-	// TEMP
 	if (input && 0)
 		return (NULL);
 	nb = va_arg(args, unsigned int);

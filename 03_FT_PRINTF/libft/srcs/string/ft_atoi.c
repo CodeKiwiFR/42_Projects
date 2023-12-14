@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:09:05 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/27 16:46:01 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:43:16 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,5 @@
 
 int	ft_atoi(const char *nptr)
 {
-	char	*nb;
-	long	res;
-	int		sign;
-
-	if (nptr == NULL)
-		return (0);
-	nb = (char *) nptr;
-	res = 0;
-	while (ft_isspace(*nb))
-		nb++;
-	sign = 1;
-	if (*nb == '+')
-		nb++;
-	else if (*nb == '-')
-	{
-		nb++;
-		sign *= -1;
-	}
-	while (ft_isdigit(*nb))
-	{
-		res = res * 10 + ((long)(*nb - '0'));
-		nb++;
-	}
-	return ((int)(sign * res));
+	return ((int)ft_atol(nptr));
 }

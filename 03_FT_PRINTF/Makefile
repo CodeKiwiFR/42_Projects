@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 09:49:51 by mhotting          #+#    #+#              #
-#    Updated: 2023/12/14 13:29:49 by mhotting         ###   ########.fr        #
+#    Updated: 2023/12/14 14:42:11 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ FORMAT			=	$(addprefix $(FORMAT_DIR), $(FORMAT_FILES))
 FT_PRINTF_DIR	=	ft_printf/
 FT_PRINTF_FILES	=	ft_printf.c					\
 					ft_printf_utils.c			\
-					format_dispatcher_utils.c
+					format_dispatcher_utils.c	\
+					input_format_utils.c
 FT_PRINTF		=	$(addprefix $(FT_PRINTF_DIR), $(FT_PRINTF_FILES))
 
 # SOURCES

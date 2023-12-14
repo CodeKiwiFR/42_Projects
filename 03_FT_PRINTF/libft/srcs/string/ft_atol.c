@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fpf_hexa_manager.c                                 :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/14 16:40:51 by mhotting         ###   ########.fr       */
+/*   Created: 2023/11/06 18:09:05 by mhotting          #+#    #+#             */
+/*   Updated: 2023/12/14 15:39:20 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-char	*fpf_hexa_manager(va_list args, t_input_format *input)
+long	ft_atol(const char *nb_ptr)
 {
-	unsigned int	nb;
-	char			*res;
+	long	res;
+	int		sign;
 
-	if (input && 0)
-		return (NULL);
-	nb = va_arg(args, unsigned int);
-	if (input->format == 'x')
-		res = ft_ltoa_base(nb, "0123456789abcdef");
-	else
-		res = ft_ltoa_base(nb, "0123456789ABCDEF");
-	return (res);
+	if (nb_ptr == NULL)
+		return (0);
+	res = 0;
+	while (ft_isspace(*nb_ptr))
+		nb_ptr++;
+	sign = 1;
+	if (*nb_ptr == '+')
+		nb_ptr++;
+	else if (*nb_ptr == '-')
+	{
+		nb_ptr++;
+		sign *= -1;
+	}
+	while (ft_isdigit(*nb_ptr))
+	{
+		res = res * 10 + ((long)(*nb_ptr - '0'));
+		nb_ptr++;
+	}
+	return (sign * res);
 }
