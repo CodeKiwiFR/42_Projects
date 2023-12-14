@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:29:33 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/13 20:55:16 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 12:49:04 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,19 @@ void	*ft_memset(void *s, int c, size_t n);
 
 int		ft_atoi(const char *nptr);
 char	*ft_ctoa(int c);
-size_t	ft_get_nb_len(long nb, size_t base_len);
+size_t	ft_get_long_len(long num, size_t base_len);
+size_t	ft_get_ulong_len(unsigned long nb, size_t base_len);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
 int		ft_isspace(int c);
+bool	ft_is_valid_base(char *base);
 char	*ft_itoa(int n);
 char	*ft_ltoa(long nb);
 char	*ft_ltoa_base(long nb, char *base);
+char	*ft_ultoa_base(unsigned long nb, char *base);
 ssize_t	ft_putchar_fd(char c, int fd);
 ssize_t	ft_putendl_fd(char *s, int fd);
 ssize_t	ft_putnbr_fd(int n, int fd);

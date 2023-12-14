@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_nb_len.c                                    :+:      :+:    :+:   */
+/*   ft_is_valid_base.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 17:23:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/13 19:21:25 by mhotting         ###   ########.fr       */
+/*   Created: 2023/12/11 17:17:16 by mhotting          #+#    #+#             */
+/*   Updated: 2023/12/14 12:53:46 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_get_nb_len(long num, size_t base_len)
+bool	ft_is_valid_base(char *base)
 {
-	size_t			size;
-	unsigned long	nb;
+	size_t	i;
+	size_t	j;
+	size_t	base_len;
 
-	size = 1;
-	if (num < 0)
+	base_len = ft_strlen(base);
+	if (base_len < 2)
+		return (false);
+	i = 0;
+	while (i < base_len)
 	{
-		nb = (unsigned long) -1 * num;
-		size++;
+		if (!ft_isprint(base[i]) || base[i] == ' ')
+			return (false);
+		j = i + 1;
+		while (j < base_len)
+		{
+			if (base[i] == base[j])
+				return (false);
+			j++;
+		}
+		i++;
 	}
-	else
-		nb = (unsigned long) num;
-	while (nb / base_len > 0)
-	{
-		size++;
-		nb /= base_len;
-	}
-	return (size);
+	return (true);
 }
