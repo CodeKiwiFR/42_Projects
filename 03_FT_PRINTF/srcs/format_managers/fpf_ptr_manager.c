@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fpf_string_manager.c                               :+:      :+:    :+:   */
+/*   fpf_ptr_manager.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/14 13:47:12 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:27:56 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*fpf_string_manager(va_list args, t_input_format *input)
+char	*fpf_ptr_manager(va_list args, t_input_format *input)
 {
-	char	*str;
+	void	*ptr;
 	char	*res;
+	char	*temp;
 
 	// TEMP
 	if (input && 0)
 		return (NULL);
-	str = va_arg(args, char *);
-	if (str == NULL)
-		res = ft_strdup("(null)");
+	ptr = va_arg(args, void *);
+	if (ptr == NULL)
+		res = ft_strdup("(nil)");
 	else
-		res = ft_strdup(str);
+	{
+		temp = ft_ultoa_base((unsigned long) ptr, "0123456789abcdef");
+		if (temp == NULL)
+			return (NULL);
+		res = ft_strjoin("0x", temp);
+		free(temp);
+	}
 	return (res);
 }

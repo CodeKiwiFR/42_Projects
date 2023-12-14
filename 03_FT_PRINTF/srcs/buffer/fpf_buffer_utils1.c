@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 10:50:12 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/12 16:41:01 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:23:26 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	buffer_put_fd(t_fpf_buffer *buffer, int fd)
 
 	if (buffer == NULL)
 		return ;
-	returned = ft_putstr_fd(buffer->content, fd);
+	returned = write(fd, buffer->content, buffer->next_index + 1);
 	if (returned == -1)
 		buffer->error = true;
 }

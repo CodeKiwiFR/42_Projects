@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 10:49:41 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/13 21:06:00 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:43:30 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	init_format_dispatch(t_format_dispatch dispatch[NB_CONV])
 	dispatch[4].f = fpf_uint_manager;
 	dispatch[5].flags = "xX";
 	dispatch[5].f = fpf_hexa_manager;
+	dispatch[6].flags = "p";
+	dispatch[6].f = fpf_ptr_manager;
 }
 
 char	*(*dispatch_get_func(t_format_dispatch dispatch[NB_CONV], char flag))(

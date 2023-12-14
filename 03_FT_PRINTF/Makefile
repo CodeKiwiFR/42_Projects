@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 09:49:51 by mhotting          #+#    #+#              #
-#    Updated: 2023/12/13 21:07:18 by mhotting         ###   ########.fr        #
+#    Updated: 2023/12/14 13:29:49 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ FORMAT_FILES	=	fpf_string_manager.c		\
 					fpf_percent_manager.c		\
 					fpf_int_manager.c			\
 					fpf_uint_manager.c			\
-					fpf_hexa_manager.c
+					fpf_hexa_manager.c			\
+					fpf_ptr_manager.c
 FORMAT			=	$(addprefix $(FORMAT_DIR), $(FORMAT_FILES))
 
 # FT_PRINTF

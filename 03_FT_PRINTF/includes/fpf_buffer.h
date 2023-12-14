@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:44:15 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/12 16:43:09 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:54:28 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-# define FPF_BUFFER_SIZE 100
+# define FPF_BUFFER_SIZE 1000
 
 typedef struct s_fpf_buffer
 {

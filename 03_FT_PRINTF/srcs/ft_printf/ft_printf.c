@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:41:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/08 17:16:46 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:17:35 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ static void	print_formatted_content(
 	res = f(args, &format_info);
 	if (res == NULL)
 		return (buffer->set_error(buffer));
-	buffer->add_str_secure(buffer, res, 1);
+	if (format[format_end] == 'c' && ft_strlen(res) == 0)
+		buffer->add_char_secure(buffer, 0, 1);
+	else
+		buffer->add_str_secure(buffer, res, 1);
 	free(res);
 }
 
@@ -80,7 +83,7 @@ int	ft_printf(const char *format, ...)
 	buffer = buffer_init();
 	init_format_dispatch(dispatch);
 	va_start(args, format);
-	while (*format != '\0')
+	while (*format != '\0' && !buffer.error)
 	{
 		if (*format == '%')
 		{
