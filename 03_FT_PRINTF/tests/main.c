@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:43:08 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/14 16:35:10 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:16:57 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,22 @@ int	main(void)
 	int	v1;
 	int	v2;
 
-	v1 = ft_printf("%x %X\n", 255, 255);
-	v2 = printf("%x %X\n", 255, 255);
+	v1 = ft_printf("\"%-10c\"\n", 'c');
+	v2 = printf("\"%-10c\"\n", 'c');
 	printf("V1: %d - V2: %d\n", v1, v2);
-	
 
 	/*
 	t_input_format format_info;
 	input_format_get_info(&format_info, "%0+- 10.5c", 6);
 	*/
 
+	/*
+	char	*test = "Hello";
+
+	printf("\"%s\"\n", test);
+	char	*test2 = ft_append_chars(test, 'c', 10);
+	printf("\"%s\"\n", test2);
+	printf("\"%zu\"\n", ft_strlen(test2));
+	*/
 	return (0);
 }

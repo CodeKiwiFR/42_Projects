@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:41:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/14 16:35:33 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 17:27:47 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,17 @@ int	ft_printf(const char *format, ...)
 	while (*format != '\0' && !buffer.error)
 	{
 		if (*format == '%')
-		{
 			print_content(&format, args, dispatch, &buffer);
-			continue ;
+		else
+		{
+			buffer.add_char_secure(&buffer, *format, 1);
+			format++;
 		}
-		buffer.add_char_secure(&buffer, *format, 1);
-		format++;
+		if (buffer.error)
+			return (-1);
 	}
 	buffer.put_fd(&buffer, 1);
-	if (buffer.error == true)
+	if (buffer.error)
 		return (-1);
 	return ((int) buffer.total_len);
 }

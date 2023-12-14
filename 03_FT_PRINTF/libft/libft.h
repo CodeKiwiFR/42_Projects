@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:29:33 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/14 15:50:28 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:02:37 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char			*ft_itoa(int n);
 char			*ft_ltoa(long nb);
 char			*ft_ltoa_base(long nb, char *base);
 char			*ft_ultoa_base(unsigned long nb, char *base);
+char			*ft_append_chars(char *str, char c, size_t len_total);
+char			*ft_prepend_chars(char *str, char c, size_t len_total);
 ssize_t			ft_putchar_fd(char c, int fd);
 ssize_t			ft_putendl_fd(char *s, int fd);
 ssize_t			ft_putnbr_fd(int n, int fd);
