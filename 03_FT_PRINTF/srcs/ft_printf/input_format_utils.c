@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:28:39 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/14 16:34:15 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/15 13:58:35 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,39 +38,6 @@ static void	input_format_init(t_input_format *format_info)
 	format_info->zero = false;
 }
 
-/*
-#include <stdio.h>
-static void DEBUG_print_format_input(t_input_format *f)
-{
-	printf("FORMAT: %c\n", f->format);
-	printf("LEN: %zu\n", f->length);
-	if (f->precision)
-		printf("PRECISION ON: %zu\n", f->precision_val);
-	else
-		printf("PRECISION OFF: %zu\n", f->precision_val);
-	if (f->alternative)
-		printf("ALT ON\n");
-	else
-		printf("ALT OFF\n");
-	if (f->space)
-		printf("SPACE ON\n");
-	else
-		printf("SPACE OFF\n");
-	if (f->plus)
-		printf("PLUS ON\n");
-	else
-		printf("PLUS OFF\n");
-	if (f->minus)
-		printf("MINUS ON\n");
-	else
-		printf("MINUS OFF\n");
-	if (f->zero)
-		printf("ZERO ON\n");
-	else
-		printf("ZERO OFF\n");
-}
-*/
-
 void	input_format_get_info(
 	t_input_format *format_info,
 	const char *format,
@@ -97,5 +64,4 @@ void	input_format_get_info(
 		format_info->precision_val = ft_atoul(format + i);
 	}
 	format_info->format = format[format_end];
-	// DEBUG_print_format_input(format_info);
 }

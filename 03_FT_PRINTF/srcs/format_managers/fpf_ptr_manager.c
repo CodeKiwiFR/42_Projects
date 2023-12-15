@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/14 20:59:09 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/15 13:35:43 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,24 @@
 
 static char	*fpf_ptr_formatter_precision(char *str, t_input_format *input)
 {
+	char	*res;
+
 	if (str == NULL || input == NULL)
 		return (NULL);
+	res = str;
 	if (input->precision)
 	{
-		str = ft_prepend_chars(str, '0', input->precision_val);
-		if (str == NULL)
+		res = ft_prepend_chars(res, '0', input->precision_val);
+		if (res == NULL)
 			return (NULL);
 	}
 	else if (input->length >= 2 && input->zero && !input->minus)
 	{
-		str = ft_prepend_chars(str, '0', input->length - 2);
-		if (str == NULL)
+		res = ft_prepend_chars(res, '0', input->length - 2);
+		if (res == NULL)
 			return (NULL);
 	}
-	return (str);
+	return (res);
 }
 
 static char	*fpf_ptr_formatter(char *str, t_input_format *input)
@@ -61,6 +64,8 @@ static char	*fpf_ptr_formatter_nil(char *str, t_input_format *input)
 {
 	char	*res;
 
+	if (str == NULL || input == NULL)
+		return (NULL);
 	res = str;
 	if (input->length > 0)
 	{
