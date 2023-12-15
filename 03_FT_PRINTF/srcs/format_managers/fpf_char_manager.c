@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/15 18:03:35 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/15 19:06:40 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static char	*fpf_char_formatter(char *str, t_input_format *input, char c)
 		res = ft_prepend_chars(str, ' ', input->length);
 	if (res == NULL)
 		return (NULL);
+	input->length_result = ft_strlen(res);
 	if (c == 0)
 	{
 		i = 0;
@@ -52,6 +53,7 @@ char	*fpf_char_manager(va_list args, t_input_format *input)
 	temp = ft_ctoa(c);
 	if (temp == NULL)
 		return (NULL);
+	input->length_result = 1;
 	res = fpf_char_formatter(temp, input, c);
 	if (temp != res)
 		free(temp);

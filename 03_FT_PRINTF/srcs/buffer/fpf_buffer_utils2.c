@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 10:50:12 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/06 18:49:33 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:22:11 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,25 @@ void	buffer_add_char_secure(t_fpf_buffer *buffer, char c, int fd)
 		buffer->flush(buffer);
 	}
 	buffer->add_char(buffer, c);
+}
+
+void	buffer_add_chars_secure(
+	t_fpf_buffer *buffer,
+	char *str,
+	size_t nb_chars,
+	int fd
+)
+{
+	size_t	i;
+
+	if (buffer == NULL)
+		return ;
+	i = 0;
+	while (i < nb_chars)
+	{
+		buffer->add_char_secure(buffer, str[i], fd);
+		i++;
+	}
 }
 
 void	buffer_add_str(t_fpf_buffer *buffer, char *str)

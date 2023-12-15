@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 10:50:12 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/14 14:23:26 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:27:23 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_fpf_buffer	buffer_init(void)
 	buffer.set_error = buffer_set_error;
 	buffer.add_char = buffer_add_char;
 	buffer.add_char_secure = buffer_add_char_secure;
+	buffer.add_chars_secure = buffer_add_chars_secure;
 	buffer.add_str = buffer_add_str;
 	buffer.add_str_secure = buffer_add_str_secure;
 	buffer.put_fd = buffer_put_fd;

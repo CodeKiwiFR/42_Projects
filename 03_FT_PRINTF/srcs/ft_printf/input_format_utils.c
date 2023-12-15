@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:28:39 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/15 13:58:35 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:17:41 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	input_format_init(t_input_format *format_info)
 	format_info->precision = false;
 	format_info->precision_val = 0;
 	format_info->length = 0;
+	format_info->length_result = 0;
 	format_info->alternative = false;
 	format_info->space = false;
 	format_info->plus = false;

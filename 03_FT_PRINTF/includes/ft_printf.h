@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/15 17:31:02 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:17:35 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_intput_format
 {
 	size_t	precision_val;
 	size_t	length;
+	size_t	length_result;
 	char	format;
 	bool	precision;
 	bool	alternative;
