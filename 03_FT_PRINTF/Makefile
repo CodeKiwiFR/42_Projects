@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 09:49:51 by mhotting          #+#    #+#              #
-#    Updated: 2023/12/14 17:41:58 by mhotting         ###   ########.fr        #
+#    Updated: 2023/12/15 14:08:59 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,4 +100,6 @@ re: fclean all
 
 rre: ffclean all
 
-.PHONY: all clean clean-libft fclean ffclean re rre FORCE
+bonus: all
+
+.PHONY: all clean clean-libft fclean ffclean re rre FORCE bonus

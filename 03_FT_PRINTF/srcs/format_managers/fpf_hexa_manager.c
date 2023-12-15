@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/15 13:41:10 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:14:43 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static char	*fpf_hexa_formatter(
 	char	*res;
 	char	*temp;
 
-	if (nb == 0)
+	if (input != NULL && nb == 0)
 		input->alternative = false;
 	temp = fpf_hexa_formatter_precision(str, input);
 	if (str == NULL || input == NULL || temp == NULL)
