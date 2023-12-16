@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:41:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/15 18:48:19 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:26:18 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	ft_printf(const char *format, ...)
 	t_format_dispatch	dispatch[NB_CONV];
 	va_list				args;
 
+	if (format == NULL)
+		return (-1);
 	buffer = buffer_init();
 	init_format_dispatch(dispatch);
 	va_start(args, format);

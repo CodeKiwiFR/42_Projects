@@ -7,3 +7,4 @@ tests/ft_printf.h
 tests/libft.h
 tests/fpf_buffer.h
 CHECKER/
+my_printf_tester/

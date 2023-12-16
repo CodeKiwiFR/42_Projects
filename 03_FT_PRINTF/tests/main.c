@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:43:08 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/15 18:50:33 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/16 15:40:47 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@ int	main(void)
 	int	v1;
 	int	v2;
 
+	/*
 	v1 = ft_printf("\"%c\"\n", '0');
 	v2 = printf("\"%c\"\n", '0');
+	*/
+
+	v1 = ft_printf("\"%.3s\"\n", NULL);
+	v2 = printf("\"%.3s\"\n", NULL);
 	printf("V1: %d - V2: %d\n", v1, v2);
 
 	/*
