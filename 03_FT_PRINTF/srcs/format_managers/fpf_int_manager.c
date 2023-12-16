@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/15 17:28:31 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:15:38 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static char	*fpf_int_formatter(char *str, t_input_format *input, int nb)
 
 	if (nb < 0 && input != NULL && input->precision)
 		input->precision_val += 1;
-	temp = fpf_formatter_precision(str, input);
+	temp = fpf_formatter_precision(str, input, nb);
 	if (str == NULL || input == NULL || temp == NULL)
 		return (NULL);
 	if (nb >= 0)

@@ -6,18 +6,22 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/15 17:28:07 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:16:50 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*fpf_uint_formatter(char *str, t_input_format *input)
+static char	*fpf_uint_formatter(
+	char *str,
+	t_input_format *input,
+	unsigned int nb
+)
 {
 	char	*temp;
 	char	*res;
 
-	temp = fpf_formatter_precision(str, input);
+	temp = fpf_formatter_precision(str, input, (int) nb);
 	if (str == NULL || input == NULL || temp == NULL)
 		return (NULL);
 	res = fpf_formatter_length(temp, input);
@@ -38,7 +42,7 @@ char	*fpf_uint_manager(va_list args, t_input_format *input)
 	temp = ft_ltoa((long) nb);
 	if (temp == NULL)
 		return (NULL);
-	res = fpf_uint_formatter(temp, input);
+	res = fpf_uint_formatter(temp, input, nb);
 	if (temp != res)
 		free(temp);
 	return (res);

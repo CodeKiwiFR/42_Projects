@@ -6,13 +6,17 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/15 14:14:43 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:51:03 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*fpf_hexa_formatter_precision(char *str, t_input_format *input)
+static char	*fpf_hexa_formatter_precision(
+	char *str,
+	t_input_format *input,
+	unsigned int nb
+)
 {
 	char	*res;
 
@@ -21,9 +25,10 @@ static char	*fpf_hexa_formatter_precision(char *str, t_input_format *input)
 	res = str;
 	if (input->precision)
 	{
-		res = ft_prepend_chars(res, '0', input->precision_val);
-		if (res == NULL)
-			return (NULL);
+		if (nb == 0 && input->precision_val == 0)
+			res = ft_strdup("");
+		else
+			res = ft_prepend_chars(res, '0', input->precision_val);
 	}
 	else if (input->zero && !input->minus)
 	{
@@ -31,8 +36,6 @@ static char	*fpf_hexa_formatter_precision(char *str, t_input_format *input)
 			res = ft_prepend_chars(res, '0', input->length - 2);
 		else if (!input->alternative)
 			res = ft_prepend_chars(res, '0', input->length);
-		if (res == NULL)
-			return (NULL);
 	}
 	return (res);
 }
@@ -82,7 +85,7 @@ static char	*fpf_hexa_formatter(
 
 	if (input != NULL && nb == 0)
 		input->alternative = false;
-	temp = fpf_hexa_formatter_precision(str, input);
+	temp = fpf_hexa_formatter_precision(str, input, nb);
 	if (str == NULL || input == NULL || temp == NULL)
 		return (NULL);
 	res = fpf_hexa_formatter_alt(temp, input);
