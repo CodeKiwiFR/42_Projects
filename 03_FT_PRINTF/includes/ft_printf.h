@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/16 16:15:20 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:32:39 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "fpf_buffer.h"
 # include <stdarg.h>
 # include <stdbool.h>
+# include <stdlib.h>
 
 # define NB_CONV 7
 # define AVAILABLE_CONVS "discuxXp%"
@@ -51,7 +52,8 @@ void	input_format_get_info(
 			const char *format, size_t format_end
 			);
 
-int		ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...) \
+			__attribute__ ((format (printf, 1, 2)));
 void	init_format_dispatch(t_format_dispatch dispatch[NB_CONV]);
 
 size_t	fpf_get_format_end(const char *format);

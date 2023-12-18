@@ -6,12 +6,17 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/16 16:51:03 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:51:28 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+ *	Deals with precision formatting for hexa. string
+ *	Adds '0' before the number when necessary
+ *	When an error occurs NULL is returned
+ */
 static char	*fpf_hexa_formatter_precision(
 	char *str,
 	t_input_format *input,
@@ -40,6 +45,11 @@ static char	*fpf_hexa_formatter_precision(
 	return (res);
 }
 
+/*
+ *	Deals with alt formatting for hexa. string
+ *	Adds "0x" or "0X" when neccessary
+ *	When an error occurs NULL is returned
+ */
 static char	*fpf_hexa_formatter_alt(char *str, t_input_format *input)
 {
 	char	*res;
@@ -57,6 +67,11 @@ static char	*fpf_hexa_formatter_alt(char *str, t_input_format *input)
 	return (res);
 }
 
+/*
+ *	Deals with len formatting for hexa. string
+ *	Appends or prepends spaces to the given str if necessary
+ *	When an error occurs NULL is returned
+ */
 static char	*fpf_hexa_formatter_length(char *str, t_input_format *input)
 {
 	char	*res;
@@ -74,6 +89,10 @@ static char	*fpf_hexa_formatter_length(char *str, t_input_format *input)
 	return (res);
 }
 
+/*
+ *	Formats the hexa. string according to input_format
+ *	When an error occurs NULL is returned
+ */
 static char	*fpf_hexa_formatter(
 	char *str,
 	t_input_format *input,
@@ -100,6 +119,10 @@ static char	*fpf_hexa_formatter(
 	return (res);
 }
 
+/*
+ *	Gets an integer from the given va_list and converts it into its hexa string
+ *	When an error occurs NULL is returned
+ */
 char	*fpf_hexa_manager(va_list args, t_input_format *input)
 {
 	unsigned int		nb;

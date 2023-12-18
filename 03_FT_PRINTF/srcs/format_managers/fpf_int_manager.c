@@ -6,12 +6,16 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/16 16:15:38 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:56:50 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+ *	Adds '+' or ' ' in front of the given string if inputs requires it
+ *	When an error occurs NULL is returned
+ */
 static char	*fpf_int_formatter_plus_space(char *str, t_input_format *input)
 {
 	char	*res;
@@ -34,6 +38,9 @@ static char	*fpf_int_formatter_plus_space(char *str, t_input_format *input)
 	return (res);
 }
 
+/*
+ *	Shifts the '-' char in order to put it before every '0'
+ */
 static void	fpf_int_formatter_negative(char *str)
 {
 	size_t	i;
@@ -55,6 +62,12 @@ static void	fpf_int_formatter_negative(char *str)
 	}
 }
 
+/*
+ *	Formats the integer string according to input_format
+ *	Negative numbers are treated the same as positive numbers, but the '-' are
+ *	shifted in order to avoid "000-123"
+ *	When an error occurs NULL is returned
+ */
 static char	*fpf_int_formatter(char *str, t_input_format *input, int nb)
 {
 	char	*temp;
@@ -82,6 +95,10 @@ static char	*fpf_int_formatter(char *str, t_input_format *input, int nb)
 	return (res);
 }
 
+/*
+ *	Gets an integer from the given va_list and converts it into a string
+ *	When an error occurs NULL is returned
+ */
 char	*fpf_int_manager(va_list args, t_input_format *input)
 {
 	int		nb;

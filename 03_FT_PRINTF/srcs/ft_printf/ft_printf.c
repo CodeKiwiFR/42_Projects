@@ -6,12 +6,22 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:41:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/16 15:26:18 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:18:54 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+ *	Adds formatted content to the buffer
+ *	In case of error, the buffer error flag is set to true and the function ends
+ *	Steps:	-	gets the right function from dispatch
+ *			-	gets all the formatting info from the given format
+ *			-	calls the function in order to get the result string
+ *			-	stores the string into the buffer
+ *	NB:	%c could lead to specific cases with the '\0' char
+ *		Then, output strings from %c are treated appart for buffer insertion
+ */
 static void	print_formatted_content(
 	const char *format,
 	va_list args,
@@ -45,7 +55,13 @@ static void	print_formatted_content(
 	free(res);
 }
 
-static void	print_content(
+/*
+ *	Handles format in order to check if it is a valid ft_printf format or not
+ *	When the format is valid, print_formatted_content is called
+ *	When it is not, the wrong format substring is added to the buffer
+ *	The format_ptr given as input is moved to the end of the heandled part of it
+ */
+static void	special_format_handler(
 	const char **format_ptr,
 	va_list args,
 	t_format_dispatch dispatch[NB_CONV],
@@ -69,11 +85,20 @@ static void	print_content(
 		return ;
 	}
 	j = 0;
-	while (j < i)
-		buffer->add_char_secure(buffer, format[j++], 1);
+	while (j < i && !buffer->error)
+	{
+		buffer->add_char_secure(buffer, format[j], 1);
+		j++;
+	}
 	*format_ptr += i;
 }
 
+/*
+ *	Parses format input in order to store the characters to display into
+ *	a buffer. It can take a variable number of arguments
+ *	It returns the number of characters which have been written
+ *	In case of error -1 is returned
+ */
 int	ft_printf(const char *format, ...)
 {
 	t_fpf_buffer		buffer;
@@ -88,7 +113,7 @@ int	ft_printf(const char *format, ...)
 	while (*format != '\0' && !buffer.error)
 	{
 		if (*format == '%')
-			print_content(&format, args, dispatch, &buffer);
+			special_format_handler(&format, args, dispatch, &buffer);
 		else
 		{
 			buffer.add_char_secure(&buffer, *format, 1);

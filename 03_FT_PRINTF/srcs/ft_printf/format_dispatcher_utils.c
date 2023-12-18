@@ -6,14 +6,19 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 10:49:41 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/14 13:43:30 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:21:27 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+ *	Sets flags and pointer functions inside of a format_dispatch instance
+ */
 void	init_format_dispatch(t_format_dispatch dispatch[NB_CONV])
 {
+	if (dispatch == NULL)
+		return ;
 	dispatch[0].flags = "di";
 	dispatch[0].f = fpf_int_manager;
 	dispatch[1].flags = "s";
@@ -30,6 +35,10 @@ void	init_format_dispatch(t_format_dispatch dispatch[NB_CONV])
 	dispatch[6].f = fpf_ptr_manager;
 }
 
+/*
+ *	Browses dispatch to find the right function pointer, according to given flag
+ *	If the flag is not found into dispatch, NULL is returned
+ */
 char	*(*dispatch_get_func(t_format_dispatch dispatch[NB_CONV], char flag))(
 	va_list args,
 	t_input_format *input

@@ -6,12 +6,16 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/16 16:16:50 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:01:46 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+ *	Formats the unsigned integer string according to input_format
+ *	When an error occurs NULL is returned
+ */
 static char	*fpf_uint_formatter(
 	char *str,
 	t_input_format *input,
@@ -30,6 +34,11 @@ static char	*fpf_uint_formatter(
 	return (res);
 }
 
+/*
+ *	Gets an unsigned integer from the given va_list and converts it
+ *	into a string
+ *	When an error occurs NULL is returned
+ */
 char	*fpf_uint_manager(va_list args, t_input_format *input)
 {
 	unsigned int	nb;

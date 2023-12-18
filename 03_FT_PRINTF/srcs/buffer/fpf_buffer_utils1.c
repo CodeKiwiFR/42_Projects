@@ -6,12 +6,16 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 10:50:12 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/15 18:27:23 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:33:45 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fpf_buffer.h"
 
+/*
+ *	Creates an instance of a buffer and initializes it components
+ *	If an invalid FPF_BUFFER_SIZE is given, then the error flag is set to true
+ */
 t_fpf_buffer	buffer_init(void)
 {
 	t_fpf_buffer	buffer;
@@ -34,6 +38,10 @@ t_fpf_buffer	buffer_init(void)
 	return (buffer);
 }
 
+/*
+ *	Flushes the given buffer by setting all its chars to '\0' and setting
+ *	next_index to 0
+ */
 void	buffer_flush(t_fpf_buffer *buffer)
 {
 	size_t	i;
@@ -49,6 +57,9 @@ void	buffer_flush(t_fpf_buffer *buffer)
 	buffer->next_index = 0;
 }
 
+/*
+ *	Returns the buffer remaining size
+ */
 size_t	buffer_get_available_size(t_fpf_buffer *buffer)
 {
 	if (buffer == NULL)
@@ -56,6 +67,10 @@ size_t	buffer_get_available_size(t_fpf_buffer *buffer)
 	return (buffer->max_size - buffer->next_index);
 }
 
+/*
+ *	Puts the buffer content to the given file descriptor
+ *	In case of error, the buffer's error flag is set to true
+ */
 void	buffer_put_fd(t_fpf_buffer *buffer, int fd)
 {
 	ssize_t	returned;
@@ -67,6 +82,9 @@ void	buffer_put_fd(t_fpf_buffer *buffer, int fd)
 		buffer->error = true;
 }
 
+/*
+ *	Sets the buffer's error flag to true
+ */
 void	buffer_set_error(t_fpf_buffer *buffer)
 {
 	if (buffer == NULL)

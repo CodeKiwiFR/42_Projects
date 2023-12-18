@@ -6,12 +6,20 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/15 19:06:40 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:18:05 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+ *	Formats the char string in order to correspond to input_format requirements
+ *	If the char '\0' is managed, 0 is replaced by one, the format is applied
+ *	and the old 1 is turned back into the 0
+ *	The result string true len is add to input_format (because of '\0' char
+ *	the result string could be an invalid C-string)
+ *	When an error occurs NULL is returned
+ */
 static char	*fpf_char_formatter(char *str, t_input_format *input, char c)
 {
 	char	*res;
@@ -41,6 +49,10 @@ static char	*fpf_char_formatter(char *str, t_input_format *input, char c)
 	return (res);
 }
 
+/*
+ *	Gets a char from the given va_list and converts it into a string
+ *	When an error occurs NULL is returned
+ */
 char	*fpf_char_manager(va_list args, t_input_format *input)
 {
 	char	c;
