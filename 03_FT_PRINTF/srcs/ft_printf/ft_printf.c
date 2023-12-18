@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:41:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/18 14:18:54 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:12:10 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ static void	special_format_handler(
 	if (args == NULL || dispatch == NULL)
 		return (buffer->set_error(buffer));
 	i = fpf_get_format_end(format);
+	if (i == 0)
+		return (buffer->set_error(buffer));
 	if (fpf_is_available_conversion(format[i]))
 	{
 		print_formatted_content(format, args, dispatch, buffer);

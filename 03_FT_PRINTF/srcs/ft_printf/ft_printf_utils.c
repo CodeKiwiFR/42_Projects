@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:31:18 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/18 13:26:00 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:14:18 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ size_t	fpf_get_format_end(const char *format)
 	size_t	i;
 
 	if (format == NULL)
+		return (0);
+	if (format[0] == '\0' || format[1] == '\0')
 		return (0);
 	i = 1;
 	while (format[i] != '\0' && !(i != 0 && format[i] == '%')
