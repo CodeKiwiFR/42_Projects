@@ -6,37 +6,11 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/18 13:56:50 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/19 19:51:47 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-/*
- *	Adds '+' or ' ' in front of the given string if inputs requires it
- *	When an error occurs NULL is returned
- */
-static char	*fpf_int_formatter_plus_space(char *str, t_input_format *input)
-{
-	char	*res;
-
-	if (str == NULL || input == NULL)
-		return (NULL);
-	res = str;
-	if (input->plus)
-	{
-		res = ft_strjoin("+", res);
-		if (res == NULL)
-			return (NULL);
-	}
-	else if (input->space)
-	{
-		res = ft_strjoin(" ", res);
-		if (res == NULL)
-			return (NULL);
-	}
-	return (res);
-}
 
 /*
  *	Shifts the '-' char in order to put it before every '0'
@@ -80,7 +54,7 @@ static char	*fpf_int_formatter(char *str, t_input_format *input, int nb)
 		return (NULL);
 	if (nb >= 0)
 	{
-		res = fpf_int_formatter_plus_space(temp, input);
+		res = fpf_formatter_plus_space(temp, input);
 		if (temp != str && temp != res)
 			free(temp);
 		if (res == NULL)

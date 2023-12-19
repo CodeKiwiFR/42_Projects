@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/18 14:32:39 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/19 19:51:16 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ char	*fpf_char_manager(va_list args, t_input_format *input);
 char	*fpf_percent_manager(va_list args, t_input_format *input);
 char	*fpf_formatter_precision(char *str, t_input_format *input, int nb);
 char	*fpf_formatter_length(char *str, t_input_format *input);
+char	*fpf_formatter_plus_space(char *str, t_input_format *input);
 
 #endif

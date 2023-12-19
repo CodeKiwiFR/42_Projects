@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/18 14:12:04 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/19 20:04:59 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,23 @@
 static char	*fpf_ptr_formatter_precision(char *str, t_input_format *input)
 {
 	char	*res;
+	size_t	len;
 
 	if (str == NULL || input == NULL)
 		return (NULL);
 	res = str;
 	if (input->precision)
-	{
 		res = ft_prepend_chars(res, '0', input->precision_val);
-		if (res == NULL)
-			return (NULL);
-	}
 	else if (input->length >= 2 && input->zero && !input->minus)
 	{
-		res = ft_prepend_chars(res, '0', input->length - 2);
+		len = 0;
+		if ((input->space || input->plus) && input->length > 3)
+			len = input->length - 3;
+		else if (input->length > 2)
+			len = input->length - 2;
+		if (len == 0)
+			return (res);
+		res = ft_prepend_chars(res, '0', len);
 		if (res == NULL)
 			return (NULL);
 	}
@@ -55,9 +59,11 @@ static char	*fpf_ptr_formatter(char *str, t_input_format *input)
 	res = ft_strjoin("0x", temp);
 	if (temp != str)
 		free(temp);
-	if (res == NULL)
-		return (NULL);
-	if (input->length > 0)
+	temp = res;
+	res = fpf_formatter_plus_space(temp, input);
+	if (temp != str && temp != res)
+		free(temp);
+	if (res != NULL && input->length > 0)
 	{
 		temp = res;
 		if (input->minus)
