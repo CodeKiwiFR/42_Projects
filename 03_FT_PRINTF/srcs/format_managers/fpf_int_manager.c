@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 17:19:25 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/19 19:51:47 by mhotting         ###   ########.fr       */
+/*   Updated: 2023/12/19 21:08:39 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,31 @@
 /*
  *	Shifts the '-' char in order to put it before every '0'
  */
-static void	fpf_int_formatter_negative(char *str)
+static void	fpf_int_formatter_shifter(char *str, char *charset)
 {
 	size_t	i;
+	size_t	charset_i;
 
 	if (str == NULL)
 		return ;
-	i = 0;
-	while (str[i] != '\0' && str[i] != '-')
-		i++;
-	if (str[i] != '-')
-		return ;
-	while (i >= 1)
+	charset_i = 0;
+	while (charset[charset_i] != '\0')
 	{
-		if (str[i - 1] != '0')
-			break ;
-		str[i - 1] = '-';
-		str[i] = '0';
-		i--;
+		i = 0;
+		while (str[i] != '\0' && str[i] != charset[charset_i])
+			i++;
+		if (str[i] == charset[charset_i])
+		{
+			while (i >= 1)
+			{
+				if (str[i - 1] != '0')
+					break ;
+				str[i - 1] = charset[charset_i];
+				str[i] = '0';
+				i--;
+			}
+		}
+		charset_i++;
 	}
 }
 
@@ -57,15 +64,17 @@ static char	*fpf_int_formatter(char *str, t_input_format *input, int nb)
 		res = fpf_formatter_plus_space(temp, input);
 		if (temp != str && temp != res)
 			free(temp);
-		if (res == NULL)
-			return (NULL);
 		temp = res;
 	}
 	res = fpf_formatter_length(temp, input);
 	if (temp != str && temp != res)
 		free(temp);
+	if (
+		!input->minus && !input->precision && input->zero
+		&& (input->plus || input->space))
+		fpf_int_formatter_shifter(res, " +");
 	if (nb < 0)
-		fpf_int_formatter_negative(res);
+		fpf_int_formatter_shifter(res, "-");
 	return (res);
 }
 
