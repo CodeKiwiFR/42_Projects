@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:11:23 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/17 15:38:55 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/07 17:23:06 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	t_list	*next;
 	t_list	*current;
 
-	if (lst == NULL || *lst == NULL || del == NULL)
+	if (lst == NULL || *lst == NULL)
 		return ;
 	current = *lst;
 	while (current != NULL)

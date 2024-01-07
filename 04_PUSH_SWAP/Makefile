@@ -6,7 +6,7 @@
 #    By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 20:48:41 by mhotting          #+#    #+#              #
-#    Updated: 2024/01/03 01:02:55 by mhotting         ###   ########.fr        #
+#    Updated: 2024/01/07 17:21:56 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CFLAGS					=	-Wall -Werror -Wextra
 
 # HEADERS
 HEADERS_DIR				=	includes/
-HEADERS_FILES			=	push_swap.h
+HEADERS_FILES			=	push_swap.h	\
+							stack.h
 HEADERS					=	$(addprefix $(HEADERS_DIR), $(HEADERS_FILES))
 
 # LIBFT
@@ -32,7 +33,9 @@ LIBFT_FLAGS				=	-L$(LIBFT_DIR) -lft
 
 # SOURCES
 SRCS_MAIN_DIR			=	srcs/
-SRCS_FILES				=	push_swap.c
+SRCS_FILES				=	push_swap.c		\
+							stack_utils1.c	\
+							stack_utils2.c
 SRCS					=	$(addprefix $(SRCS_MAIN_DIR), $(SRCS_FILES))
 
 # OBJECTS
