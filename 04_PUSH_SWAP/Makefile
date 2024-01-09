@@ -6,7 +6,7 @@
 #    By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 20:48:41 by mhotting          #+#    #+#              #
-#    Updated: 2024/01/09 20:48:18 by mhotting         ###   ########.fr        #
+#    Updated: 2024/01/09 21:58:13 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ SRCS_FILES				=	push_swap.c			\
 							push_swap_utils1.c	\
 							push_swap_utils2.c	\
 							push_swap_utils3.c	\
-							push_swap_utils4.c
+							push_swap_utils4.c	\
+							parser.c
 SRCS					=	$(addprefix $(SRCS_MAIN_DIR), $(SRCS_FILES))
 
 # OBJECTS
