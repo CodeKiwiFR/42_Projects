@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_utils4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 00:49:03 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/09 20:50:51 by mhotting         ###   ########.fr       */
+/*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
+/*   Updated: 2024/01/09 20:47:41 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(void)
+void	push_swap_rra(t_ps_data *data)
 {
-	t_ps_data	*data;
+	t_stack	*stack_a;
 
-	data = ps_data_init();
+	if (data == NULL || data->stack_a == NULL)
+		return ;
+	stack_a = data->stack_a;
+	stack_a->rev_rotate(stack_a);
+}
+
+void	push_swap_rrb(t_ps_data *data)
+{
+	t_stack	*stack_b;
+
+	if (data == NULL || data->stack_b == NULL)
+		return ;
+	stack_b = data->stack_b;
+	stack_b->rev_rotate(stack_b);
+}
+
+void	push_swap_rrr(struct s_ps_data *data)
+{
 	if (data == NULL)
-	{
-		ft_printf("ERROR - Data could not be allocated\n");
-		return (0);
-	}
-	ft_printf("WELCOME to push_swap project\n");
-	data->clear(&data);
-	return (0);
+		return ;
+	data->rra(data);
+	data->rrb(data);
 }

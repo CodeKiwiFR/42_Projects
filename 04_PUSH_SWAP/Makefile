@@ -6,14 +6,16 @@
 #    By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 20:48:41 by mhotting          #+#    #+#              #
-#    Updated: 2024/01/07 17:39:37 by mhotting         ###   ########.fr        #
+#    Updated: 2024/01/09 20:48:18 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # GENERAL
 NAME					=	push_swap
 CC						=	cc
-CFLAGS					=	-Wall -Werror -Wextra
+ifndef NOFLAGS
+	CFLAGS				=	-Wall -Werror -Wextra
+endif
 
 # HEADERS
 HEADERS_DIR				=	includes/
@@ -33,9 +35,13 @@ LIBFT_FLAGS				=	-L$(LIBFT_DIR) -lft
 
 # SOURCES
 SRCS_MAIN_DIR			=	srcs/
-SRCS_FILES				=	push_swap.c		\
-							stack_utils1.c	\
-							stack_utils2.c
+SRCS_FILES				=	push_swap.c			\
+							stack_utils1.c		\
+							stack_utils2.c		\
+							push_swap_utils1.c	\
+							push_swap_utils2.c	\
+							push_swap_utils3.c	\
+							push_swap_utils4.c
 SRCS					=	$(addprefix $(SRCS_MAIN_DIR), $(SRCS_FILES))
 
 # OBJECTS

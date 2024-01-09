@@ -6,12 +6,16 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:04:50 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/07 17:00:50 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/09 16:32:46 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
+/*
+ *	Allocates a t_stack and sets its components values
+ *	The chained list is set to NULL
+ */
 t_stack	*stack_init(void)
 {
 	t_stack	*stack;
@@ -20,15 +24,38 @@ t_stack	*stack_init(void)
 	if (stack == NULL)
 		return (NULL);
 	stack->list = NULL;
-	stack->push = stack_push;
-	stack->pop = stack_pop;
+	stack->push_data = stack_push_data;
+	stack->push_link = stack_push_link;
+	stack->pop_data = stack_pop_data;
+	stack->pop_link = stack_pop_link;
+	stack->swap = stack_swap;
 	stack->rotate = stack_rotate;
 	stack->rev_rotate = stack_rev_rotate;
 	stack->clear = stack_clear;
 	return (stack);
 }
 
-bool	stack_push(t_stack *stack, void *data)
+/*
+ *	Clears the given stack by freeing the list and its content
+ *	Clears the stack given as input and set the given pointer to NULL
+ *	NB:	- del parameter can be NULL, then the list is freed but the contents
+ *		are not freed (useful if list content has not been allocated
+ */
+void	stack_clear(t_stack **stack, void (*del)(void *))
+{
+	if (stack == NULL || *stack == NULL)
+		return ;
+	ft_lstclear(&((*stack)->list), del);
+	free(*stack);
+	*stack = NULL;
+}
+
+/*
+ *	Appends an element to the given t_stack (at the top of the stack)
+ *	A new link is created using the data
+ *	Returns true on success, else returns false
+ */
+bool	stack_push_data(t_stack *stack, void *data)
 {
 	t_list	*new;
 
@@ -37,57 +64,16 @@ bool	stack_push(t_stack *stack, void *data)
 	new = ft_lstnew(data);
 	if (new == NULL)
 		return (false);
-	new->next = stack->list;
-	stack->list = new;
+	ft_lstadd_front(&(stack->list), new);
 	return (true);
 }
 
-void	*stack_pop(t_stack *stack)
+/*
+ *	Appends a link to the given t_stack (at the top of the stack)
+ */
+void	stack_push_link(t_stack *stack, t_list *new_link)
 {
-	t_list	*head;
-	void	*data;
-
-	if (stack == NULL || stack->list == NULL)
-		return (NULL);
-	head = stack->list;
-	data = head->content;
-	stack->list = head->next;
-	free(head);
-	return (data);
-}
-
-void	stack_rotate(t_stack *stack)
-{
-	t_list	*current;
-	t_list	*head;
-
-	if (stack == NULL || stack->list == NULL || (stack->list)->next == NULL)
+	if (stack == NULL || new_link == NULL)
 		return ;
-	head = stack->list;
-	current = head->next;
-	head->next = NULL;
-	stack->list = current;
-	while (current->next != NULL)
-		current = current->next;
-	current->next = head;
-	return ;
-}
-
-void	stack_rev_rotate(t_stack *stack)
-{
-	t_list	*current;
-	t_list	*prev;
-
-	if (stack == NULL || stack->list == NULL || (stack->list)->next == NULL)
-		return ;
-	prev = NULL;
-	current = stack->list;
-	while (current->next != NULL)
-	{
-		prev = current;
-		current = current->next;
-	}
-	prev->next = NULL;
-	current->next = stack->list;
-	stack->list = current;
+	ft_lstadd_front(&(stack->list), new_link);
 }
