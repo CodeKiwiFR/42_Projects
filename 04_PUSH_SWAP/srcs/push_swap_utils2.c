@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/09 20:45:56 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/09 21:08:53 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ bool	push_swap_push_a(t_ps_data *data, int nb)
 	return (true);
 }
 
+/*
+ *	Swaps the first two elements of the stack_a
+ */
 void	push_swap_sa(t_ps_data *data)
 {
 	t_stack	*stack_a;
@@ -47,6 +50,9 @@ void	push_swap_sa(t_ps_data *data)
 	stack_a->swap(stack_a);
 }
 
+/*
+ *	Swaps the first two elements of the stack_b
+ */
 void	push_swap_sb(t_ps_data *data)
 {
 	t_stack	*stack_b;
@@ -57,6 +63,9 @@ void	push_swap_sb(t_ps_data *data)
 	stack_b->swap(stack_b);
 }
 
+/*
+ *	Swaps the first two elements of both stack_a and stack_b
+ */
 void	push_swap_ss(t_ps_data *data)
 {
 	if (data == NULL)
