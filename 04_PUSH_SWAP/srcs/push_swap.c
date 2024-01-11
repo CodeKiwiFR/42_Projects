@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:49:03 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/09 22:04:44 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/11 14:45:22 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 int	main(int argc, char **argv)
 {
 	t_ps_data	*data;
+	bool		returned;
 
 	data = ps_data_init();
 	if (argc == 1 || data == NULL)
 		return (0);
-	if (!parse_args(data, argc, argv))
+	if (argc == 2)
+		returned = parse_one_arg(data, argv[1]);
+	else
+		returned = parse_args(data, argc - 1, argv + 1);
+	if (!returned)
 	{
 		data->clear(&data);
 		ft_printf("Error\n");
