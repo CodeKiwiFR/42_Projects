@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstreverse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 18:12:45 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/21 11:04:31 by mhotting         ###   ########.fr       */
+/*   Created: 2024/01/11 17:43:47 by mhotting          #+#    #+#             */
+/*   Updated: 2024/01/11 17:48:42 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+void	ft_lstreverse(t_list **lst)
 {
-	size_t	i;
-	size_t	j;
-	size_t	returned_val;
+	t_list	*before;
+	t_list	*curr;
+	t_list	*next;
 
-	if (dst == NULL || src == NULL)
-		return (0);
-	i = 0;
-	while (dst[i] != '\0')
-		i++;
-	if (i > size)
-		returned_val = ft_strlen(src) + size;
-	else
-		returned_val = i + ft_strlen(src);
-	j = 0;
-	while (src[j] != '\0' && i + 1 < size)
+	if (lst == NULL || *lst == NULL || (*lst)->next == NULL)
+		return ;
+	before = NULL;
+	curr = *lst;
+	next = curr->next;
+	while (curr != NULL)
 	{
-		dst[i] = src[j];
-		i++;
-		j++;
+		curr->next = before;
+		before = curr;
+		curr = next;
+		if (next != NULL)
+			next = next->next;
 	}
-	dst[i] = '\0';
-	return (returned_val);
+	*lst = before;
 }

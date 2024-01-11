@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 14:28:05 by mhotting          #+#    #+#              #
-#    Updated: 2023/12/14 18:02:54 by mhotting         ###   ########.fr        #
+#    Updated: 2024/01/11 17:49:48 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ MEMORY			=	$(addprefix $(MEMORY_DIR), $(MEMORY_FILES))
 LIST_DIR		=	list/
 LIST_FILES		=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c			\
 					ft_lstdelone.c ft_lstiter.c ft_lstlast.c ft_lstmap.c		\
-					ft_lstnew.c ft_lstsize.c
+					ft_lstnew.c ft_lstsize.c ft_lstreverse.c
 LIST			=	$(addprefix $(LIST_DIR), $(LIST_FILES))
 
 # BUFFER
