@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/09 21:08:53 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:10:44 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ bool	push_swap_push_a(t_ps_data *data, int nb)
 		return (false);
 	}
 	return (true);
+}
+
+/*
+ *	Reverses the content of stack_a of the given data
+ */
+void	push_swap_reverse_a(t_ps_data *data)
+{
+	if (data == NULL || data->stack_a == NULL)
+		return ;
+	(data->stack_a)->reverse(data->stack_a);
 }
 
 /*

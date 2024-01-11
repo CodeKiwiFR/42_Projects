@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:04:50 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/09 16:32:46 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:07:53 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_stack	*stack_init(void)
 	stack->swap = stack_swap;
 	stack->rotate = stack_rotate;
 	stack->rev_rotate = stack_rev_rotate;
+	stack->reverse = stack_reverse;
 	stack->clear = stack_clear;
 	return (stack);
 }
@@ -76,4 +77,14 @@ void	stack_push_link(t_stack *stack, t_list *new_link)
 	if (stack == NULL || new_link == NULL)
 		return ;
 	ft_lstadd_front(&(stack->list), new_link);
+}
+
+/*
+ *	Reverses the stack
+ */
+void	stack_reverse(t_stack *stack)
+{
+	if (stack == NULL || stack->list == NULL)
+		return ;
+	ft_lstreverse(&(stack->list));
 }

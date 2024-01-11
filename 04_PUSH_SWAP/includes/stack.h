@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 13:41:14 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/09 20:49:26 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:59:29 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_stack
 	void	(*swap)(struct s_stack *stack);
 	void	(*rotate)(struct s_stack *stack);
 	void	(*rev_rotate)(struct s_stack *stack);
+	void	(*reverse)(struct s_stack *stack);
 	void	(*clear)(struct s_stack **stack, void (*del)(void *));
 }	t_stack;
 
@@ -36,6 +37,7 @@ t_list	*stack_pop_link(t_stack *stack);
 void	stack_swap(t_stack *stack);
 void	stack_rotate(t_stack *stack);
 void	stack_rev_rotate(t_stack *stack);
+void	stack_reverse(t_stack *stack);
 void	stack_clear(t_stack **stack, void (*del)(void *));
 
 #endif
