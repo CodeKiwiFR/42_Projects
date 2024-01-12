@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/11 18:10:44 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/12 09:46:42 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,38 +48,33 @@ void	push_swap_reverse_a(t_ps_data *data)
 }
 
 /*
- *	Swaps the first two elements of the stack_a
+ *	Checks for duplicate integers inside of stack_a member of given data
+ *	Returns true if a duplicate is found, else returns false
  */
-void	push_swap_sa(t_ps_data *data)
+bool	push_swap_found_duplicates_a(t_ps_data *data)
 {
-	t_stack	*stack_a;
+	t_list	*curr;
+	t_list	*next;
+	int		curr_nb;
+	int		next_nb;
 
-	if (data == NULL || data->stack_a == NULL)
-		return ;
-	stack_a = data->stack_a;
-	stack_a->swap(stack_a);
-}
-
-/*
- *	Swaps the first two elements of the stack_b
- */
-void	push_swap_sb(t_ps_data *data)
-{
-	t_stack	*stack_b;
-
-	if (data == NULL || data->stack_b == NULL)
-		return ;
-	stack_b = data->stack_b;
-	stack_b->swap(stack_b);
-}
-
-/*
- *	Swaps the first two elements of both stack_a and stack_b
- */
-void	push_swap_ss(t_ps_data *data)
-{
-	if (data == NULL)
-		return ;
-	data->sa(data);
-	data->sb(data);
+	if (data == NULL || data->stack_a == NULL || (data->stack_a)->list == NULL)
+		return (false);
+	curr = (data->stack_a)->list;
+	while (curr->next != NULL && curr->content != NULL)
+	{
+		curr_nb = *((int *)(curr->content));
+		next = curr->next;
+		while (next != NULL)
+		{
+			if (next->content == NULL)
+				return (false);
+			next_nb = *((int *)(next->content));
+			if (curr_nb == next_nb)
+				return (true);
+			next = next->next;
+		}
+		curr = curr->next;
+	}
+	return (false);
 }

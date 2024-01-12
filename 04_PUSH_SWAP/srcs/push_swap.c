@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:49:03 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/11 14:45:22 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/12 09:50:11 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		returned = parse_one_arg(data, argv[1]);
 	else
 		returned = parse_args(data, argc - 1, argv + 1);
-	if (!returned)
+	if (!returned || data->found_dup_a(data))
 	{
 		data->clear(&data);
 		ft_printf("Error\n");

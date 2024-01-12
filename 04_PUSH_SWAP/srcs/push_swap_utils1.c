@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/11 18:11:17 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/12 09:48:05 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	ps_data_set_functions(t_ps_data *data)
 	data->rrr = push_swap_rrr;
 	data->push_a = push_swap_push_a;
 	data->reverse_a = push_swap_reverse_a;
+	data->found_dup_a = push_swap_found_duplicates_a;
 	data->clear = ps_data_clear;
 	data->display = push_swap_display;
 }
