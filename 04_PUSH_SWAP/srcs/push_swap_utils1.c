@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/12 09:48:05 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:09:41 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	ps_data_set_functions(t_ps_data *data)
 	data->found_dup_a = push_swap_found_duplicates_a;
 	data->clear = ps_data_clear;
 	data->display = push_swap_display;
+	data->is_sorted_stack = push_swap_is_sorted_stack;
+	data->is_rev_sorted_stack = push_swap_is_rev_sorted_stack;
 }
 
 /*
@@ -121,7 +123,7 @@ void	display_int_stack(t_stack *stack)
 	ft_printf("- content: ");
 	while (current != NULL)
 	{
-		ft_printf("%+5d", *((int *)(current->content)));
+		ft_printf("% 5d", *((int *)(current->content)));
 		current = current->next;
 		if (current != NULL)
 			ft_printf(" | ");

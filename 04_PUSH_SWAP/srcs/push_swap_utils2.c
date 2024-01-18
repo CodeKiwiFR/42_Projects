@@ -6,14 +6,14 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/12 09:46:42 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:18:39 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
- *	Adds nb to the stack_A of the given data
+ *	Adds nb to the stack_a of the given data
  *	Allocates a pointer to an int in order to store an allocated int
  *	Returns true on success, false on failure
  */
@@ -77,4 +77,74 @@ bool	push_swap_found_duplicates_a(t_ps_data *data)
 		curr = curr->next;
 	}
 	return (false);
+}
+
+/*
+ *	Checks if the stack 'a' or 'b' from data is sorted
+ *	Returns true if it is, else returns false
+ *	If the stack is empty, returns true
+ *	If there is an error (NULL pointer or bad stack_letter), returns false
+ */
+bool	push_swap_is_sorted_stack(t_ps_data *data, char stack_letter)
+{
+	t_stack	*stack;
+	t_list	*list;
+	int		nb1;
+	int		nb2;
+
+	if (data == NULL || (stack_letter != 'a' && stack_letter != 'b'))
+		return (false);
+	if (stack_letter == 'a')
+		stack = data->stack_a;
+	else
+		stack = data->stack_b;
+	if (stack == NULL)
+		return (false);
+	list = stack->list;
+	if (list == NULL)
+		return (true);
+	while (list->next != NULL)
+	{
+		nb1 = *((int *)list->content);
+		nb2 = *((int *)(list->next)->content);
+		if (nb1 > nb2)
+			return (false);
+		list = list->next;
+	}
+	return (true);
+}
+
+/*
+ *	Checks if the stack 'a' or 'b' from data is reverse sorted
+ *	Returns true if it is, else returns false
+ *	If the stack is empty, returns true
+ *	If there is an error (NULL pointer or bad stack_letter), returns false
+ */
+bool	push_swap_is_rev_sorted_stack(t_ps_data *data, char stack_letter)
+{
+	t_stack	*stack;
+	t_list	*list;
+	int		nb1;
+	int		nb2;
+
+	if (data == NULL || (stack_letter != 'a' && stack_letter != 'b'))
+		return (false);
+	if (stack_letter == 'a')
+		stack = data->stack_a;
+	else
+		stack = data->stack_b;
+	if (stack == NULL)
+		return (false);
+	list = stack->list;
+	if (list == NULL)
+		return (true);
+	while (list->next != NULL)
+	{
+		nb1 = *((int *)list->content);
+		nb2 = *((int *)(list->next)->content);
+		if (nb1 < nb2)
+			return (false);
+		list = list->next;
+	}
+	return (true);
 }
