@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:04:50 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/09 16:29:46 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:37:31 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	*stack_pop_data(t_stack *stack)
 	data = head->content;
 	stack->list = head->next;
 	free(head);
+	stack->size -= 1;
 	return (data);
 }
 
@@ -44,6 +45,7 @@ t_list	*stack_pop_link(t_stack *stack)
 		return (NULL);
 	head = stack->list;
 	stack->list = head->next;
+	stack->size -= 1;
 	return (head);
 }
 

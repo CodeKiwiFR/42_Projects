@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils3.c                                 :+:      :+:    :+:   */
+/*   push_swap_utils4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/09 21:12:06 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:29:56 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	push_swap_pa(t_ps_data *data)
 	if (head == NULL)
 		return ;
 	stack_a->push_link(stack_a, head);
+	ft_printf("pa\n");
 }
 
 /*
@@ -48,6 +49,7 @@ void	push_swap_pb(t_ps_data *data)
 	if (head == NULL)
 		return ;
 	stack_b->push_link(stack_b, head);
+	ft_printf("pb\n");
 }
 
 /*
@@ -58,10 +60,11 @@ void	push_swap_ra(t_ps_data *data)
 {
 	t_stack	*stack_a;
 
-	if (data == NULL || data->stack_a == NULL)
+	if (data == NULL || data->stack_a == NULL || (data->stack_a)->size < 2)
 		return ;
 	stack_a = data->stack_a;
 	stack_a->rotate(stack_a);
+	ft_printf("ra\n");
 }
 
 /*
@@ -72,10 +75,11 @@ void	push_swap_rb(t_ps_data *data)
 {
 	t_stack	*stack_b;
 
-	if (data == NULL || data->stack_b == NULL)
+	if (data == NULL || data->stack_b == NULL || (data->stack_b)->size < 2)
 		return ;
 	stack_b = data->stack_b;
 	stack_b->rotate(stack_b);
+	ft_printf("rb\n");
 }
 
 /*
@@ -84,8 +88,27 @@ void	push_swap_rb(t_ps_data *data)
  */
 void	push_swap_rr(t_ps_data *data)
 {
+	bool	ra;
+	bool	rb;
+
 	if (data == NULL)
 		return ;
-	data->ra(data);
-	data->rb(data);
+	ra = false;
+	if (data->stack_a != NULL && (data->stack_a)->size >= 2)
+	{
+		(data->stack_a)->rotate(data->stack_a);
+		ra = true;
+	}
+	rb = false;
+	if (data->stack_b != NULL && (data->stack_b)->size >= 2)
+	{
+		(data->stack_b)->rotate(data->stack_b);
+		rb = true;
+	}
+	if (ra && rb)
+		ft_printf("rr\n");
+	else if (ra)
+		ft_printf("ra\n");
+	else if (rb)
+		ft_printf("rb\n");
 }

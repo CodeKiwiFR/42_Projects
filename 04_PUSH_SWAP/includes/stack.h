@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 13:41:14 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/11 17:59:29 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:35:45 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_stack
 {
 	t_list	*list;
+	size_t	size;
 	bool	(*push_data)(struct s_stack * stack, void *data);
 	void	(*push_link)(struct s_stack *stack, t_list *new_link);
 	void	*(*pop_data)(struct s_stack *stack);

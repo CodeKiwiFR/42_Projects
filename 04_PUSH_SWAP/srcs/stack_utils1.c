@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:04:50 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/11 18:07:53 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:36:52 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_stack	*stack_init(void)
 	if (stack == NULL)
 		return (NULL);
 	stack->list = NULL;
+	stack->size = 0;
 	stack->push_data = stack_push_data;
 	stack->push_link = stack_push_link;
 	stack->pop_data = stack_pop_data;
@@ -66,6 +67,7 @@ bool	stack_push_data(t_stack *stack, void *data)
 	if (new == NULL)
 		return (false);
 	ft_lstadd_front(&(stack->list), new);
+	stack->size += 1;
 	return (true);
 }
 
@@ -77,6 +79,7 @@ void	stack_push_link(t_stack *stack, t_list *new_link)
 	if (stack == NULL || new_link == NULL)
 		return ;
 	ft_lstadd_front(&(stack->list), new_link);
+	stack->size += 1;
 }
 
 /*
