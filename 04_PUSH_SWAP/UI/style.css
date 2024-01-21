@@ -3,6 +3,7 @@
     --main-color: #260c3b;
     --secondary-color: #420a31;
     --third-color: #7d7923;
+    --terminal-text-color: #66FF66;
     --main-black-color: #000;
     --main-gray-color: #d3d3d3;
     --secondary-gray-color: #f8f8f8;
@@ -16,14 +17,15 @@
     --shadow-4: 0 -0.25rem 1rem 0.0875rem rgba(246, 235, 255, 0.3);
 }
 
+/* ************************************************** */
 /* Global style */
-
 * {
     border-collapse: collapse;
     box-sizing: border-box;
 }
 
 body {
+    position: relative;
     min-height: 100vh;
     margin: 0;
     font-family: sans-serif;
@@ -43,7 +45,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
     margin: 0;
 }
 
@@ -79,8 +82,10 @@ h6 {
     box-shadow: var(--shadow-3);
 }
 
+/* ************************************************** */
 /* Header */
 header {
+    color: var(--main-color);
     background-color: var(--main-white-color);
     border-bottom: 0.375rem solid var(--third-color);
     width: 100%;
@@ -99,10 +104,12 @@ header .btn {
     margin: 0 1rem;
 }
 
+/* ************************************************** */
 /* Canvas section */
 .canvas-container {
+    color: var(--main-color);
     background-color: var(--main-white-color);
-    margin: 2rem 1rem;
+    margin: 1.5rem 1rem;
     width: calc(100% - 2rem);
     padding: 0.5rem 1rem;
     border: 0.0875rem solid black;
@@ -111,15 +118,15 @@ header .btn {
     align-items: center;
 }
 
+/* ************************************************** */
 /* Dashboard General */
 .dashboard {
-    color: var(--main-white-color);
     margin: 0.5rem auto;
     width: 100%;
     padding: 0.5rem 1rem;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .dashboard .btn {
@@ -134,8 +141,11 @@ header .btn {
     color: var(--secondary-color);
 }
 
+/* ************************************************** */
 /* Dashboard commands */
 .dashboard__commands {
+    padding: 1rem 0.5rem;
+    color: var(--main-white-color);
     width: 50%;
 }
 
@@ -156,6 +166,10 @@ header .btn {
     min-width: 4.5rem;
 }
 
+.dashboard__commands .dashboard__commands__data .btn {
+    min-width: 9.375rem;
+}
+
 .dashboard .data__form,
 .dashboard .file__form {
     padding: 0 0.5rem;
@@ -171,6 +185,7 @@ header .btn {
 
 .dashboard .data__form .form__input > input,
 .dashboard .file__form .form__input > input {
+    padding: 0.25rem 0.5rem;
     margin: 0 0.5rem;
 }
 
@@ -178,22 +193,85 @@ header .btn {
     height: 2rem;
 }
 
-/* Dashboard output */
-.dashboard__output {
-    width: 50%;
-    border: 0.0875rem solid blue;
+.dashboard .data__form .form__input > label,
+.dashboard .file__form .form__input > label {
+    min-width: 6.25rem;
+    font-style: italic;
+    letter-spacing: 0.125rem;;
 }
 
+/* ************************************************** */
+/* Dashboard output */
+.dashboard__output {
+    color: var(--main-color);
+    background-color: var(--main-white-color);
+    width: 50%;
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+}
+
+.dashboard__output .dashboard__output__content {
+    height: 34.375rem;
+    position: relative;
+    margin: 0.5rem 0;
+}
+
+.dashboard__output__content .dashboard__output__menu {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    background-color: var(--secondary-color);
+    color: var(--main-white-color);
+}
+
+.dashboard__output__menu .dashboard__output__menu__item {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-bottom: 0.25rem solid var(--secondary-gray-color);
+}
+
+.dashboard__output__menu .dashboard__output__menu__item:not(.active-console) {
+    font-style: italic;
+    background-color: var(--third-gray-color);
+}
+
+.dashboard__output__menu .dashboard__output__menu__item.active-console {
+    color: var(--terminal-text-color);
+    font-weight: bold;
+    border-bottom-color: var(--third-color);
+}
+
+.dashboard__output__content .dashboard__output__console {
+    position: absolute;
+    top: 2.375rem;
+    width: 100%;
+    height: 32rem;
+    display: flex;
+    padding: 0.5rem;
+    background-color: var(--main-black-color);
+    color: var(--terminal-text-color);
+    padding: 0.5rem;
+    overflow-y: scroll;
+}
+
+.dashboard__output__content .dashboard__output__console:not(.active-console) {
+    display: none;
+}
+
+/* ************************************************** */
 /* Footer */
 footer {
     width: 100%;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     background-color: var(--main-white-color);
     text-align: right;
-    padding: 0 0.5rem;
     font-size: 0.875rem;
     font-style: italic;
     border-top: 0.375rem solid var(--third-color);
     box-shadow: var(--shadow-4);
+}
+
+footer .footer_copyright {
+    padding: 1rem 0.5rem;
 }

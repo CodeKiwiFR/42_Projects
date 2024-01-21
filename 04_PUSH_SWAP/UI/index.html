@@ -65,35 +65,39 @@
                         <form class="data__form" action="/">
                             <div class="form__input">
                                 <label for="numbersToAddA">Numbers</label>
-                                <input type="text" name="numbersToAddA" id="numbersToAddA">
+                                <input type="text" name="numbersToAddA" id="numbersToAddA"
+                                    placeholder="ex: 10 12 78 -58 -4 0">
                             </div>
                             <button class="btn" type="submit">Add to A</button>
                         </form>
                         <form class="data__form" action="/">
                             <div class="form__input">
                                 <label for="numbersToAddB">Numbers</label>
-                                <input type="text" name="numbersToAddB" id="numbersToAddB">
+                                <input type="text" name="numbersToAddB" id="numbersToAddB"
+                                    placeholder="ex: 10 12 78 -58 -4 0">
                             </div>
                             <button class="btn" type="submit">Add to B</button>
                         </form>
                         <form class="data__form" action="/">
                             <div class="form__input">
                                 <label for="numbersToRemoveA">Numbers</label>
-                                <input type="text" name="numbersToRemoveA" id="numbersToRemoveA">
+                                <input type="text" name="numbersToRemoveA" id="numbersToRemoveA"
+                                    placeholder="ex: 10 12 78 -58 -4 0">
                             </div>
                             <button class="btn" type="submit">Remove from A</button>
                         </form>
                         <form class="data__form" action="/">
                             <div class="form__input">
                                 <label for="numbersToRemoveB">Numbers</label>
-                                <input type="text" name="numbersToRemoveB" id="numbersToRemoveB">
+                                <input type="text" name="numbersToRemoveB" id="numbersToRemoveB"
+                                    placeholder="ex: 10 12 78 -58 -4 0">
                             </div>
                             <button class="btn" type="submit">Remove from B</button>
                         </form>
                         <form class="data__form" action="/">
                             <div class="form__input">
                                 <label for="commands">Commands</label>
-                                <input type="text" name="commands" id="commands">
+                                <input type="text" name="commands" id="commands" placeholder="ex: ra rra sa sb rrr">
                             </div>
                             <button class="btn" type="submit">Add to Queue</button>
                         </form>
@@ -122,16 +126,20 @@
 
                 </div>
             </div>
-            <div class="dashboard__output">
-                <h2 class="centered_text section-title">Info&nbsp;:</h2>
-                <ul>
-                    <li>Stacks</li>
-                    <li>Commands</li>
-                    <li>Console</li>
-                </ul>
-                <p>Stacks</p>
-                <p>Commands</p>
-                <p>Console</p>
+            <div class="dashboard__output light-shadow">
+                <h2 class="section-title">Info&nbsp;:</h2>
+                <div class="dashboard__output__content">
+                    <ul class="dashboard__output__menu">
+                        <li class="dashboard__output__menu__item">Console</li>
+                        <li class="dashboard__output__menu__item active-console">Stacks</li>
+                        <li class="dashboard__output__menu__item">Commands</li>
+
+                    </ul>
+                    <p class="dashboard__output__console">Console</p>
+                    <p class="dashboard__output__console active-console">Stacks</p>
+                    <p class="dashboard__output__console">Commands</p>
+                </div>
+
 
             </div>
         </section>
