@@ -20,10 +20,16 @@ class Stack {
          * @type {Array<number>}
          */
         this.content = [];
+
+        /**
+         * The sorted content of the stack.
+         * @type {Array<number>}
+         */
+        this.sortedContent = [];
     }
 
     /**
-     * Pushes one or more integers onto the stack.
+     * Pushes one or more integers onto the stack (updates sortedContent).
      * @param  {...number} nbs - Integers to push.
      * @throws {Error} Error if any parameter is not an integer.
      * @throws {Error} Error if the stack's size is greater than or equal to 500.
@@ -45,6 +51,8 @@ class Stack {
                 );
             }
             this.content.unshift(nb);
+            this.sortedContent.unshift(nb);
+            this.sortedContent.sort();
         }
     }
 
@@ -54,10 +62,17 @@ class Stack {
      * @throws {Error} Error if the stack is empty.
      */
     pop() {
+        let popped;
+
         if (this.content.length === 0) {
             throw new Error("ERROR - The stack is empty");
         }
-        return this.content.shift();
+        popped = this.content.shift();
+        sortedIndex = this.sortedContent.findIndex(popped);
+        if (sortedIndex !== -1) {
+            this.sortedContent.splice(sortedIndex, 1);
+        }
+        return popped;
     }
 
     /**
@@ -69,6 +84,7 @@ class Stack {
             const index = this.content.indexOf(nb);
             if (index !== -1) {
                 this.content.splice(index, 1);
+                this.sortedContent.splice(sortedIndex, 1);
             }
         }
     }
@@ -108,6 +124,7 @@ class Stack {
      */
     clear() {
         this.content = [];
+        this.sortedContent = [];
     }
 
     /**

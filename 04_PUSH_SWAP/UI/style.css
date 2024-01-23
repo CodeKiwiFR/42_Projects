@@ -3,7 +3,7 @@
     --main-color: #260c3b;
     --secondary-color: #420a31;
     --third-color: #7d7923;
-    --terminal-text-color: #66FF66;
+    --terminal-text-color: #66ff66;
     --main-black-color: #000;
     --main-gray-color: #d3d3d3;
     --secondary-gray-color: #f8f8f8;
@@ -31,7 +31,7 @@ body {
     font-family: sans-serif;
     font-size: 16px;
     background-color: var(--main-color);
-    padding-bottom: 4.5rem;;
+    padding-bottom: 4.5rem;
 }
 
 ul {
@@ -109,13 +109,26 @@ header .btn {
 .canvas-container {
     color: var(--main-color);
     background-color: var(--main-white-color);
-    margin: 1.5rem 1rem;
     width: calc(100% - 2rem);
-    padding: 0.5rem 1rem;
-    border: 0.0875rem solid black;
+    margin: 2rem 1rem;
+    padding: 1rem 1.5rem 2.5rem 1.5rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.canvas-container .canvas-content {
+    display: flex;
+    width: 32rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas-container .stack__canvas {
+    height: 37.5rem;
+    width: 100%;
+    border: 0.125rem solid var(--main-color);
 }
 
 /* ************************************************** */
@@ -197,7 +210,7 @@ header .btn {
 .dashboard .file__form .form__input > label {
     min-width: 6.25rem;
     font-style: italic;
-    letter-spacing: 0.125rem;;
+    letter-spacing: 0.125rem;
 }
 
 /* ************************************************** */
@@ -213,6 +226,7 @@ header .btn {
     height: 34.375rem;
     position: relative;
     margin: 0.5rem 0;
+    box-shadow: var(--shadow-1);
 }
 
 .dashboard__output__content .dashboard__output__menu {
@@ -252,6 +266,7 @@ header .btn {
     color: var(--terminal-text-color);
     padding: 0.5rem;
     overflow-y: scroll;
+    line-height: 1.5rem;
 }
 
 .dashboard__output__content .dashboard__output__console:not(.active-console) {

@@ -19,11 +19,11 @@
         <section class="canvas-container light-shadow">
             <div class="canvas-content">
                 <h2 class="centered_text section-title">Stack A</h2>
-                <canvas id="stackA_canvas" class="canvas-content__stack"></canvas>
+                <canvas id="stackA_canvas" class="stack__canvas"></canvas>
             </div>
             <div class="canvas-content">
                 <h2 class="centered_text section-title">Stack B</h2>
-                <canvas id="stackB_canvas" class="canvas-content__stack"></canvas>
+                <canvas id="stackB_canvas" class="stack__canvas"></canvas>
             </div>
         </section>
         <section class="dashboard">
@@ -107,16 +107,14 @@
                 <div class="dashboard__commands__elements dashboard__commands__file">
                     <h2 class="section-title">Upload&nbsp;File</h2>
                     <div class="file__forms">
-                        <form class="file__form" action="/votre-endpoint-de-traitement" method="post"
-                            enctype="multipart/form-data">
+                        <form class="file__form" action="/" method="post" enctype="multipart/form-data">
                             <div class="form__input">
                                 <label for="numbersFile">Numbers</label>
                                 <input type="file" id="numbersFile" name="numbersFile" accept=".txt">
                             </div>
                             <button class="btn" type="submit">Upload</button>
                         </form>
-                        <form class="file__form" action="/votre-endpoint-de-traitement" method="post"
-                            enctype="multipart/form-data">
+                        <form class="file__form" action="/" method="post" enctype="multipart/form-data">
                             <div class="form__input">
                                 <label for="commandFile">Commands</label>
                                 <input type="file" id="commandFile" name="commandFile" accept=".txt">
@@ -131,12 +129,12 @@
                 <h2 class="section-title">Info&nbsp;:</h2>
                 <div class="dashboard__output__content">
                     <ul class="dashboard__output__menu">
-                        <li id="consoleGeneralButton" class="dashboard__output__menu__item">Console</li>
-                        <li id="consoleStacksButton" class="dashboard__output__menu__item active-console">Stacks</li>
+                        <li id="consoleGeneralButton" class="dashboard__output__menu__item active-console">Console</li>
+                        <li id="consoleStacksButton" class="dashboard__output__menu__item">Stacks</li>
                         <li id="consoleCommandsButton" class="dashboard__output__menu__item">Commands</li>
                     </ul>
-                    <p id="consoleGeneral" dashboard__output__console">General</p>
-                    <p id="consoleStacks" class="dashboard__output__console active-console">Stacks</p>
+                    <p id="consoleGeneral" class="dashboard__output__console active-console">General</p>
+                    <p id="consoleStacks" class="dashboard__output__console">Stacks</p>
                     <p id="consoleCommands" class="dashboard__output__console">Commands</p>
                 </div>
 

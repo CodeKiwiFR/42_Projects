@@ -1,28 +1,29 @@
 import AppData from "./AppData.js";
+import Canvas from "./Canvas.js";
+import Console from "./Console.js";
+import ConsoleManager from "./ConsoleManager.js";
 
-const app = new AppData();
+const appData = new AppData();
 
-console.log(String(app));
+const consoleManager = new ConsoleManager();
+const generalConsole = new Console(
+    "consoleGeneral",
+    "consoleGeneralButton",
+    consoleManager,
+    true
+);
+const stacksConsole = new Console(
+    "consoleStacks",
+    "consoleStacksButton",
+    consoleManager
+);
+const commandConsole = new Console(
+    "consoleCommands",
+    "consoleCommandsButton",
+    consoleManager
+);
 
-app.push(12, 24, -56, 789);
-console.log(String(app));
+appData.push(12, 14, 15, 45);
 
-app.pb();
-app.sa();
-console.log(String(app));
-
-app.ra();
-app.rb();
-console.log(String(app));
-
-app.pb();
-app.rb();
-console.log(String(app));
-
-app.pb();
-app.rr();
-console.log(String(app));
-
-app.push(77, 84, 13);
-console.log(String(app));
-app.push(77);
+const canvasA = new Canvas("stackA_canvas", appData.stack_a);
+const canvasB = new Canvas("stackB_canvas", appData.stack_b);
