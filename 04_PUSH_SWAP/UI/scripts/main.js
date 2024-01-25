@@ -28,3 +28,12 @@ appData.push(45, 78, -1, 56, 0, 789, 65, 42, 788, 754, 712, 456, 123, 312);
 const canvasA = new Canvas("stackA_canvas", appData.stack_a);
 const canvasB = new Canvas("stackB_canvas", appData.stack_b);
 
+const stackUpdateEvent = new CustomEvent("stackUpdate");
+document.addEventListener("stackUpdate", (envent) => {
+    console.log("HERE");
+});
+
+const ButtonSA = document.getElementById("buttonSA");
+ButtonSA.addEventListener("click", (event) => {
+    appData.sa();
+});

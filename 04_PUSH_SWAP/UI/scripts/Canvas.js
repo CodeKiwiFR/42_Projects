@@ -1,7 +1,7 @@
 import Stack from "./Stack.js";
 
 class Canvas {
-    constructor(elementId, stack) {
+    constructor(elementId, stack, height = 600, width = 512) {
         this.element = document.getElementById(elementId);
         if (!this.element) {
             throw new Error(
@@ -15,13 +15,18 @@ class Canvas {
         }
         this.stack = stack;
 
-        // Setting the right height and width
-        this.element.height = 600;
-        this.element.width = 512;
+        // Setting the right height and width (Because of screen ratio)
+        this.height = height;
+        this.width = width;
+        this.element.height = this.height;
+        this.element.width = this.width;
 
+        // Colors
+        this.minColor = [230, 230, 255];
+        this.maxColor = [0, 0, 77];
+
+        // Dimension attributes
         this.context = this.element.getContext("2d");
-        this.height = this.element.height;
-        this.width = this.element.width;
         this.widthMin = 20;
         this.widthMax = this.width;
         if (this.stack.length() === 0) {
@@ -59,14 +64,14 @@ class Canvas {
         this.context.imageSmoothingEnabled = false;
         this.context.font = `${fontSize}px Arial`;
         const textWidth = this.context.measureText(text).width;
-        const x = (this.element.width - textWidth) / 2;
-        const y = this.element.height / 2;
+        const x = (this.width - textWidth) / 2;
+        const y = this.height / 2;
         this.context.fillStyle = "black";
         this.context.fillText(text, x, y);
     }
 
     drawStack() {
-        let currentValue, sortedIndex, rectHeight, rectWidth, xPos, yPos;
+        let currentValue, sortedIndex, rectHeight, rectWidth, xPos, yPos, color;
         const stackLength = this.stack.length();
 
         this.clear();
@@ -77,7 +82,8 @@ class Canvas {
             rectWidth = this.widthMin + sortedIndex * this.dw;
             xPos = Math.floor(this.width / 2 - rectWidth / 2) * 0;
             yPos = this.height - (i + 1) * this.dh;
-            this.drawRect("blue", [xPos, yPos], rectWidth, rectHeight);
+            color = this.getEltColor(sortedIndex / stackLength);
+            this.drawRect(color, [xPos, yPos], rectWidth, rectHeight);
         }
     }
 
@@ -88,6 +94,19 @@ class Canvas {
             );
         this.context.fillStyle = color;
         this.context.fillRect(pointA[0], pointA[1], width, height);
+    }
+
+    // Fonction pour générer une couleur intermédiaire entre deux couleurs
+    getEltColor(factor) {
+        const result = this.minColor.map((channel, index) => {
+            const diff = Math.abs(this.maxColor[index] - channel);
+            if (this.maxColor[index] > channel) {
+                return Math.round(channel + factor * diff);
+            } else {
+                return Math.round(channel - factor * diff);
+            }
+        });
+        return `rgb(${result.join(",")})`;
     }
 }
 
