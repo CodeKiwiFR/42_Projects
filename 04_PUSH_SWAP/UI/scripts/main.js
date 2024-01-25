@@ -23,7 +23,8 @@ const commandConsole = new Console(
     consoleManager
 );
 
-appData.push(12, 14, 15, 45);
+appData.push(45, 78, -1, 56, 0, 789, 65, 42, 788, 754, 712, 456, 123, 312);
 
 const canvasA = new Canvas("stackA_canvas", appData.stack_a);
 const canvasB = new Canvas("stackB_canvas", appData.stack_b);
+
