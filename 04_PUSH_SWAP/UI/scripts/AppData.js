@@ -2,15 +2,26 @@ import Stack from "./Stack.js";
 import CommandQueue from "./CommandQueue.js";
 
 class AppData {
-    constructor() {
+    constructor(updateStackEvent = null) {
         this.stack_a = new Stack("a");
         this.stack_b = new Stack("b");
         this.commands = new CommandQueue();
+
+        if (
+            updateStackEvent != null &&
+            !(updateStackEvent instanceof CustomEvent)
+        ) {
+            throw new Error(
+                "ERROR - The parameter updateStackEvent is expected to be an instance of CustomEvent"
+            );
+        }
+        this.updateStackEvent = updateStackEvent;
     }
 
     push(...nbs) {
         try {
             this.stack_a.push(...nbs);
+            this.triggerUpdateEvent();
         } catch (error) {
             throw error;
         }
@@ -19,6 +30,7 @@ class AppData {
     sa() {
         if (this.stack_a.length() >= 2) {
             this.stack_a.swap();
+            this.triggerUpdateEvent();
             console.log("sa");
         }
     }
@@ -26,6 +38,7 @@ class AppData {
     sb() {
         if (this.stack_b.length() >= 2) {
             this.stack_b.swap();
+            this.triggerUpdateEvent();
             console.log("sb");
         }
     }
@@ -49,12 +62,14 @@ class AppData {
         } else if (swapped_b) {
             console.log("sb");
         }
+        this.triggerUpdateEvent();
     }
 
     pa() {
         if (this.stack_b.length() >= 1) {
             try {
                 this.stack_a.push(this.stack_b.pop());
+                this.triggerUpdateEvent();
                 console.log("pa");
             } catch (error) {
                 throw error;
@@ -66,6 +81,7 @@ class AppData {
         if (this.stack_a.length() >= 1) {
             try {
                 this.stack_b.push(this.stack_a.pop());
+                this.triggerUpdateEvent();
                 console.log("pb");
             } catch (error) {
                 throw error;
@@ -76,6 +92,7 @@ class AppData {
     ra() {
         if (this.stack_a.length() >= 2) {
             this.stack_a.rot();
+            this.triggerUpdateEvent();
             console.log("ra");
         }
     }
@@ -83,6 +100,7 @@ class AppData {
     rb() {
         if (this.stack_b.length() >= 2) {
             this.stack_b.rot();
+            this.triggerUpdateEvent();
             console.log("rb");
         }
     }
@@ -106,11 +124,13 @@ class AppData {
         } else if (rot_b) {
             console.log("rb");
         }
+        this.triggerUpdateEvent();
     }
 
     rra() {
         if (this.stack_a.length() >= 2) {
             this.stack_a.rev_rot();
+            this.triggerUpdateEvent();
             console.log("rra");
         }
     }
@@ -118,6 +138,7 @@ class AppData {
     rrb() {
         if (this.stack_b.length() >= 2) {
             this.stack_b.rev_rot();
+            this.triggerUpdateEvent();
             console.log("rrb");
         }
     }
@@ -141,6 +162,7 @@ class AppData {
         } else if (rot_b) {
             console.log("rb");
         }
+        this.triggerUpdateEvent();
     }
 
     toString() {
@@ -180,6 +202,12 @@ class AppData {
             return this.commands.pop();
         } catch (error) {
             throw error;
+        }
+    }
+
+    triggerUpdateEvent() {
+        if (this.updateStackEvent != null) {
+            document.dispatchEvent(this.updateStackEvent);
         }
     }
 }

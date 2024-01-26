@@ -1,7 +1,7 @@
 import Stack from "./Stack.js";
 
 class Canvas {
-    constructor(elementId, stack, height = 600, width = 512) {
+    constructor(elementId, stack, height = 600, width = 512, dh, dw, widthMin) {
         this.element = document.getElementById(elementId);
         if (!this.element) {
             throw new Error(
@@ -20,6 +20,7 @@ class Canvas {
         this.width = width;
         this.element.height = this.height;
         this.element.width = this.width;
+        this.widthMin = widthMin;
 
         // Colors
         this.minColor = [230, 230, 255];
@@ -27,35 +28,12 @@ class Canvas {
 
         // Dimension attributes
         this.context = this.element.getContext("2d");
-        this.widthMin = 20;
-        this.widthMax = this.width;
-        if (this.stack.length() === 0) {
-            this.dh = 0;
-            this.dw = 0;
-            this.writeEmptyStack();
-        } else {
-            this.dh = Math.floor(this.height / this.stack.length());
-            this.dw = Math.floor(
-                (this.widthMax - this.widthMin) / this.stack.length()
-            );
-            this.drawStack();
-        }
+        this.dh = dh;
+        this.dw = dw;
     }
 
     clear() {
         this.context.clearRect(0, 0, this.width, this.height);
-    }
-
-    stackUpdateHandler() {
-        this.dh = Math.floor(this.height / this.stack.length());
-        this.dw = Math.floor(
-            (this.widthMax - this.widthMin) / this.stack.length()
-        );
-        if (this.stack.length() == 0) {
-            this.writeEmptyStack();
-        } else {
-            this.drawStack();
-        }
     }
 
     writeEmptyStack() {
@@ -70,20 +48,35 @@ class Canvas {
         this.context.fillText(text, x, y);
     }
 
-    drawStack() {
+    drawStack(stacksGlobalContent) {
         let currentValue, sortedIndex, rectHeight, rectWidth, xPos, yPos, color;
         const stackLength = this.stack.length();
 
         this.clear();
-        for (let i = 0; i < stackLength; i++) {
-            currentValue = this.stack.content[stackLength - 1 - i];
-            sortedIndex = this.stack.sortedContent.indexOf(currentValue);
-            rectHeight = this.dh;
-            rectWidth = this.widthMin + sortedIndex * this.dw;
-            xPos = Math.floor(this.width / 2 - rectWidth / 2) * 0;
-            yPos = this.height - (i + 1) * this.dh;
-            color = this.getEltColor(sortedIndex / stackLength);
-            this.drawRect(color, [xPos, yPos], rectWidth, rectHeight);
+        if (stackLength > 0) {
+            for (let i = 0; i < stackLength; i++) {
+                currentValue = this.stack.content[stackLength - 1 - i];
+                sortedIndex = stacksGlobalContent.indexOf(currentValue);
+                rectHeight = this.dh;
+                rectWidth = this.widthMin + sortedIndex * this.dw;
+                xPos = Math.floor(this.width / 2 - rectWidth / 2) * 0;
+                yPos = this.height - (i + 1) * this.dh;
+                color = this.getEltColor(
+                    sortedIndex / stacksGlobalContent.length
+                );
+                console.log(
+                    currentValue,
+                    sortedIndex,
+                    rectHeight,
+                    this.widthMin,
+                    xPos,
+                    yPos,
+                    color
+                );
+                this.drawRect(color, [xPos, yPos], rectWidth, rectHeight);
+            }
+        } else {
+            this.writeEmptyStack();
         }
     }
 

@@ -7,9 +7,8 @@ class Stack {
      * Creates an instance of the Stack class.
      * @constructor
      * @param {string} name - The name of the stack.
-     * @param {string} updateEventName - The name of the event to trigger on update
      */
-    constructor(name, updateEventName = null) {
+    constructor(name) {
         /**
          * The name of the stack.
          * @type {string}
@@ -27,12 +26,6 @@ class Stack {
          * @type {Array<number>}
          */
         this.sortedContent = [];
-
-        /**
-         * The name of the event to trigger on update
-         * @type {string}
-         */
-        this.updateEventName = updateEventName;
     }
 
     /**
@@ -60,7 +53,6 @@ class Stack {
             this.content.unshift(nb);
             this.sortedContent.unshift(nb);
             this.sortedContent.sort();
-            this.triggerEvent();
         }
     }
 
@@ -70,17 +62,16 @@ class Stack {
      * @throws {Error} Error if the stack is empty.
      */
     pop() {
-        let popped;
+        let popped, sortedIndex;
 
         if (this.content.length === 0) {
             throw new Error("ERROR - The stack is empty");
         }
         popped = this.content.shift();
-        sortedIndex = this.sortedContent.findIndex(popped);
+        sortedIndex = this.sortedContent.indexOf(popped);
         if (sortedIndex !== -1) {
             this.sortedContent.splice(sortedIndex, 1);
         }
-        this.triggerEvent();
         return popped;
     }
 
@@ -94,7 +85,6 @@ class Stack {
             if (index !== -1) {
                 this.content.splice(index, 1);
                 this.sortedContent.splice(sortedIndex, 1);
-                this.triggerEvent();
             }
         }
     }
@@ -108,27 +98,24 @@ class Stack {
                 this.content[1],
                 this.content[0],
             ];
-            this.triggerEvent();
         }
     }
 
     /**
-     * Rotates the top two integers on the stack.
+     * Puts first element of the stack at the end
      */
     rot() {
         if (this.content.length >= 2) {
-            this.content.push(this.pop());
-            this.triggerEvent();
+            this.content.push(this.content.shift());
         }
     }
 
     /**
-     * Reverses rotates the top two integers on the stack.
+     * Puts the last element of the stack at first position
      */
     rev_rot() {
         if (this.content.length >= 2) {
-            this.push(this.content.pop());
-            this.triggerEvent();
+            this.content.unshift(this.content.pop());
         }
     }
 
@@ -138,7 +125,6 @@ class Stack {
     clear() {
         this.content = [];
         this.sortedContent = [];
-        this.triggerEvent();
     }
 
     /**
@@ -181,15 +167,6 @@ class Stack {
             }
         }
         return true;
-    }
-
-    /**
-     * Triggers an event if it has been given when building the stack
-     */
-    triggerEvent() {
-        if (this.updateEventName != null) {
-            document.dispatchEvent(this.updateEventName);
-        }
     }
 }
 
