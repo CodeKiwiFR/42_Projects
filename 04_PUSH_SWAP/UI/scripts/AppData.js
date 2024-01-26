@@ -1,8 +1,9 @@
 import Stack from "./Stack.js";
 import CommandQueue from "./CommandQueue.js";
+import ConsoleManager from "./ConsoleManager.js";
 
 class AppData {
-    constructor(updateStackEvent = null) {
+    constructor(updateStackEvent = null, consoleManager) {
         this.stack_a = new Stack("a");
         this.stack_b = new Stack("b");
         this.commands = new CommandQueue();
@@ -16,6 +17,21 @@ class AppData {
             );
         }
         this.updateStackEvent = updateStackEvent;
+
+        if (!(consoleManager instanceof ConsoleManager)) {
+            throw new Error(
+                "ERROR - consoleManager has to be an instance of ConsoleManager"
+            );
+        }
+        if (
+            !consoleManager.consoles["stacks"] ||
+            !consoleManager.consoles["commands"] ||
+            !consoleManager.consoles["general"]
+        ) {
+            throw new Error(
+                "ERROR - consoleManager should contain all consoles of the app"
+            );
+        }
     }
 
     push(...nbs) {

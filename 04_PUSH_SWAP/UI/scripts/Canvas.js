@@ -64,15 +64,6 @@ class Canvas {
                 color = this.getEltColor(
                     sortedIndex / stacksGlobalContent.length
                 );
-                console.log(
-                    currentValue,
-                    sortedIndex,
-                    rectHeight,
-                    this.widthMin,
-                    xPos,
-                    yPos,
-                    color
-                );
                 this.drawRect(color, [xPos, yPos], rectWidth, rectHeight);
             }
         } else {

@@ -1,14 +1,26 @@
 import AppCanvas from "./AppCanvas.js";
 import AppData from "./AppData.js";
-import Canvas from "./Canvas.js";
 import Console from "./Console.js";
 import ConsoleManager from "./ConsoleManager.js";
 
+// Creation of the consoles and the console manager
+const consoleManager = new ConsoleManager({
+    generalConsoleId: "consoleGeneral",
+    generalConsoleButtonId: "consoleGeneralButton",
+    generalIsActive: true,
+    stacksConsoleId: "consoleStacks",
+    stacksConsoleButtonId: "consoleStacksButton",
+    commandsConsoleId: "consoleCommands",
+    commandsConsoleButtonId: "consoleCommandsButton",
+});
+
+// Creation of stack data: two stacks, a stack Manager and a custom event for stack updates
 const stackUpdateEvent = new CustomEvent("stackUpdate");
 
-const appData = new AppData(stackUpdateEvent);
-appData.push(45, 78, -1, 56, 0, 789, 65, 42, 788, 754, 712, 456, 123, 312);
+const appData = new AppData(stackUpdateEvent, consoleManager);
+appData.push(789, 45, 78, -1, 56, 0, 65, 42, 754, 712, 456, 123, 312, 788);
 
+// Creation of the two canvas 
 const appCanvas = new AppCanvas({
     stackA: appData.stack_a,
     stackB: appData.stack_b,
@@ -64,23 +76,3 @@ ButtonRRB.addEventListener("click", (event) => {
 ButtonRRR.addEventListener("click", (event) => {
     appData.rrr();
 });
-
-/*
-const consoleManager = new ConsoleManager();
-const generalConsole = new Console(
-    "consoleGeneral",
-    "consoleGeneralButton",
-    consoleManager,
-    true
-);
-const stacksConsole = new Console(
-    "consoleStacks",
-    "consoleStacksButton",
-    consoleManager
-);
-const commandConsole = new Console(
-    "consoleCommands",
-    "consoleCommandsButton",
-    consoleManager
-);
-*/
