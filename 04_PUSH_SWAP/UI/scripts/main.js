@@ -5,7 +5,15 @@ import StackManager from "./StackManager.js";
 import Canvas from "./Canvas.js";
 import CanvasManager from "./CanvasManager.js";
 
+/* ************************************************** */
+// Creating custom events or custom events names
+
+const stackUpdateEvent = new CustomEvent("stackUpdate");
+const addToStackEventName = "addToStack";
+
+/* ************************************************** */
 // Creation of the consoles and the console manager
+
 const consoleManager = new ConsoleManager({});
 const generalConsole = new Console({
     elementId: "consoleGeneral",
@@ -27,7 +35,9 @@ consoleManager.addConsole(generalConsole);
 consoleManager.addConsole(stacksConsole);
 consoleManager.addConsole(commandsConsole);
 
+/* ************************************************** */
 // Adding the listeners to the console buttons
+
 generalConsole.buttonElement.addEventListener("click", (event) => {
     if (!generalConsole.isActive) {
         consoleManager.activate(generalConsole);
@@ -44,8 +54,9 @@ commandsConsole.buttonElement.addEventListener("click", (event) => {
     }
 });
 
+/* ************************************************** */
 // Creation of stack data: two stacks, a stack Manager and a custom event for stack updates
-const stackUpdateEvent = new CustomEvent("stackUpdate");
+
 const stackA = new Stack("A");
 const stackB = new Stack("B");
 const stackManager = new StackManager({
@@ -53,9 +64,10 @@ const stackManager = new StackManager({
     stackB: stackB,
     updateStackEvent: stackUpdateEvent,
 });
-stackManager.push(789, 45, 78, -1, 56, 0, 65, 42, 754, 712, 456, 123, 312, 788);
 
+/* ************************************************** */
 // Creation of the two canvas and the canvas manager
+
 const canvasManager = new CanvasManager({
     stackA: stackA,
     stackB: stackB,
@@ -82,9 +94,28 @@ canvasManager.addCanvas("A", canvasA);
 canvasManager.addCanvas("B", canvasB);
 canvasManager.drawStacks();
 
+/* ************************************************** */
+// Managing custom events listeners
+
 document.addEventListener("stackUpdate", (event) => {
     canvasManager.updateStacksHandler();
 });
+document.addEventListener(addToStackEventName, (event) => {
+    const targetStack = event.detail.stackReference;
+    if (!targetStack || !(targetStack instanceof Stack)) {
+        throw new Error("ERROR - The target stack is not valid");
+    }
+    const valuesToAdd = event.detail.valuesToAdd;
+    if (!valuesToAdd) {
+        throw new Error("ERROR - No values to add to the stack");
+    }
+    stackManager.pushValuesFromString(targetStack, valuesToAdd);
+});
+
+/* ************************************************** */
+// Managing the document elements and interations
+
+// Operations buttons
 const ButtonSA = document.getElementById("buttonSA");
 const ButtonSB = document.getElementById("buttonSB");
 const ButtonSS = document.getElementById("buttonSS");
@@ -128,4 +159,21 @@ ButtonRRB.addEventListener("click", (event) => {
 });
 ButtonRRR.addEventListener("click", (event) => {
     stackManager.rrr();
+});
+
+// Other buttons
+
+// Data management: add numbers to the stacks
+const addNumbersToAForm = document.getElementById("addNumbersToAForm");
+const addNumbersToAInput = document.getElementById("addNumbersToAInput");
+addNumbersToAForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    document.dispatchEvent(
+        new CustomEvent(addToStackEventName, {
+            detail: {
+                stackReference: stackA,
+                valuesToAdd: addNumbersToAInput.value,
+            },
+        })
+    );
 });

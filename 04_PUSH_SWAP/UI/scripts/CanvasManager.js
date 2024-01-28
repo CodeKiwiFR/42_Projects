@@ -60,7 +60,9 @@ class CanvasManager {
                 "ERROR - The CanvasManager requires two valid canvas in order to work"
             );
         }
+        this.canvasA.updateDimensions(this.dh, this.dw);
         this.canvasA.drawStack(this.stacksGlobalContent);
+        this.canvasB.updateDimensions(this.dh, this.dw);
         this.canvasB.drawStack(this.stacksGlobalContent);
     }
 

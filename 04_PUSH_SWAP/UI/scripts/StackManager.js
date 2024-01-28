@@ -34,6 +34,16 @@ class StackManager {
         }
     }
 
+    pushValuesFromString(stack, values) {
+        if (!(stack instanceof Stack) || stack !== this.stackA) {
+            throw new Error("ERROR - The target stack is not valid");
+        }
+        let valuesArray = values.split(" ");
+        valuesArray = valuesArray.map((x) => Number.parseInt(x));
+        valuesArray = valuesArray.filter((x) => Number.isInteger(x));
+        this.push(...valuesArray);
+    }
+
     sa() {
         if (this.stackA.length() >= 2) {
             this.stackA.swap();

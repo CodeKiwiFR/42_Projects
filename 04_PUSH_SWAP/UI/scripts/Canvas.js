@@ -44,6 +44,16 @@ class Canvas {
         this.context.clearRect(0, 0, this.width, this.height);
     }
 
+    updateDimensions(dh, dw) {
+        if (Number.isNaN(dh) || Number.isNaN(dw)) {
+            throw new Error(
+                "ERROR - A Canvas dimensions steps update requires valid numbers"
+            );
+        }
+        this.dh = dh;
+        this.dw = dw;
+    }
+
     writeEmptyStack() {
         const text = "The stack is empty";
         const fontSize = 20;
