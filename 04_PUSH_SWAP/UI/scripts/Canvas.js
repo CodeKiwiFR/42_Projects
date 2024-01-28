@@ -1,7 +1,15 @@
 import Stack from "./Stack.js";
 
 class Canvas {
-    constructor(elementId, stack, height = 600, width = 512, dh, dw, widthMin) {
+    constructor({
+        elementId,
+        stack,
+        height = 600,
+        width = 512,
+        dh,
+        dw,
+        widthMin,
+    }) {
         this.element = document.getElementById(elementId);
         if (!this.element) {
             throw new Error(

@@ -2,6 +2,8 @@ import Console from "./Console.js";
 import ConsoleManager from "./ConsoleManager.js";
 import Stack from "./Stack.js";
 import StackManager from "./StackManager.js";
+import Canvas from "./Canvas.js";
+import CanvasManager from "./CanvasManager.js";
 
 // Creation of the consoles and the console manager
 const consoleManager = new ConsoleManager({});
@@ -53,19 +55,36 @@ const stackManager = new StackManager({
 });
 stackManager.push(789, 45, 78, -1, 56, 0, 65, 42, 754, 712, 456, 123, 312, 788);
 
-/*
-// Creation of the two canvas
-const appCanvas = new AppCanvas({
-    stackA: appData.stack_a,
-    stackB: appData.stack_b,
-    stackACanvasId: "stackA_canvas",
-    stackBCanvasId: "stackB_canvas",
+// Creation of the two canvas and the canvas manager
+const canvasManager = new CanvasManager({
+    stackA: stackA,
+    stackB: stackB,
 });
+const canvasA = new Canvas({
+    elementId: "stackA_canvas",
+    stack: stackA,
+    height: canvasManager.height,
+    width: canvasManager.width,
+    dh: canvasManager.dh,
+    dw: canvasManager.dw,
+    widthMin: canvasManager.widthMin,
+});
+const canvasB = new Canvas({
+    elementId: "stackB_canvas",
+    stack: stackB,
+    height: canvasManager.height,
+    width: canvasManager.width,
+    dh: canvasManager.dh,
+    dw: canvasManager.dw,
+    widthMin: canvasManager.widthMin,
+});
+canvasManager.addCanvas("A", canvasA);
+canvasManager.addCanvas("B", canvasB);
+canvasManager.drawStacks();
 
 document.addEventListener("stackUpdate", (event) => {
-    appCanvas.updateStacksHandler();
+    canvasManager.updateStacksHandler();
 });
-
 const ButtonSA = document.getElementById("buttonSA");
 const ButtonSB = document.getElementById("buttonSB");
 const ButtonSS = document.getElementById("buttonSS");
@@ -78,36 +97,35 @@ const ButtonRRA = document.getElementById("buttonRRA");
 const ButtonRRB = document.getElementById("buttonRRB");
 const ButtonRRR = document.getElementById("buttonRRR");
 ButtonSA.addEventListener("click", (event) => {
-    appData.sa();
+    stackManager.sa();
 });
 ButtonSB.addEventListener("click", (event) => {
-    appData.sb();
+    stackManager.sb();
 });
 ButtonSS.addEventListener("click", (event) => {
-    appData.ss();
+    stackManager.ss();
 });
 ButtonPA.addEventListener("click", (event) => {
-    appData.pa();
+    stackManager.pa();
 });
 ButtonPB.addEventListener("click", (event) => {
-    appData.pb();
+    stackManager.pb();
 });
 ButtonRA.addEventListener("click", (event) => {
-    appData.ra();
+    stackManager.ra();
 });
 ButtonRB.addEventListener("click", (event) => {
-    appData.rb();
+    stackManager.rb();
 });
 ButtonRR.addEventListener("click", (event) => {
-    appData.rr();
+    stackManager.rr();
 });
 ButtonRRA.addEventListener("click", (event) => {
-    appData.rra();
+    stackManager.rra();
 });
 ButtonRRB.addEventListener("click", (event) => {
-    appData.rrb();
+    stackManager.rrb();
 });
 ButtonRRR.addEventListener("click", (event) => {
-    appData.rrr();
+    stackManager.rrr();
 });
-*/
