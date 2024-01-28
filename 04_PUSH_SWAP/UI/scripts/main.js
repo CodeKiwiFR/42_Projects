@@ -1,5 +1,7 @@
 import Console from "./Console.js";
 import ConsoleManager from "./ConsoleManager.js";
+import Stack from "./Stack.js";
+import StackManager from "./StackManager.js";
 
 // Creation of the consoles and the console manager
 const consoleManager = new ConsoleManager({});
@@ -40,12 +42,18 @@ commandsConsole.buttonElement.addEventListener("click", (event) => {
     }
 });
 
-/*
 // Creation of stack data: two stacks, a stack Manager and a custom event for stack updates
 const stackUpdateEvent = new CustomEvent("stackUpdate");
-const appData = new AppData(stackUpdateEvent, consoleManager);
-appData.push(789, 45, 78, -1, 56, 0, 65, 42, 754, 712, 456, 123, 312, 788);
+const stackA = new Stack("A");
+const stackB = new Stack("B");
+const stackManager = new StackManager({
+    stackA: stackA,
+    stackB: stackB,
+    updateStackEvent: stackUpdateEvent,
+});
+stackManager.push(789, 45, 78, -1, 56, 0, 65, 42, 754, 712, 456, 123, 312, 788);
 
+/*
 // Creation of the two canvas
 const appCanvas = new AppCanvas({
     stackA: appData.stack_a,
@@ -102,5 +110,4 @@ ButtonRRB.addEventListener("click", (event) => {
 ButtonRRR.addEventListener("click", (event) => {
     appData.rrr();
 });
-
 */
