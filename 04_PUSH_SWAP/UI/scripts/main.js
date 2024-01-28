@@ -1,26 +1,52 @@
-import AppCanvas from "./AppCanvas.js";
-import AppData from "./AppData.js";
 import Console from "./Console.js";
 import ConsoleManager from "./ConsoleManager.js";
 
 // Creation of the consoles and the console manager
-const consoleManager = new ConsoleManager({
-    generalConsoleId: "consoleGeneral",
-    generalConsoleButtonId: "consoleGeneralButton",
-    generalIsActive: true,
-    stacksConsoleId: "consoleStacks",
-    stacksConsoleButtonId: "consoleStacksButton",
-    commandsConsoleId: "consoleCommands",
-    commandsConsoleButtonId: "consoleCommandsButton",
+const consoleManager = new ConsoleManager({});
+const generalConsole = new Console({
+    elementId: "consoleGeneral",
+    buttonId: "consoleGeneralButton",
+    consoleManager: consoleManager,
+});
+const stacksConsole = new Console({
+    elementId: "consoleStacks",
+    buttonId: "consoleStacksButton",
+    consoleManager: consoleManager,
+});
+const commandsConsole = new Console({
+    elementId: "consoleCommands",
+    buttonId: "consoleCommandsButton",
+    isActive: true,
+    consoleManager: consoleManager,
+});
+consoleManager.addConsole(generalConsole);
+consoleManager.addConsole(stacksConsole);
+consoleManager.addConsole(commandsConsole);
+
+// Adding the listeners to the console buttons
+generalConsole.buttonElement.addEventListener("click", (event) => {
+    if (!generalConsole.isActive) {
+        consoleManager.activate(generalConsole);
+    }
+});
+stacksConsole.buttonElement.addEventListener("click", (event) => {
+    if (!stacksConsole.isActive) {
+        consoleManager.activate(stacksConsole);
+    }
+});
+commandsConsole.buttonElement.addEventListener("click", (event) => {
+    if (!commandsConsole.isActive) {
+        consoleManager.activate(commandsConsole);
+    }
 });
 
+/*
 // Creation of stack data: two stacks, a stack Manager and a custom event for stack updates
 const stackUpdateEvent = new CustomEvent("stackUpdate");
-
 const appData = new AppData(stackUpdateEvent, consoleManager);
 appData.push(789, 45, 78, -1, 56, 0, 65, 42, 754, 712, 456, 123, 312, 788);
 
-// Creation of the two canvas 
+// Creation of the two canvas
 const appCanvas = new AppCanvas({
     stackA: appData.stack_a,
     stackB: appData.stack_b,
@@ -76,3 +102,5 @@ ButtonRRB.addEventListener("click", (event) => {
 ButtonRRR.addEventListener("click", (event) => {
     appData.rrr();
 });
+
+*/

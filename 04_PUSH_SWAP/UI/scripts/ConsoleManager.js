@@ -1,57 +1,35 @@
 import Console from "./Console.js";
 
 class ConsoleManager {
-    static validConsoleNames = ["general", "stacks", "commands"];
-
-    constructor({
-        generalConsoleId = null,
-        generalConsoleButtonId = null,
-        generalIsActive = false,
-        stacksConsoleId = null,
-        stacksConsoleButtonId = null,
-        stacksIsActive = false,
-        commandsConsoleId = null,
-        commandsConsoleButtonId = null,
-        commandsIsActive = false,
-    }) {
-        try {
-            this.consoles = {
-                general: new Console(
-                    generalConsoleId,
-                    generalConsoleButtonId,
-                    generalIsActive
-                ),
-                stacks: new Console(
-                    stacksConsoleId,
-                    stacksConsoleButtonId,
-                    stacksIsActive
-                ),
-                commands: new Console(
-                    commandsConsoleId,
-                    commandsConsoleButtonId,
-                    commandsIsActive
-                ),
-            };
-        } catch (error) {
-            throw error;
-        }
+    constructor() {
+        this.consoles = [];
     }
 
-    addConsole(name, console) {
+    addConsole(console) {
         if (!(console instanceof Console)) {
             throw new Error(
                 "ERROR - A ConsoleManager only manages Console objects"
             );
         }
-        if (ConsoleManager.validConsoleNames.indexOf(name) == -1) {
-            throw new Error("ERROR - Invalid Console name");
+        if (this.consoles.indexOf(console) === -1) {
+            this.consoles.push(console);
         }
-        this.consoles[name] = console;
+    }
+
+    activate(console) {
+        let consoleIndex = this.consoles.indexOf(console);
+        if (consoleIndex === -1) {
+            throw new Error(
+                "ERROR - The given console is not managed by the consoleManager"
+            );
+        }
+        this.deactivateAll();
+        this.consoles[consoleIndex].activate();
     }
 
     deactivateAll() {
-        for (let name in this.consoles) {
-            this.consoles[name].deactivate();
+        for (const console of this.consoles) {
+            console.deactivate();
         }
     }
 }

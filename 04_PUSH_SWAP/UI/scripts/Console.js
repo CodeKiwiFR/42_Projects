@@ -1,18 +1,13 @@
-import ConsoleManager from "./ConsoleManager.js";
-
 class Console {
     static activationClassName = "active-console";
 
-    constructor(elementId, buttonId, isActive = false) {
+    constructor({ elementId, buttonId, isActive = false }) {
         this.element = document.getElementById(elementId);
         this.buttonElement = document.getElementById(buttonId);
         this.isActive = isActive;
         if (!this.element || !this.buttonElement) {
             throw new Error("ERROR - Element or button id is invalid");
         }
-        this.buttonElement.addEventListener("click", (event) => {
-            if (!this.isActive) this.activate();
-        });
     }
 
     clearConsole() {
