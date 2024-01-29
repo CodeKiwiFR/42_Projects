@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/18 18:38:41 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:18:09 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,8 @@ void		push_swap_rrr(t_ps_data *data);
 
 bool		parse_args(t_ps_data *data, int argc, char **argv);
 bool		parse_one_arg(t_ps_data *data, char *str);
+
+size_t		get_min_index(t_stack *stack);
+void		sort1(t_ps_data *data);
 
 #endif

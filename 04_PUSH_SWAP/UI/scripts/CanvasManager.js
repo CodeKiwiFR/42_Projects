@@ -25,7 +25,7 @@ class CanvasManager {
             ...this.stackA.sortedContent,
             ...this.stackB.sortedContent,
         ];
-        this.stacksGlobalContent.sort();
+        this.stacksGlobalContent.sort((a, b) => a - b);
         const nbElt = this.stacksGlobalContent.length;
         if (nbElt === 0) {
             this.dh = 0;

@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:49:03 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/18 19:37:32 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:07:49 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,14 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (1);
 	}
-	data->display(data);
+	if (data->is_sorted_stack(data, 'a'))
+	{
+		data->clear(&data);
+		return (0);
+	}
+	//data->display(data);
+	sort1(data);
+	//data->display(data);
 	data->clear(&data);
 	return (0);
 }

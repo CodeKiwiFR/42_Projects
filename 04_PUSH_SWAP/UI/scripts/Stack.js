@@ -52,7 +52,7 @@ class Stack {
             }
             this.content.unshift(nb);
             this.sortedContent.unshift(nb);
-            this.sortedContent.sort();
+            this.sortedContent.sort((a, b) => a - b);
         }
     }
 

@@ -26,12 +26,25 @@ class StackManager {
     }
 
     push(...nbs) {
-        try {
-            this.stackA.push(...nbs);
-            this.triggerUpdateEvent();
-        } catch (error) {
-            throw error;
+        for (let nb of nbs) {
+            if (
+                this.stackA.content.indexOf(nb) !== -1 ||
+                this.stackB.content.indexOf(nb) !== -1
+            ) {
+                this.triggerUpdateEvent();
+                throw new Error(
+                    `ERROR - The number ${nb} is already in one of your stacks`
+                );
+            }
+            try {
+                this.stackA.push(nb);
+            } catch (error) {
+                console.log("HERE");
+                this.triggerUpdateEvent();
+                throw error;
+            }
         }
+        this.triggerUpdateEvent();
     }
 
     pushValuesFromString(stack, values) {
