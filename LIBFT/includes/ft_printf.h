@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/19 19:51:16 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/29 21:38:10 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@ void	input_format_get_info(
 			const char *format, size_t format_end
 			);
 
+int		ft_dprintf(int fd, const char *format, ...) \
+			__attribute__ ((format (printf, 2, 3)));
 int		ft_printf(const char *format, ...) \
 			__attribute__ ((format (printf, 1, 2)));
+
 void	init_format_dispatch(t_format_dispatch dispatch[NB_CONV]);
 
 size_t	fpf_get_format_end(const char *format);

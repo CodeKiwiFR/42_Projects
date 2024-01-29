@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 10:50:12 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/18 14:19:47 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/29 20:59:23 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ void	buffer_add_char(t_fpf_buffer *buffer, char c)
 /*
  *	Appends c to the buffer
  *	If the buffer is full:
- *		-	writes the buffer content to given file descriptor
+ *		-	writes the buffer content to the buffer file descriptor
  *		- 	flushes the buffer
  *		-	appends the given char
  */
-void	buffer_add_char_secure(t_fpf_buffer *buffer, char c, int fd)
+void	buffer_add_char_secure(t_fpf_buffer *buffer, char c)
 {
 	if (buffer == NULL)
 		return ;
 	if (buffer->get_available_size(buffer) <= 1)
 	{
-		buffer->put_fd(buffer, fd);
+		buffer->put_fd(buffer);
 		buffer->flush(buffer);
 	}
 	buffer->add_char(buffer, c);
@@ -51,7 +51,7 @@ void	buffer_add_char_secure(t_fpf_buffer *buffer, char c, int fd)
  *	Adds nb_chars chars to the buffer
  *	Appends each char one by one
  *	As soon as the buffer is full:
- *		-	writes the buffer content to given file descriptor
+ *		-	writes the buffer content to buffer file descriptor
  *		- 	flushes the buffer
  *		-	appends the remaining chars
  *	WARNING: the string's len is not checked, an invalid nb_chars leads to
@@ -60,8 +60,7 @@ void	buffer_add_char_secure(t_fpf_buffer *buffer, char c, int fd)
 void	buffer_add_chars_secure(
 	t_fpf_buffer *buffer,
 	char *str,
-	size_t nb_chars,
-	int fd
+	size_t nb_chars
 )
 {
 	size_t	i;
@@ -71,7 +70,7 @@ void	buffer_add_chars_secure(
 	i = 0;
 	while (i < nb_chars)
 	{
-		buffer->add_char_secure(buffer, str[i], fd);
+		buffer->add_char_secure(buffer, str[i]);
 		i++;
 	}
 }
@@ -101,11 +100,11 @@ void	buffer_add_str(t_fpf_buffer *buffer, char *str)
  *	Appends str to the buffer
  *	Appends each char one by one
  *	As soon as the buffer is full:
- *		-	writes the buffer content to given file descriptor
+ *		-	writes the buffer content to the buffer file descriptor
  *		- 	flushes the buffer
  *		-	appends the remaining chars
  */
-void	buffer_add_str_secure(t_fpf_buffer *buffer, char *str, int fd)
+void	buffer_add_str_secure(t_fpf_buffer *buffer, char *str)
 {
 	size_t	i;
 	size_t	str_len;
@@ -116,7 +115,7 @@ void	buffer_add_str_secure(t_fpf_buffer *buffer, char *str, int fd)
 	i = 0;
 	while (i < str_len)
 	{
-		buffer->add_char_secure(buffer, str[i], fd);
+		buffer->add_char_secure(buffer, str[i]);
 		i++;
 	}
 }

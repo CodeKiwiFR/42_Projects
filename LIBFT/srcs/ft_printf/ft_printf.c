@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:41:46 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/18 16:12:10 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/29 21:39:06 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static void	print_formatted_content(
 	if (res == NULL)
 		return (buffer->set_error(buffer));
 	if (format[format_end] == 'c')
-		buffer->add_chars_secure(buffer, res, format_info.length_result, 1);
+		buffer->add_chars_secure(buffer, res, format_info.length_result);
 	else
-		buffer->add_str_secure(buffer, res, 1);
+		buffer->add_str_secure(buffer, res);
 	free(res);
 }
 
@@ -89,10 +89,46 @@ static void	special_format_handler(
 	j = 0;
 	while (j < i && !buffer->error)
 	{
-		buffer->add_char_secure(buffer, format[j], 1);
+		buffer->add_char_secure(buffer, format[j]);
 		j++;
 	}
 	*format_ptr += i;
+}
+
+/*
+ *	Parses format input in order to store the characters to display into
+ *	a buffer. It can take a variable number of arguments.
+ *	The buffer will write to the given file descriptor.
+ *	It returns the number of characters which have been written
+ *	In case of error -1 is returned
+ */
+int	ft_dprintf(int fd, const char *format, ...)
+{
+	t_fpf_buffer		buffer;
+	t_format_dispatch	dispatch[NB_CONV];
+	va_list				args;
+
+	if (format == NULL)
+		return (-1);
+	buffer = buffer_init(fd);
+	init_format_dispatch(dispatch);
+	va_start(args, format);
+	while (*format != '\0' && !buffer.error)
+	{
+		if (*format == '%')
+			special_format_handler(&format, args, dispatch, &buffer);
+		else
+		{
+			buffer.add_char_secure(&buffer, *format);
+			format++;
+		}
+	}
+	va_end(args);
+	if (!buffer.error)
+		buffer.put_fd(&buffer);
+	if (buffer.error)
+		return (-1);
+	return ((int) buffer.total_len);
 }
 
 /*
@@ -109,7 +145,7 @@ int	ft_printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-	buffer = buffer_init();
+	buffer = buffer_init(STDOUT_FILENO);
 	init_format_dispatch(dispatch);
 	va_start(args, format);
 	while (*format != '\0' && !buffer.error)
@@ -118,13 +154,13 @@ int	ft_printf(const char *format, ...)
 			special_format_handler(&format, args, dispatch, &buffer);
 		else
 		{
-			buffer.add_char_secure(&buffer, *format, 1);
+			buffer.add_char_secure(&buffer, *format);
 			format++;
 		}
 	}
 	va_end(args);
 	if (!buffer.error)
-		buffer.put_fd(&buffer, 1);
+		buffer.put_fd(&buffer);
 	if (buffer.error)
 		return (-1);
 	return ((int) buffer.total_len);

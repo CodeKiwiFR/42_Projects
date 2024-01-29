@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 10:50:12 by mhotting          #+#    #+#             */
-/*   Updated: 2023/12/19 17:11:19 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/29 20:42:51 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
  *	Creates an instance of a buffer and initializes it components
  *	If an invalid FPF_BUFFER_SIZE is given, then the error flag is set to true
  */
-t_fpf_buffer	buffer_init(void)
+t_fpf_buffer	buffer_init(int fd)
 {
 	t_fpf_buffer	buffer;
 
 	buffer.max_size = FPF_BUFFER_SIZE;
 	buffer.total_len = 0;
 	buffer.error = false;
+	buffer.fd = fd;
 	buffer.flush = buffer_flush;
 	buffer.get_available_size = buffer_get_available_size;
 	buffer.set_error = buffer_set_error;
@@ -68,16 +69,16 @@ size_t	buffer_get_available_size(t_fpf_buffer *buffer)
 }
 
 /*
- *	Puts the buffer content to the given file descriptor
+ *	Puts the buffer content to the buffer file descriptor
  *	In case of error, the buffer's error flag is set to true
  */
-void	buffer_put_fd(t_fpf_buffer *buffer, int fd)
+void	buffer_put_fd(t_fpf_buffer *buffer)
 {
 	ssize_t	returned;
 
 	if (buffer == NULL)
 		return ;
-	returned = write(fd, buffer->content, buffer->next_index);
+	returned = write(buffer->fd, buffer->content, buffer->next_index);
 	if (returned == -1)
 		buffer->error = true;
 }
