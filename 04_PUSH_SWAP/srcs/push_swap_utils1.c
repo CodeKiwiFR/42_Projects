@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/18 18:09:41 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/29 23:25:43 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	ps_data_set_functions(t_ps_data *data)
 	data->reverse_a = push_swap_reverse_a;
 	data->found_dup_a = push_swap_found_duplicates_a;
 	data->clear = ps_data_clear;
+	data->handle_printf_error = push_swap_handle_printf_errors;
 	data->display = push_swap_display;
 	data->is_sorted_stack = push_swap_is_sorted_stack;
 	data->is_rev_sorted_stack = push_swap_is_rev_sorted_stack;

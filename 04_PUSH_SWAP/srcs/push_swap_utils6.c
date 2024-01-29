@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_bonus.c                                    :+:      :+:    :+:   */
+/*   push_swap_utils6.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 19:28:48 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/29 22:25:11 by mhotting         ###   ########.fr       */
+/*   Created: 2024/01/29 23:15:32 by mhotting          #+#    #+#             */
+/*   Updated: 2024/01/29 23:17:17 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	push_swap_handle_printf_errors(t_ps_data *data, int returned)
 {
-	t_ps_data	*data;
-	bool		returned;
-
-	data = ps_data_init();
-	if (argc == 1 || data == NULL)
-		return (0);
-	if (argc == 2)
-		returned = parse_one_arg(data, argv[1]);
-	else
-		returned = parse_args(data, argc - 1, argv + 1);
-	if (!returned || data->found_dup_a(data))
+	if (returned == -1)
 	{
 		data->clear(&data);
-		ft_dprintf(STDERR_FILENO, "Error\n");
-		return (1);
+		exit(1);
 	}
-	data->clear(&data);
-	return (0);
 }
