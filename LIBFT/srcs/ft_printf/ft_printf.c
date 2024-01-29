@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 08:41:46 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/29 21:39:06 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/29 22:17:08 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,17 +102,15 @@ static void	special_format_handler(
  *	It returns the number of characters which have been written
  *	In case of error -1 is returned
  */
-int	ft_dprintf(int fd, const char *format, ...)
+static int	ft_process_dprintf(int fd, const char *format, va_list args)
 {
 	t_fpf_buffer		buffer;
 	t_format_dispatch	dispatch[NB_CONV];
-	va_list				args;
 
 	if (format == NULL)
 		return (-1);
 	buffer = buffer_init(fd);
 	init_format_dispatch(dispatch);
-	va_start(args, format);
 	while (*format != '\0' && !buffer.error)
 	{
 		if (*format == '%')
@@ -123,7 +121,6 @@ int	ft_dprintf(int fd, const char *format, ...)
 			format++;
 		}
 	}
-	va_end(args);
 	if (!buffer.error)
 		buffer.put_fd(&buffer);
 	if (buffer.error)
@@ -132,36 +129,35 @@ int	ft_dprintf(int fd, const char *format, ...)
 }
 
 /*
- *	Parses format input in order to store the characters to display into
- *	a buffer. It can take a variable number of arguments
- *	It returns the number of characters which have been written
- *	In case of error -1 is returned
+ *	Extracts the va_list and calls the ft_process_dprint function
+ *	in order to put the formated content into the given fd
  */
-int	ft_printf(const char *format, ...)
+int	ft_dprintf(int fd, const char *format, ...)
 {
-	t_fpf_buffer		buffer;
-	t_format_dispatch	dispatch[NB_CONV];
-	va_list				args;
+	va_list	args;
+	int		returned;
 
 	if (format == NULL)
 		return (-1);
-	buffer = buffer_init(STDOUT_FILENO);
-	init_format_dispatch(dispatch);
 	va_start(args, format);
-	while (*format != '\0' && !buffer.error)
-	{
-		if (*format == '%')
-			special_format_handler(&format, args, dispatch, &buffer);
-		else
-		{
-			buffer.add_char_secure(&buffer, *format);
-			format++;
-		}
-	}
+	returned = ft_process_dprintf(fd, format, args);
 	va_end(args);
-	if (!buffer.error)
-		buffer.put_fd(&buffer);
-	if (buffer.error)
+	return (returned);
+}
+
+/*
+ *	Extracts the va_list and calls the ft_process_dprint function
+ *	in order to put the formated content into STDOUT_FILENO
+ */
+int	ft_printf(const char *format, ...)
+{
+	va_list	args;
+	int		returned;
+
+	if (format == NULL)
 		return (-1);
-	return ((int) buffer.total_len);
+	va_start(args, format);
+	returned = ft_process_dprintf(STDOUT_FILENO, format, args);
+	va_end(args);
+	return (returned);
 }
