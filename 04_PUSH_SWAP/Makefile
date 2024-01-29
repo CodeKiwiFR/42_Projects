@@ -6,12 +6,13 @@
 #    By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 20:48:41 by mhotting          #+#    #+#              #
-#    Updated: 2024/01/29 14:13:10 by mhotting         ###   ########.fr        #
+#    Updated: 2024/01/29 20:36:18 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # GENERAL
 NAME					=	push_swap
+NAME_BONUS				=	checker
 CC						=	cc
 ifndef NOFLAGS
 	CFLAGS				=	-Wall -Werror -Wextra
@@ -33,33 +34,48 @@ LIBFT_HEADERS_FILE		=	libft.h
 LIBFT_HEADERS			=	$(addprefix $(LIBFT_HEADERS_DIR), $(LIBFT_HEADERS_FILE))
 LIBFT_FLAGS				=	-L$(LIBFT_DIR) -lft 
 
-# SOURCES
+# SOURCES GENERAL
 SRCS_MAIN_DIR			=	srcs/
-SRCS_FILES				=	push_swap.c			\
-							stack_utils1.c		\
+SRCS_FILES				=	stack_utils1.c		\
 							stack_utils2.c		\
 							push_swap_utils1.c	\
 							push_swap_utils2.c	\
 							push_swap_utils3.c	\
 							push_swap_utils4.c	\
 							push_swap_utils5.c	\
-							parser.c			\
-							intstack_utils.c	\
-							sort1.c
+							parser.c
 SRCS					=	$(addprefix $(SRCS_MAIN_DIR), $(SRCS_FILES))
 
-# OBJECTS
+# SOURCES PUSH_SWAP
+SRCS_FILES_PUSH_SWAP	=	push_swap.c			\
+							intstack_utils.c	\
+							sort1.c
+SRCS_PUSH_SWAP			=	$(addprefix $(SRCS_MAIN_DIR), $(SRCS_FILES_PUSH_SWAP))
+
+# SOURCES CHECKER
+SRCS_FILES_CHECKER		=	checker_bonus.c
+SRCS_CHECKER			=	$(addprefix $(SRCS_MAIN_DIR), $(SRCS_FILES_CHECKER))
+
+# OBJECTS GENERAL
 OBJS_MAIN_DIR			=	objs/
 OBJS_FILES				=	$(SRCS_FILES:.c=.o)
 OBJS					=	$(addprefix $(OBJS_MAIN_DIR), $(OBJS_FILES))
+
+# OBJECTS PUSH_SWAP
+OBJS_FILES_PUSH_SWAP	=	$(SRCS_FILES_PUSH_SWAP:.c=.o)
+OBJS_PUSH_SWAP			=	$(addprefix $(OBJS_MAIN_DIR), $(OBJS_FILES_PUSH_SWAP))
+
+# OBJECTS CHECKER
+OBJS_FILES_CHECKER		=	$(SRCS_FILES_CHECKER:.c=.o)
+OBJS_CHECKER			=	$(addprefix $(OBJS_MAIN_DIR), $(OBJS_FILES_CHECKER))
 
 #################################################
 
 # RULES
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS_MAIN_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -I$(HEADERS_DIR) -I$(LIBFT_HEADERS_DIR) $(LIBFT_FLAGS) -o $(NAME)
+$(NAME): $(LIBFT) $(OBJS_MAIN_DIR) $(OBJS) $(OBJS_PUSH_SWAP)
+	$(CC) $(CFLAGS) $(OBJS) $(OBJS_PUSH_SWAP) -I$(HEADERS_DIR) -I$(LIBFT_HEADERS_DIR) $(LIBFT_FLAGS) -o $@
 
 $(OBJS_MAIN_DIR)%.o: $(SRCS_MAIN_DIR)%.c $(HEADERS) $(LIBFT_HEADERS)
 	$(CC) $(CFLAGS) -I$(HEADERS_DIR) -I$(LIBFT_HEADERS_DIR) -c $< -o $@
@@ -69,6 +85,11 @@ $(OBJS_MAIN_DIR):
 
 $(LIBFT): FORCE
 	make -C $(LIBFT_DIR)
+
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(LIBFT) $(OBJS_MAIN_DIR) $(OBJS) $(OBJS_CHECKER)
+	$(CC) $(CFLAGS) $(OBJS) $(OBJS_CHECKER) -I$(HEADERS_DIR) -I$(LIBFT_HEADERS_DIR) $(LIBFT_FLAGS) -o $@
 
 FORCE:
 
@@ -80,6 +101,7 @@ clean-libft:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(NAME_BONUS)
 
 fclean-libft:
 	make -C $(LIBFT_DIR) fclean
@@ -90,4 +112,4 @@ re: fclean all
 
 rre: ffclean re
 
-.PHONY: all clean fclean re clean-libft fclean-libft ffclean rre
+.PHONY: all clean fclean re clean-libft fclean-libft ffclean rre bonus
