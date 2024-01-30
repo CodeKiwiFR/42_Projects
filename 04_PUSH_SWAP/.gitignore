@@ -2,6 +2,6 @@
 */fpf_buffer.h
 */get_next_line.h
 */ft_printf.h
-*/checker_bonus.h
+srcs/checker_bonus.h
 srcs/push_swap.h
 srcs/stack.h

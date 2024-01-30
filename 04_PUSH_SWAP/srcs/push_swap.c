@@ -6,19 +6,26 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:49:03 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/30 00:09:36 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:44:56 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	process_sort(t_ps_data *data)
+{
+	sort1(data);
+}
 
 int	main(int argc, char **argv)
 {
 	t_ps_data	*data;
 	bool		returned;
 
+	if (argc == 1)
+		return (0);
 	data = ps_data_init();
-	if (argc == 1 || data == NULL)
+	if (data == NULL)
 		return (0);
 	if (argc == 2)
 		returned = parse_one_arg(data, argv[1]);
@@ -30,14 +37,8 @@ int	main(int argc, char **argv)
 		ft_dprintf(STDERR_FILENO, ERROR_MESSAGE);
 		return (1);
 	}
-	if (data->is_sorted_stack(data, 'a'))
-	{
-		data->clear(&data);
-		return (0);
-	}
-	//data->display(data);
-	sort1(data);
-	//data->display(data);
+	if (!(data->is_sorted_stack(data, 'a')))
+		process_sort(data);
 	data->clear(&data);
 	return (0);
 }

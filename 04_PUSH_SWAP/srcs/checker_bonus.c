@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:28:48 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/30 01:08:35 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:40:25 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,27 @@ static void	get_all_inputs_from_stdin(t_ps_data *data)
 	}
 }
 
+static void	process_checker(t_ps_data *data)
+{
+	if (data == NULL)
+		return ;
+	if (!(data->is_sorted_stack(data, 'a')))
+		get_all_inputs_from_stdin(data);
+	if (data->is_sorted_stack(data, 'a') && (data->stack_b)->size == 0)
+		ft_printf(OK_MESSAGE);
+	else
+		ft_printf(KO_MESSAGE);
+}
+
 int	main(int argc, char **argv)
 {
 	t_ps_data	*data;
 	bool		returned;
 
+	if (argc == 1)
+		return (0);
 	data = ps_data_init();
-	if (argc == 1 || data == NULL)
+	if (data == NULL)
 		return (0);
 	if (argc == 2)
 		returned = parse_one_arg(data, argv[1]);
@@ -79,12 +93,7 @@ int	main(int argc, char **argv)
 		ft_dprintf(STDERR_FILENO, ERROR_MESSAGE);
 		return (1);
 	}
-	if (!(data->is_sorted_stack(data, 'a')))
-		get_all_inputs_from_stdin(data);
-	if (data->is_sorted_stack(data, 'a') && (data->stack_b)->size == 0)
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
+	process_checker(data);
 	data->clear(&data);
 	return (0);
 }
