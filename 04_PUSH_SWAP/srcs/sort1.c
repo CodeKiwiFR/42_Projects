@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:19:23 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/29 17:08:03 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/30 01:05:20 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	all_mins_a_to_b(t_ps_data *data)
 		{
 			while (min_index > 0)
 			{
-				data->ra(data);
+				data->ra(data, true);
 				min_index--;
 			}
 		}
@@ -33,18 +33,18 @@ static void	all_mins_a_to_b(t_ps_data *data)
 		{
 			while (min_index < a->size)
 			{
-				data->rra(data);
+				data->rra(data, true);
 				min_index++;
 			}
 		}
-		data->pb(data);
+		data->pb(data, true);
 	}
 }
 
 static void	all_b_to_a(t_ps_data *data)
 {
 	while ((data->stack_b)->size > 0)
-		data->pa(data);
+		data->pa(data, true);
 }
 
 void	sort1(t_ps_data *data)

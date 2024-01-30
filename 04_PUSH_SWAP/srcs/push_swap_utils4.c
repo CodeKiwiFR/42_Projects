@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/29 23:44:45 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/30 01:03:55 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
  *	Pushes the top element of stack_b on stack_a for given data
  */
-void	push_swap_pa(t_ps_data *data)
+void	push_swap_pa(t_ps_data *data, bool display)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
@@ -30,14 +30,17 @@ void	push_swap_pa(t_ps_data *data)
 	if (head == NULL)
 		return ;
 	stack_a->push_link(stack_a, head);
-	returned = ft_printf("pa\n");
-	return (data->handle_printf_error(data, returned));
+	if (display)
+	{
+		returned = ft_printf(PA_INSTRUCTION);
+		return (data->handle_printf_error(data, returned));
+	}
 }
 
 /*
  *	Pushes the top element of stack_a on stack_b for given data
  */
-void	push_swap_pb(t_ps_data *data)
+void	push_swap_pb(t_ps_data *data, bool display)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
@@ -52,15 +55,18 @@ void	push_swap_pb(t_ps_data *data)
 	if (head == NULL)
 		return ;
 	stack_b->push_link(stack_b, head);
-	returned = ft_printf("pb\n");
-	return (data->handle_printf_error(data, returned));
+	if (display)
+	{
+		returned = ft_printf(PB_INSTRUCTION);
+		return (data->handle_printf_error(data, returned));
+	}
 }
 
 /*
  *	Rotates stack_a of given data
  *	The head is put at the end of stack_a and other elements are moved up
  */
-void	push_swap_ra(t_ps_data *data)
+void	push_swap_ra(t_ps_data *data, bool display)
 {
 	t_stack	*stack_a;
 	int		returned;
@@ -69,15 +75,18 @@ void	push_swap_ra(t_ps_data *data)
 		return ;
 	stack_a = data->stack_a;
 	stack_a->rotate(stack_a);
-	returned = ft_printf("ra\n");
-	return (data->handle_printf_error(data, returned));
+	if (display)
+	{
+		returned = ft_printf(RA_INSTRUCTION);
+		return (data->handle_printf_error(data, returned));
+	}
 }
 
 /*
  *	Rotates stack_b of given data
  *	The head is put at the end of stack_a and other elements are moved up
  */
-void	push_swap_rb(t_ps_data *data)
+void	push_swap_rb(t_ps_data *data, bool display)
 {
 	t_stack	*stack_b;
 	int		returned;
@@ -86,15 +95,18 @@ void	push_swap_rb(t_ps_data *data)
 		return ;
 	stack_b = data->stack_b;
 	stack_b->rotate(stack_b);
-	returned = ft_printf("rb\n");
-	return (data->handle_printf_error(data, returned));
+	if (display)
+	{
+		returned = ft_printf(RB_INSTRUCTION);
+		return (data->handle_printf_error(data, returned));
+	}
 }
 
 /*
  *	Rotates stack_a and stack_b of given data
  *	The head is put at the end of both stacks and other elements are moved up
  */
-void	push_swap_rr(t_ps_data *data)
+void	push_swap_rr(t_ps_data *data, bool display)
 {
 	bool	ra;
 	bool	rb;
@@ -112,12 +124,12 @@ void	push_swap_rr(t_ps_data *data)
 		(data->stack_b)->rotate(data->stack_b);
 		rb = true;
 	}
-	if (ra && rb)
-		returned = ft_printf("rr\n");
-	else if (ra)
-		returned = ft_printf("ra\n");
-	else if (rb)
-		returned = ft_printf("rb\n");
+	if (display && ra && rb)
+		returned = ft_printf(RR_INSTRUCTION);
+	else if (display && ra)
+		returned = ft_printf(RA_INSTRUCTION);
+	else if (display && rb)
+		returned = ft_printf(RB_INSTRUCTION);
 	else
 		returned = 0;
 	return (data->handle_printf_error(data, returned));

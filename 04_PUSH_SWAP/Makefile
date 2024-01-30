@@ -6,7 +6,7 @@
 #    By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 20:48:41 by mhotting          #+#    #+#              #
-#    Updated: 2024/01/29 23:23:27 by mhotting         ###   ########.fr        #
+#    Updated: 2024/01/30 01:11:29 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ HEADERS_DIR				=	includes/
 HEADERS_FILES			=	push_swap.h	\
 							stack.h
 HEADERS					=	$(addprefix $(HEADERS_DIR), $(HEADERS_FILES))
+HEADERS_FILES_BONUS		=	checker_bonus.h
+HEADERS_BONUS			=	$(addprefix $(HEADERS_DIR), $(HEADERS_FILES_BONUS))
 
 # LIBFT
 LIBFT_DIR				=	libft/
@@ -89,7 +91,7 @@ $(LIBFT): FORCE
 
 bonus: $(NAME_BONUS)
 
-$(NAME_BONUS): $(LIBFT) $(OBJS_MAIN_DIR) $(OBJS) $(OBJS_CHECKER)
+$(NAME_BONUS): $(LIBFT) $(OBJS_MAIN_DIR) $(OBJS) $(OBJS_CHECKER) $(HEADERS_BONUS)
 	$(CC) $(CFLAGS) $(OBJS) $(OBJS_CHECKER) -I$(HEADERS_DIR) -I$(LIBFT_HEADERS_DIR) $(LIBFT_FLAGS) -o $@
 
 FORCE:

@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/29 23:34:41 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/30 01:02:13 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
  *	Swaps the first two elements of the stack_a
  */
-void	push_swap_sa(t_ps_data *data)
+void	push_swap_sa(t_ps_data *data, bool display)
 {
 	t_stack	*stack_a;
 	int		returned;
@@ -24,14 +24,17 @@ void	push_swap_sa(t_ps_data *data)
 		return ;
 	stack_a = data->stack_a;
 	stack_a->swap(stack_a);
-	returned = ft_printf("sa\n");
-	return (data->handle_printf_error(data, returned));
+	if (display)
+	{
+		returned = ft_printf(SA_INSTRUCTION);
+		return (data->handle_printf_error(data, returned));
+	}
 }
 
 /*
  *	Swaps the first two elements of the stack_b
  */
-void	push_swap_sb(t_ps_data *data)
+void	push_swap_sb(t_ps_data *data, bool display)
 {
 	t_stack	*stack_b;
 	int		returned;
@@ -40,14 +43,17 @@ void	push_swap_sb(t_ps_data *data)
 		return ;
 	stack_b = data->stack_b;
 	stack_b->swap(stack_b);
-	returned = ft_printf("sb\n");
-	return (data->handle_printf_error(data, returned));
+	if (display)
+	{
+		returned = ft_printf(SB_INSTRUCTION);
+		return (data->handle_printf_error(data, returned));
+	}
 }
 
 /*
  *	Swaps the first two elements of both stack_a and stack_b
  */
-void	push_swap_ss(t_ps_data *data)
+void	push_swap_ss(t_ps_data *data, bool display)
 {
 	bool	sa;
 	bool	sb;
@@ -65,12 +71,12 @@ void	push_swap_ss(t_ps_data *data)
 		(data->stack_b)->swap(data->stack_b);
 		sb = true;
 	}
-	if (sa && sb)
-		returned = ft_printf("ss\n");
-	else if (sa)
-		returned = ft_printf("sa\n");
-	else if (sb)
-		returned = ft_printf("sb\n");
+	if (display && sa && sb)
+		returned = ft_printf(SS_INSTRUCTION);
+	else if (display && sa)
+		returned = ft_printf(SA_INSTRUCTION);
+	else if (display && sb)
+		returned = ft_printf(SB_INSTRUCTION);
 	else
 		returned = 0;
 	return (data->handle_printf_error(data, returned));

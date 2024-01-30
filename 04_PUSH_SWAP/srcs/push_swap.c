@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:49:03 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/29 23:11:24 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/30 00:09:36 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	if (!returned || data->found_dup_a(data))
 	{
 		data->clear(&data);
-		ft_dprintf(STDERR_FILENO, "Error\n");
+		ft_dprintf(STDERR_FILENO, ERROR_MESSAGE);
 		return (1);
 	}
 	if (data->is_sorted_stack(data, 'a'))
