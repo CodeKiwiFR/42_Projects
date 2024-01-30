@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/18 18:18:39 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:06:03 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,21 +80,21 @@ bool	push_swap_found_duplicates_a(t_ps_data *data)
 }
 
 /*
- *	Checks if the stack 'a' or 'b' from data is sorted
+ *	Checks if the stack STACK_A_LETTER or STACK_B_LETTER from data is sorted
  *	Returns true if it is, else returns false
  *	If the stack is empty, returns true
  *	If there is an error (NULL pointer or bad stack_letter), returns false
  */
-bool	push_swap_is_sorted_stack(t_ps_data *data, char stack_letter)
+bool	push_swap_is_sorted_stack(t_ps_data *data, char letter)
 {
 	t_stack	*stack;
 	t_list	*list;
 	int		nb1;
 	int		nb2;
 
-	if (data == NULL || (stack_letter != 'a' && stack_letter != 'b'))
+	if (data == NULL || (letter != STACK_A_LETTER && letter != STACK_B_LETTER))
 		return (false);
-	if (stack_letter == 'a')
+	if (letter == STACK_A_LETTER)
 		stack = data->stack_a;
 	else
 		stack = data->stack_b;
@@ -115,21 +115,22 @@ bool	push_swap_is_sorted_stack(t_ps_data *data, char stack_letter)
 }
 
 /*
- *	Checks if the stack 'a' or 'b' from data is reverse sorted
+ *	Checks if the stack STACK_A_LETTER or STACK_B_LETTER
+ *	from data is reverse sorted
  *	Returns true if it is, else returns false
  *	If the stack is empty, returns true
  *	If there is an error (NULL pointer or bad stack_letter), returns false
  */
-bool	push_swap_is_rev_sorted_stack(t_ps_data *data, char stack_letter)
+bool	push_swap_is_rev_sorted_stack(t_ps_data *data, char letter)
 {
 	t_stack	*stack;
 	t_list	*list;
 	int		nb1;
 	int		nb2;
 
-	if (data == NULL || (stack_letter != 'a' && stack_letter != 'b'))
+	if (data == NULL || (letter != STACK_A_LETTER && letter != STACK_B_LETTER))
 		return (false);
-	if (stack_letter == 'a')
+	if (letter == STACK_A_LETTER)
 		stack = data->stack_a;
 	else
 		stack = data->stack_b;

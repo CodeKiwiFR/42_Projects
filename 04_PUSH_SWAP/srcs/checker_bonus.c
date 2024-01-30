@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:28:48 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/30 14:40:25 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:06:35 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,12 @@ static void	process_checker(t_ps_data *data)
 {
 	if (data == NULL)
 		return ;
-	if (!(data->is_sorted_stack(data, 'a')))
+	if (!(data->is_sorted_stack(data, STACK_A_LETTER)))
 		get_all_inputs_from_stdin(data);
-	if (data->is_sorted_stack(data, 'a') && (data->stack_b)->size == 0)
+	if (
+		data->is_sorted_stack(data, STACK_A_LETTER)
+		&& (data->stack_b)->size == 0
+	)
 		ft_printf(OK_MESSAGE);
 	else
 		ft_printf(KO_MESSAGE);

@@ -6,7 +6,7 @@
 #    By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 20:48:41 by mhotting          #+#    #+#              #
-#    Updated: 2024/01/30 01:11:29 by mhotting         ###   ########.fr        #
+#    Updated: 2024/01/30 19:38:00 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRCS					=	$(addprefix $(SRCS_MAIN_DIR), $(SRCS_FILES))
 # SOURCES PUSH_SWAP
 SRCS_FILES_PUSH_SWAP	=	push_swap.c			\
 							intstack_utils.c	\
+							sort_utils.c		\
 							sort1.c
 SRCS_PUSH_SWAP			=	$(addprefix $(SRCS_MAIN_DIR), $(SRCS_FILES_PUSH_SWAP))
 
