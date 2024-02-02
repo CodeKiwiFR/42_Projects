@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:32:09 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/30 20:09:58 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/02 02:10:46 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,31 @@ void	sort_size_three(t_ps_data *data)
 	stack_content = stack_content->next;
 	v2 = *((int *)(stack_content)->content);
 	process_sort_size_three(data, v0, v1, v2);
+}
+
+void	rev_sort_int_array(int *array, size_t size)
+{
+	size_t	i;
+	size_t	j;
+	int		temp;
+
+	if (array == NULL)
+		return ;
+	i = 0;
+	while (i < size - 1)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (array[i] < array[j])
+			{
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
+
 }
