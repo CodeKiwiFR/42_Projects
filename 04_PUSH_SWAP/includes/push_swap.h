@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/02 02:10:56 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:10:48 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_ps_data
 	void	(*display)(struct s_ps_data *data);
 	bool	(*is_sorted_stack)(struct s_ps_data * data, char stack_letter);
 	bool	(*is_rev_sorted_stack)(struct s_ps_data * data, char stack_letter);
-	bool	(*stack_a_to_array)(struct s_ps_data *data);
+	bool	(*stack_a_to_array)(struct s_ps_data * data);
 }	t_ps_data;
 
 t_ps_data	*ps_data_init(void);
@@ -80,7 +80,7 @@ void		push_swap_rra(t_ps_data *data, bool display);
 void		push_swap_rrb(t_ps_data *data, bool display);
 void		push_swap_rrr(t_ps_data *data, bool display);
 void		push_swap_handle_printf_errors(t_ps_data *data, int returned);
-bool		stack_a_to_array(t_ps_data *data);
+bool		push_swap_stack_a_to_array(t_ps_data *data);
 
 bool		parse_args(t_ps_data *data, int argc, char **argv);
 bool		parse_one_arg(t_ps_data *data, char *str);
@@ -89,6 +89,7 @@ size_t		get_min_index(t_stack *stack);
 size_t		get_max_index(t_stack *stack);
 void		sort_size_three(t_ps_data *data);
 void		sort1(t_ps_data *data);
+void		sort2(t_ps_data *data);
 void		multiple_ra(t_ps_data *data, size_t nb);
 void		multiple_rra(t_ps_data *data, size_t nb);
 void		rev_sort_int_array(int *array, size_t size);

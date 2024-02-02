@@ -1,49 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort1.c                                            :+:      :+:    :+:   */
+/*   sort2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:19:23 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/02 15:46:57 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:35:56 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	all_mins_a_to_b(t_ps_data *data)
+void	sort2(t_ps_data *data)
 {
-	t_stack	*a;
-	size_t	min_index;
+	size_t	i;
 
-	a = data->stack_a;
-	while (a->size > 3)
-	{
-		min_index = get_min_index(a);
-		if (min_index <= a->size / 2)
-			multiple_ra(data, min_index);
-		else
-			multiple_rra(data, a->size - min_index);
-		data->pb(data, true);
-	}
-	sort_size_three(data);
-}
-
-static void	all_b_to_a(t_ps_data *data)
-{
-	while ((data->stack_b)->size > 0)
-		data->pa(data, true);
-}
-
-void	sort1(t_ps_data *data)
-{
 	if (
 		data == NULL || data->stack_a == NULL || data->stack_b == NULL
 		|| data->is_sorted_stack(data, STACK_A_LETTER)
 	)
 		return ;
-	all_mins_a_to_b(data);
-	all_b_to_a(data);
-	return ;
+	if (!(data->stack_a_to_array(data)))
+	{
+		data->clear(&data);
+		ft_dprintf(STDERR_FILENO, ERROR_MESSAGE);
+		exit(1);
+	}
+	rev_sort_int_array(data->stack_a_array, (data->stack_a)->size);
+	i = 0;
+	while (i < (data->stack_a)->size)
+	{
+		ft_printf("nb: %d\n", (data->stack_a_array)[i]);
+		i++;
+	}
 }

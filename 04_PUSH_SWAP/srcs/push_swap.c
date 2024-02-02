@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:49:03 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/02 02:11:03 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:26:02 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,7 @@ static void	process_sort(t_ps_data *data)
 	else if (stack_size <= 5)
 		sort1(data);
 	else
-	{
-		data->stack_a_to_array(data);
-		size_t i = 0;
-		int	*array = data->stack_a_array;
-		while (i < (data->stack_a)->size)
-		{
-			ft_printf("nb: %d\n", array[i]);
-			i++;
-		}
-		ft_printf("**********\n");
-		rev_sort_int_array(array, (data->stack_a)->size);
-		i = 0;
-		while (i < (data->stack_a)->size)
-		{
-			ft_printf("nb: %d\n", array[i]);
-			i++;
-		}
-
-	}
+		sort2(data);
 }
 
 int	main(int argc, char **argv)

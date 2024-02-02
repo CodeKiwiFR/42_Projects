@@ -1,40 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utils.c                                       :+:      :+:    :+:   */
+/*   sort_utils1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:32:09 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/02 02:10:46 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:41:15 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	multiple_ra(t_ps_data *data, size_t nb)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < nb)
-	{
-		data->ra(data, true);
-		i++;
-	}
-}
-
-void	multiple_rra(t_ps_data *data, size_t nb)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < nb)
-	{
-		data->rra(data, true);
-		i++;
-	}
-}
 
 static void	process_sort_size_three(t_ps_data *data, int v0, int v1, int v2)
 {
@@ -105,5 +81,4 @@ void	rev_sort_int_array(int *array, size_t size)
 		}
 		i++;
 	}
-
 }

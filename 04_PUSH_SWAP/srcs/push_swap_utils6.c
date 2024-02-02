@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 23:15:32 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/01 17:28:31 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:15:39 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	push_swap_handle_printf_errors(t_ps_data *data, int returned)
 	}
 }
 
-bool	stack_a_to_array(t_ps_data *data)
+bool	push_swap_stack_a_to_array(t_ps_data *data)
 {
 	t_list	*list;
 	int		*res;
@@ -29,7 +29,7 @@ bool	stack_a_to_array(t_ps_data *data)
 	size_t	size;
 
 	if (data == NULL || data->stack_a == NULL || (data->stack_a)->list == NULL)
-		return false;
+		return (false);
 	if (data->stack_a_array != NULL)
 	{
 		free(data->stack_a_array);
@@ -39,7 +39,7 @@ bool	stack_a_to_array(t_ps_data *data)
 	size = (data->stack_a)->size;
 	res = (int *) malloc(size * sizeof(int));
 	if (res == NULL)
-		return false;
+		return (false);
 	i = 0;
 	while (i < size && list != NULL)
 	{
