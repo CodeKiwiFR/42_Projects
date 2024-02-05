@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 08:51:25 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 14:11:05 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@
 # define ERROR_MESSAGE "Error\n"
 # define STACK_A_LETTER 'a'
 # define STACK_B_LETTER 'b'
+# define COST_TYPE_UNDEFINED 0
+# define COST_TYPE_ROT_A_AND_B 1
+# define COST_TYPE_ROT_A_RROT_B 2
+# define COST_TYPE_RROT_A_ROT_B 3
+# define COST_TYPE_RROT_A_AND_B 4
+
+typedef struct s_cost
+{
+	size_t			idx_a;
+	size_t			idx_b;
+	size_t			value;
+	unsigned int	type;
+}	t_cost;
 
 typedef struct s_ps_data
 {
@@ -84,10 +97,19 @@ bool		parse_one_arg(t_ps_data *data, char *str);
 
 size_t		get_min_index(t_stack *stack);
 size_t		get_max_index(t_stack *stack);
+int			get_value_at_index(t_ps_data *data, char letter, size_t index);
 void		sort_size_three(t_ps_data *data);
+size_t		min_size_t(size_t n1, size_t n2);
 void		sort1(t_ps_data *data);
 void		sort2(t_ps_data *data);
+void		sort2_calc_min_cost(t_ps_data *data, t_cost *min_cost);
+size_t		sort2_get_index_in_b(t_ps_data *data, size_t index_in_a);
+void		sort2_a_to_b_move(t_ps_data *data, t_cost *min_cost);
 void		multiple_ra(t_ps_data *data, size_t nb);
 void		multiple_rra(t_ps_data *data, size_t nb);
+void		multiple_rb(t_ps_data *data, size_t nb);
+void		multiple_rrb(t_ps_data *data, size_t nb);
+
+void		set_cost(t_cost *old_cost, t_cost *new_cost);
 
 #endif
