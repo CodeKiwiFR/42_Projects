@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/02 18:13:10 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 08:55:43 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_ps_data	*ps_data_init(void)
 		free(data);
 		return (NULL);
 	}
-	data->stack_a_array = NULL;
 	ps_data_set_functions(data);
 	return (data);
 }
@@ -69,7 +68,6 @@ void	ps_data_set_functions(t_ps_data *data)
 	data->display = push_swap_display;
 	data->is_sorted_stack = push_swap_is_sorted_stack;
 	data->is_rev_sorted_stack = push_swap_is_rev_sorted_stack;
-	data->stack_a_to_array = push_swap_stack_a_to_array;
 }
 
 /*
@@ -86,8 +84,6 @@ void	ps_data_clear(t_ps_data **data)
 	stack->clear(&stack, free);
 	stack = (*data)->stack_b;
 	stack->clear(&stack, free);
-	if ((*data)->stack_a_array != NULL)
-		free((*data)->stack_a_array);
 	free(*data);
 	*data = NULL;
 }
