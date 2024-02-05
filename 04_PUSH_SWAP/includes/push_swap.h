@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 14:11:05 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:06:28 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void		multiple_ra(t_ps_data *data, size_t nb);
 void		multiple_rra(t_ps_data *data, size_t nb);
 void		multiple_rb(t_ps_data *data, size_t nb);
 void		multiple_rrb(t_ps_data *data, size_t nb);
+void		multiple_rr(t_ps_data *data, size_t nb);
+void		multiple_rrr(t_ps_data *data, size_t nb);
 
 void		set_cost(t_cost *old_cost, t_cost *new_cost);
 

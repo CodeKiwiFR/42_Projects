@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:19:23 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 14:49:55 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:14:28 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,4 @@ void	sort2(t_ps_data *data)
 	sort2_rotb(data);
 	while ((data->stack_b)->size > 0)
 		data->pa(data, true);
-	//data->display(data);
 }

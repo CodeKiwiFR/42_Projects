@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:19:23 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 14:45:16 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:14:12 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,16 @@ static void	sort2_rot_a_and_b(t_ps_data *data, t_cost *min_cost)
 	size_t	rb;
 	size_t	rr;
 
+	if (data == NULL || min_cost == NULL)
+		return ;
 	ra = min_cost->idx_a;
 	rb = min_cost->idx_b;
 	rr = min_size_t(ra, rb);
 	ra -= rr;
 	rb -= rr;
-	while (rr > 0)
-	{
-		data->rr(data, true);
-		rr--;
-	}
-	while (ra > 0)
-	{
-		data->ra(data, true);
-		ra--;
-	}
-	while (rb > 0)
-	{
-		data->rb(data, true);
-		rb--;
-	}
+	multiple_rr(data, rr);
+	multiple_ra(data, ra);
+	multiple_rb(data, rb);
 }
 
 static void	sort2_rot_a_rrot_b(t_ps_data *data, t_cost *min_cost)
@@ -45,18 +35,12 @@ static void	sort2_rot_a_rrot_b(t_ps_data *data, t_cost *min_cost)
 	size_t	ra;
 	size_t	rrb;
 
+	if (data == NULL || min_cost == NULL || data->stack_b == NULL)
+		return ;
 	ra = min_cost->idx_a;
 	rrb = (data->stack_b)->size - (min_cost->idx_b);
-	while (ra > 0)
-	{
-		data->ra(data, true);
-		ra--;
-	}
-	while (rrb > 0)
-	{
-		data->rrb(data, true);
-		rrb--;
-	}
+	multiple_ra(data, ra);
+	multiple_rrb(data, rrb);
 }
 
 static void	sort2_rrot_a_rot_b(t_ps_data *data, t_cost *min_cost)
@@ -64,18 +48,12 @@ static void	sort2_rrot_a_rot_b(t_ps_data *data, t_cost *min_cost)
 	size_t	rra;
 	size_t	rb;
 
+	if (data == NULL || min_cost == NULL || data->stack_a == NULL)
+		return ;
 	rra = (data->stack_a)->size - (min_cost->idx_a);
 	rb = min_cost->idx_b;
-	while (rra > 0)
-	{
-		data->rra(data, true);
-		rra--;
-	}
-	while (rb > 0)
-	{
-		data->rb(data, true);
-		rb--;
-	}
+	multiple_rra(data, rra);
+	multiple_rb(data, rb);
 }
 
 static void	sort2_rrot_a_and_b(t_ps_data *data, t_cost *min_cost)
@@ -84,26 +62,19 @@ static void	sort2_rrot_a_and_b(t_ps_data *data, t_cost *min_cost)
 	size_t	rrb;
 	size_t	rrr;
 
+	if (
+		data == NULL || min_cost == NULL
+		|| data->stack_a == NULL || data->stack_b == NULL
+	)
+		return ;
 	rra = (data->stack_a)->size - (min_cost->idx_a);
 	rrb = (data->stack_b)->size - (min_cost->idx_b);
 	rrr = min_size_t(rra, rrb);
 	rra -= rrr;
 	rrb -= rrr;
-	while (rrr > 0)
-	{
-		data->rrr(data, true);
-		rrr--;
-	}
-	while (rra > 0)
-	{
-		data->rra(data, true);
-		rra--;
-	}
-	while (rrb > 0)
-	{
-		data->rrb(data, true);
-		rrb--;
-	}
+	multiple_rrr(data, rrr);
+	multiple_rra(data, rra);
+	multiple_rrb(data, rrb);
 }
 
 void	sort2_a_to_b_move(t_ps_data *data, t_cost *min_cost)

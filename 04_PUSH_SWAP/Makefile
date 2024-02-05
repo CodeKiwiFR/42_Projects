@@ -6,7 +6,7 @@
 #    By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 20:48:41 by mhotting          #+#    #+#              #
-#    Updated: 2024/02/05 14:11:31 by mhotting         ###   ########.fr        #
+#    Updated: 2024/02/05 16:10:39 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRCS_FILES_PUSH_SWAP	=	push_swap.c			\
 							cost_utils.c		\
 							sort_utils1.c		\
 							sort_utils2.c		\
+							sort_utils3.c		\
 							sort2_0.c			\
 							sort2_1.c			\
 							sort2_2.c			\

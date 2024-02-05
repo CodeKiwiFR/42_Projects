@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:19:23 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 14:10:38 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:14:45 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static unsigned int	get_cost_type(size_t ra, size_t rb, size_t rra, size_t rrb)
 {
 	unsigned int	type;
 	size_t			value;
-	
+
 	value = ra + rb - min_size_t(ra, rb);
 	type = COST_TYPE_ROT_A_AND_B;
 	if ((ra + rrb) < value)
