@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:19:23 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 14:05:28 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 14:49:55 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	sort2_rotb(t_ps_data *data)
 		multiple_rrb(data, (size_b - max_index));
 }
 
-#include <stdio.h>
 static void	sort2_a_to_b(t_ps_data *data)
 {
 	t_cost	min_cost;
@@ -42,6 +41,7 @@ static void	sort2_a_to_b(t_ps_data *data)
 	{
 		sort2_calc_min_cost(data, &min_cost);
 		sort2_a_to_b_move(data, &min_cost);
+		data->pb(data, true);
 	}
 }
 
