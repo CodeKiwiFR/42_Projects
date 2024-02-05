@@ -6,12 +6,15 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:19:23 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 16:14:12 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:16:18 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+ *	Applies a combination of ra, rb and rr according to min_cost data
+ */
 static void	sort2_rot_a_and_b(t_ps_data *data, t_cost *min_cost)
 {
 	size_t	ra;
@@ -30,6 +33,9 @@ static void	sort2_rot_a_and_b(t_ps_data *data, t_cost *min_cost)
 	multiple_rb(data, rb);
 }
 
+/*
+ *	Applies a combination of ra and rrb according to min_cost data
+ */
 static void	sort2_rot_a_rrot_b(t_ps_data *data, t_cost *min_cost)
 {
 	size_t	ra;
@@ -43,6 +49,9 @@ static void	sort2_rot_a_rrot_b(t_ps_data *data, t_cost *min_cost)
 	multiple_rrb(data, rrb);
 }
 
+/*
+ *	Applies a combination of rra and rb according to min_cost data
+ */
 static void	sort2_rrot_a_rot_b(t_ps_data *data, t_cost *min_cost)
 {
 	size_t	rra;
@@ -56,6 +65,9 @@ static void	sort2_rrot_a_rot_b(t_ps_data *data, t_cost *min_cost)
 	multiple_rb(data, rb);
 }
 
+/*
+ *	Applies a combination of rra, rrb and rrr according to min_cost data
+ */
 static void	sort2_rrot_a_and_b(t_ps_data *data, t_cost *min_cost)
 {
 	size_t	rra;
@@ -77,6 +89,10 @@ static void	sort2_rrot_a_and_b(t_ps_data *data, t_cost *min_cost)
 	multiple_rrb(data, rrb);
 }
 
+/*
+ *	Applies the moves necessary to move the element from stack a of data
+ *	into stack b, according to data registered in min_cost
+ */
 void	sort2_a_to_b_move(t_ps_data *data, t_cost *min_cost)
 {
 	if (

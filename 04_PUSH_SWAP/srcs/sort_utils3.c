@@ -6,12 +6,15 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:32:09 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 16:05:54 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:58:42 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+ *	Applies rr to data, nb times
+ */
 void	multiple_rr(t_ps_data *data, size_t nb)
 {
 	size_t	i;
@@ -26,6 +29,9 @@ void	multiple_rr(t_ps_data *data, size_t nb)
 	}
 }
 
+/*
+ *	Applies rrr to data, nb times
+ */
 void	multiple_rrr(t_ps_data *data, size_t nb)
 {
 	size_t	i;

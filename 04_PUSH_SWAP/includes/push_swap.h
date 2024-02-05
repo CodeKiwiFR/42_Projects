@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 16:06:28 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:41:27 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ typedef struct s_ps_data
 t_ps_data	*ps_data_init(void);
 void		ps_data_set_functions(t_ps_data *data);
 void		ps_data_clear(t_ps_data **data);
-void		push_swap_display(t_ps_data *data);
-void		display_int_stack(t_stack *stack);
 bool		push_swap_push_a(t_ps_data *data, int nb);
 void		push_swap_reverse_a(t_ps_data *data);
 bool		push_swap_is_sorted_stack(t_ps_data *data, char stack_letter);

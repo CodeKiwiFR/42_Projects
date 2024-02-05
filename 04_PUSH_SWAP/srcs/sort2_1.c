@@ -6,12 +6,16 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:19:23 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 16:14:45 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:10:53 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+ *	Determines the cost for moving an element, depending on the combination of
+ *	moves necesary
+ */
 static size_t	calc_cost_value(size_t ra, size_t rb, size_t rra, size_t rrb)
 {
 	size_t	value;
@@ -23,6 +27,13 @@ static size_t	calc_cost_value(size_t ra, size_t rb, size_t rra, size_t rrb)
 	return (value);
 }
 
+/*
+ *	Determines if the move is:
+ *		-	a combination of ra, rb and rr;
+ *		-	a combination of ra and rrb;
+ *		-	a combination of rra and rb;
+ *		-	a combination of rra, rrb and rrr;
+ */
 static unsigned int	get_cost_type(size_t ra, size_t rb, size_t rra, size_t rrb)
 {
 	unsigned int	type;
@@ -48,6 +59,10 @@ static unsigned int	get_cost_type(size_t ra, size_t rb, size_t rra, size_t rrb)
 	return (type);
 }
 
+/*
+ *	Evaluates the cost of a specific move in order to put an element from
+ *	stack a of data to stack b
+ */
 static void	sort2_eval_cost(t_ps_data *data, t_cost *cost)
 {
 	size_t	ra;
@@ -65,6 +80,11 @@ static void	sort2_eval_cost(t_ps_data *data, t_cost *cost)
 	cost->type = get_cost_type(ra, rb, rra, rrb);
 }
 
+/*
+ *	Evaluates which element from stack a of data is the less expansive to
+ *	move to stack b
+ *	Then, its information are registered into min_cost
+ */
 void	sort2_calc_min_cost(t_ps_data *data, t_cost *min_cost)
 {
 	t_cost	cost;

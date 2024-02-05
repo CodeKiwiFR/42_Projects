@@ -6,18 +6,22 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:49:03 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/02 15:26:02 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:45:00 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ *	Sorts stack A of given data using different methods 
+ *	depending on the stack A length.
+ */
 static void	process_sort(t_ps_data *data)
 {
 	size_t	stack_size;
 
 	if (
-		data == NULL || data->stack_a == NULL || data->stack_b == NULL
+		data == NULL || data->stack_a == NULL
 		|| data->is_sorted_stack(data, STACK_A_LETTER)
 	)
 		return ;

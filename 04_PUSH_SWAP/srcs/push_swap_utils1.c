@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 08:55:43 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:46:41 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	ps_data_set_functions(t_ps_data *data)
 	data->found_dup_a = push_swap_found_duplicates_a;
 	data->clear = ps_data_clear;
 	data->handle_printf_error = push_swap_handle_printf_errors;
-	data->display = push_swap_display;
 	data->is_sorted_stack = push_swap_is_sorted_stack;
 	data->is_rev_sorted_stack = push_swap_is_rev_sorted_stack;
 }
@@ -89,45 +88,15 @@ void	ps_data_clear(t_ps_data **data)
 }
 
 /*
- *	Displays the content of a t_ps_data element
+ *	Handles the returned value as a printf returned value
+ *	If (-1) is given, the program is left after having cleaned the memory
+ *	Else nothing happens
  */
-void	push_swap_display(t_ps_data *data)
+void	push_swap_handle_printf_errors(t_ps_data *data, int returned)
 {
-	if (data == NULL)
+	if (returned == -1)
 	{
-		ft_printf("ERROR - The given push_swap data is NULL\n");
-		return ;
+		data->clear(&data);
+		exit(1);
 	}
-	ft_printf("#####################\n");
-	ft_printf("#  PUSH_SWAP DATA:  #\n");
-	ft_printf("#####################\n\n");
-	ft_printf("STACK_A:\n\t");
-	display_int_stack(data->stack_a);
-	ft_printf("STACK_B:\n\t");
-	display_int_stack(data->stack_b);
-	ft_printf("\n###################\n\n");
-}
-
-/*
- *	Displays the content of a t_stack element
- */
-void	display_int_stack(t_stack *stack)
-{
-	t_list	*current;
-
-	if (stack == NULL || stack->list == NULL)
-	{
-		ft_printf("Stack is empty...\n");
-		return ;
-	}
-	current = stack->list;
-	ft_printf("- content: ");
-	while (current != NULL)
-	{
-		ft_printf("% 5d", *((int *)(current->content)));
-		current = current->next;
-		if (current != NULL)
-			ft_printf(" | ");
-	}
-	ft_printf("\n");
 }

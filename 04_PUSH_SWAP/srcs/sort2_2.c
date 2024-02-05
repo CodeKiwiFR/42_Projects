@@ -6,12 +6,18 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:19:23 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 16:35:02 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 17:13:57 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+ *	Returns the index of the first element lower than val_to_check inside of
+ *	the given list
+ *	Stops when idx_start has reached idx_end
+ *	If no element is found, ids_start is returned
+ */
 static size_t	get_idx_of_elt(
 		t_list *list, size_t idx_start, size_t idx_end, int val_to_check
 )
@@ -29,6 +35,9 @@ static size_t	get_idx_of_elt(
 	return (idx_start);
 }
 
+/*
+ *	Returns the list pointer at the given index
+ */
 static t_list	*get_list_element_at_index(t_list *list, size_t index)
 {
 	size_t	i;
@@ -44,6 +53,10 @@ static t_list	*get_list_element_at_index(t_list *list, size_t index)
 	return (list);
 }
 
+/*
+ *	Determines the index above which an element from stack a of data
+ *	will be positionned in stack b
+ */
 size_t	sort2_get_index_in_b(t_ps_data *data, size_t index_in_a)
 {
 	t_list	*list;

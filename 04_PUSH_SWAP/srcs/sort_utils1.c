@@ -6,12 +6,16 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:32:09 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 12:48:53 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:56:53 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+ *	Sorts the given data where stack A has a size of 3
+ *	v0, v1, and v3 are the numbers contained in stack A
+ */
 static void	process_sort_size_three(t_ps_data *data, int v0, int v1, int v2)
 {
 	if (data == NULL || (v0 < v1 && v1 < v2))
@@ -35,6 +39,9 @@ static void	process_sort_size_three(t_ps_data *data, int v0, int v1, int v2)
 	}
 }
 
+/*
+ *	Sorts stack A of given data when this stack has a size of 3
+ */
 void	sort_size_three(t_ps_data *data)
 {
 	int		v0;
@@ -45,6 +52,7 @@ void	sort_size_three(t_ps_data *data)
 	if (
 		data == NULL || data->stack_a == NULL || (data->stack_a)->list == NULL
 		|| (data->stack_a)->size != 3
+		|| ((data->stack_a)->list)->content == NULL
 		|| data->is_sorted_stack(data, STACK_A_LETTER)
 	)
 		return ;
@@ -57,6 +65,9 @@ void	sort_size_three(t_ps_data *data)
 	process_sort_size_three(data, v0, v1, v2);
 }
 
+/*
+ *	Returns the minimum between two size_t numbers
+ */
 size_t	min_size_t(size_t n1, size_t n2)
 {
 	if (n1 <= n2)

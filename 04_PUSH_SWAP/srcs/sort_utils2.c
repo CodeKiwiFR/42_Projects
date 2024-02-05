@@ -6,17 +6,20 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:32:09 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 16:07:54 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:58:23 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+ *	Applies ra to data, nb times
+ */
 void	multiple_ra(t_ps_data *data, size_t nb)
 {
 	size_t	i;
 
-	if (data == NULL || data->stack_a == NULL)
+	if (data == NULL)
 		return ;
 	i = 0;
 	while (i < nb)
@@ -26,6 +29,9 @@ void	multiple_ra(t_ps_data *data, size_t nb)
 	}
 }
 
+/*
+ *	Applies rra to data, nb times
+ */
 void	multiple_rra(t_ps_data *data, size_t nb)
 {
 	size_t	i;
@@ -40,6 +46,9 @@ void	multiple_rra(t_ps_data *data, size_t nb)
 	}
 }
 
+/*
+ *	Applies rb to data, nb times
+ */
 void	multiple_rb(t_ps_data *data, size_t nb)
 {
 	size_t	i;
@@ -54,6 +63,9 @@ void	multiple_rb(t_ps_data *data, size_t nb)
 	}
 }
 
+/*
+ *	Applies rrb to data, nb times
+ */
 void	multiple_rrb(t_ps_data *data, size_t nb)
 {
 	size_t	i;
