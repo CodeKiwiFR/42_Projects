@@ -6,12 +6,15 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 12:58:14 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 12:58:44 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/06 08:52:17 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ *	Puts all the values of new_cost into old_cost
+ */
 void	set_cost(t_cost *old_cost, t_cost *new_cost)
 {
 	if (old_cost == NULL || new_cost == NULL)

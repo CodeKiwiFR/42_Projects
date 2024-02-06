@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:49:03 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 16:45:00 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/06 09:12:18 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ static void	process_sort(t_ps_data *data)
 		sort2(data);
 }
 
+/**
+ *	Checks the arguments, parses them while creating the main data structure
+ *	If everything is ok, lauches the sort process in order to sort the stack
+ *	built from the arguments
+ */
 int	main(int argc, char **argv)
 {
 	t_ps_data	*data;
@@ -47,7 +52,10 @@ int	main(int argc, char **argv)
 		return (0);
 	data = ps_data_init();
 	if (data == NULL)
-		return (0);
+	{
+		ft_dprintf(STDERR_FILENO, ERROR_MESSAGE);
+		exit(EXIT_FAILURE);
+	}
 	if (argc == 2)
 		returned = parse_one_arg(data, argv[1]);
 	else
@@ -56,7 +64,7 @@ int	main(int argc, char **argv)
 	{
 		data->clear(&data);
 		ft_dprintf(STDERR_FILENO, ERROR_MESSAGE);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 	if (!(data->is_sorted_stack(data, STACK_A_LETTER)))
 		process_sort(data);

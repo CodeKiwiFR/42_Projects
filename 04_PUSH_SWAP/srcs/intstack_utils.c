@@ -6,12 +6,16 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:53:56 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 10:56:56 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/06 09:07:44 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ *	Returns the index of the minimum element of the given stack
+ *	In case of error, 0 is returned
+ */
 size_t	get_min_index(t_stack *stack)
 {
 	int		min;
@@ -41,6 +45,10 @@ size_t	get_min_index(t_stack *stack)
 	return (min_index);
 }
 
+/**
+ *	Returns the index of the maximum element of the given stack
+ *	In case of error, 0 is returned
+ */
 size_t	get_max_index(t_stack *stack)
 {
 	int		max;
@@ -70,30 +78,29 @@ size_t	get_max_index(t_stack *stack)
 	return (max_index);
 }
 
-int	get_value_at_index(t_ps_data *data, char letter, size_t index)
+/**
+ *	Returns the pointer to value of the element at the given index
+ *	from the given stack
+ *	In case of error, or if the index is not a part of the stack
+ *	NULL is returned
+ */
+int	*get_value_at_index(t_stack *stack, size_t index)
 {
 	t_list	*list;
 	size_t	curr_index;
-	int		curr_value;
+	int		*curr_value;
 
-	if (
-		data == NULL || data->stack_a == NULL || data->stack_b == NULL
-		|| (data->stack_a)->list == NULL || (data->stack_b)->list == NULL
-		|| (letter != STACK_A_LETTER && letter != STACK_B_LETTER)
-	)
-		return (0);
-	if (letter == STACK_A_LETTER)
-		list = (data->stack_a)->list;
-	else
-		list = (data->stack_b)->list;
+	if (stack == NULL || stack->list == NULL)
+		return (NULL);
+	list = stack->list;
 	curr_index = 0;
 	while (curr_index < index && list != NULL)
 	{
-		curr_value = *((int *)(list->content));
+		curr_value = (int *)(list->content);
 		list = list->next;
 		curr_index++;
 	}
 	if (list == NULL)
-		return (0);
-	return (*((int *)(list->content)));
+		return (NULL);
+	return ((int *)(list->content));
 }

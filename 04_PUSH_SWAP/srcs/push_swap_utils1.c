@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 16:46:41 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/06 09:46:41 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,6 @@ void	push_swap_handle_printf_errors(t_ps_data *data, int returned)
 	if (returned == -1)
 	{
 		data->clear(&data);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 }

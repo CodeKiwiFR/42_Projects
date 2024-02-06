@@ -6,12 +6,16 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:28:48 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/30 15:06:35 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/06 08:51:48 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
+/**
+ *	Frees the data main structure, displays an error message
+ *	and leaves the program
+ */
 static void	handle_error(t_ps_data *data)
 {
 	data->clear(&data);
@@ -19,6 +23,10 @@ static void	handle_error(t_ps_data *data)
 	exit(EXIT_FAILURE);
 }
 
+/**
+ *	Applies the given instruction if it is a valid one
+ *	If not, the program is interrupted
+ */
 static void	apply_instruction(t_ps_data *data, char *instruction)
 {
 	if (ft_strcmp(instruction, SA_INSTRUCTION) == 0)
@@ -47,6 +55,10 @@ static void	apply_instruction(t_ps_data *data, char *instruction)
 		return (free(instruction), handle_error(data));
 }
 
+/*
+ *	Reads a line from STDIN, applies the given instruction
+ *	Loops while STDIN contains lines
+ */
 static void	get_all_inputs_from_stdin(t_ps_data *data)
 {
 	char	*instruction;
@@ -61,12 +73,14 @@ static void	get_all_inputs_from_stdin(t_ps_data *data)
 	}
 }
 
+/*
+ *	Processes all the actions from STDIN and displays the result (sorted or not)
+ */
 static void	process_checker(t_ps_data *data)
 {
 	if (data == NULL)
 		return ;
-	if (!(data->is_sorted_stack(data, STACK_A_LETTER)))
-		get_all_inputs_from_stdin(data);
+	get_all_inputs_from_stdin(data);
 	if (
 		data->is_sorted_stack(data, STACK_A_LETTER)
 		&& (data->stack_b)->size == 0
@@ -94,7 +108,7 @@ int	main(int argc, char **argv)
 	{
 		data->clear(&data);
 		ft_dprintf(STDERR_FILENO, ERROR_MESSAGE);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 	process_checker(data);
 	data->clear(&data);
