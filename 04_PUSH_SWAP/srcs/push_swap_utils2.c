@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/30 15:06:03 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:23:39 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,23 @@
 
 /*
  *	Adds nb to the stack_a of the given data
- *	Allocates a pointer to an int in order to store an allocated int
+ *	Allocates a pointer to an t_int_type
+ *	This type is chosen because stack could contain sorted indexes of integers
+ *	instead of integer values and -2147483648 to 2147483647 can lead to indexes
+ *	greater than INT_MAX (indexes are positive numbers)
  *	Returns true on success, false on failure
  */
 bool	push_swap_push_a(t_ps_data *data, int nb)
 {
-	t_stack	*stack_a;
-	int		*nb_allocated;
+	t_stack		*stack_a;
+	t_int_type	*nb_allocated;
 
 	if (data == NULL || data->stack_a == NULL)
 		return (false);
-	nb_allocated = (int *) malloc(sizeof(int));
+	nb_allocated = (t_int_type *) malloc(sizeof(t_int_type));
 	if (nb_allocated == NULL)
 		return (false);
-	*nb_allocated = nb;
+	*nb_allocated = (t_int_type) nb;
 	stack_a = data->stack_a;
 	if (!(stack_a->push_data(stack_a, (void *) nb_allocated)))
 	{
@@ -53,23 +56,23 @@ void	push_swap_reverse_a(t_ps_data *data)
  */
 bool	push_swap_found_duplicates_a(t_ps_data *data)
 {
-	t_list	*curr;
-	t_list	*next;
-	int		curr_nb;
-	int		next_nb;
+	t_list		*curr;
+	t_list		*next;
+	t_int_type	curr_nb;
+	t_int_type	next_nb;
 
 	if (data == NULL || data->stack_a == NULL || (data->stack_a)->list == NULL)
 		return (false);
 	curr = (data->stack_a)->list;
 	while (curr->next != NULL && curr->content != NULL)
 	{
-		curr_nb = *((int *)(curr->content));
+		curr_nb = *((t_int_type *)(curr->content));
 		next = curr->next;
 		while (next != NULL)
 		{
 			if (next->content == NULL)
 				return (false);
-			next_nb = *((int *)(next->content));
+			next_nb = *((t_int_type *)(next->content));
 			if (curr_nb == next_nb)
 				return (true);
 			next = next->next;
@@ -87,10 +90,10 @@ bool	push_swap_found_duplicates_a(t_ps_data *data)
  */
 bool	push_swap_is_sorted_stack(t_ps_data *data, char letter)
 {
-	t_stack	*stack;
-	t_list	*list;
-	int		nb1;
-	int		nb2;
+	t_stack		*stack;
+	t_list		*list;
+	t_int_type	nb1;
+	t_int_type	nb2;
 
 	if (data == NULL || (letter != STACK_A_LETTER && letter != STACK_B_LETTER))
 		return (false);
@@ -105,8 +108,8 @@ bool	push_swap_is_sorted_stack(t_ps_data *data, char letter)
 		return (true);
 	while (list->next != NULL)
 	{
-		nb1 = *((int *)list->content);
-		nb2 = *((int *)(list->next)->content);
+		nb1 = *((t_int_type *)list->content);
+		nb2 = *((t_int_type *)(list->next)->content);
 		if (nb1 > nb2)
 			return (false);
 		list = list->next;
@@ -123,10 +126,10 @@ bool	push_swap_is_sorted_stack(t_ps_data *data, char letter)
  */
 bool	push_swap_is_rev_sorted_stack(t_ps_data *data, char letter)
 {
-	t_stack	*stack;
-	t_list	*list;
-	int		nb1;
-	int		nb2;
+	t_stack		*stack;
+	t_list		*list;
+	t_int_type	nb1;
+	t_int_type	nb2;
 
 	if (data == NULL || (letter != STACK_A_LETTER && letter != STACK_B_LETTER))
 		return (false);
@@ -141,8 +144,8 @@ bool	push_swap_is_rev_sorted_stack(t_ps_data *data, char letter)
 		return (true);
 	while (list->next != NULL)
 	{
-		nb1 = *((int *)list->content);
-		nb2 = *((int *)(list->next)->content);
+		nb1 = *((t_int_type *)list->content);
+		nb2 = *((t_int_type *)(list->next)->content);
 		if (nb1 < nb2)
 			return (false);
 		list = list->next;

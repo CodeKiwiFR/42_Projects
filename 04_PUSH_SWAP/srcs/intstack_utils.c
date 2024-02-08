@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:53:56 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/06 09:07:44 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:23:12 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@
  */
 size_t	get_min_index(t_stack *stack)
 {
-	int		min;
-	int		current_value;
-	size_t	min_index;
-	size_t	current_index;
-	t_list	*current;
+	t_int_type	min;
+	t_int_type	current_value;
+	size_t		min_index;
+	size_t		current_index;
+	t_list		*current;
 
 	if (stack == NULL || stack->list == NULL)
 		return (0);
 	current = stack->list;
-	min = *((int *) current->content);
+	min = *((t_int_type *) current->content);
 	min_index = 0;
 	current = current->next;
 	current_index = 1;
 	while (current != NULL)
 	{
-		current_value = *((int *) current->content);
+		current_value = *((t_int_type *) current->content);
 		if (current_value < min)
 		{
 			min = current_value;
@@ -51,22 +51,22 @@ size_t	get_min_index(t_stack *stack)
  */
 size_t	get_max_index(t_stack *stack)
 {
-	int		max;
-	int		current_value;
-	size_t	max_index;
-	size_t	current_index;
-	t_list	*current;
+	t_int_type	max;
+	t_int_type	current_value;
+	size_t		max_index;
+	size_t		current_index;
+	t_list		*current;
 
 	if (stack == NULL || stack->list == NULL)
 		return (0);
 	current = stack->list;
-	max = *((int *) current->content);
+	max = *((t_int_type *) current->content);
 	max_index = 0;
 	current = current->next;
 	current_index = 1;
 	while (current != NULL)
 	{
-		current_value = *((int *) current->content);
+		current_value = *((t_int_type *) current->content);
 		if (current_value > max)
 		{
 			max = current_value;
@@ -84,11 +84,10 @@ size_t	get_max_index(t_stack *stack)
  *	In case of error, or if the index is not a part of the stack
  *	NULL is returned
  */
-int	*get_value_at_index(t_stack *stack, size_t index)
+t_int_type	*get_value_at_index(t_stack *stack, size_t index)
 {
 	t_list	*list;
 	size_t	curr_index;
-	int		*curr_value;
 
 	if (stack == NULL || stack->list == NULL)
 		return (NULL);
@@ -96,11 +95,10 @@ int	*get_value_at_index(t_stack *stack, size_t index)
 	curr_index = 0;
 	while (curr_index < index && list != NULL)
 	{
-		curr_value = (int *)(list->content);
 		list = list->next;
 		curr_index++;
 	}
 	if (list == NULL)
 		return (NULL);
-	return ((int *)(list->content));
+	return ((t_int_type *)(list->content));
 }

@@ -6,7 +6,7 @@
 #    By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 20:48:41 by mhotting          #+#    #+#              #
-#    Updated: 2024/02/05 16:40:31 by mhotting         ###   ########.fr        #
+#    Updated: 2024/02/08 09:41:20 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS_FILES				=	stack_utils1.c		\
 							push_swap_utils3.c	\
 							push_swap_utils4.c	\
 							push_swap_utils5.c	\
+							push_swap_utils6.c	\
 							parser.c
 SRCS					=	$(addprefix $(SRCS_MAIN_DIR), $(SRCS_FILES))
 
@@ -55,11 +56,12 @@ SRCS_FILES_PUSH_SWAP	=	push_swap.c			\
 							sort_utils1.c		\
 							sort_utils2.c		\
 							sort_utils3.c		\
+							sort1.c				\
 							sort2_0.c			\
 							sort2_1.c			\
 							sort2_2.c			\
 							sort2_3.c			\
-							sort1.c
+							sort3_0.c
 SRCS_PUSH_SWAP			=	$(addprefix $(SRCS_MAIN_DIR), $(SRCS_FILES_PUSH_SWAP))
 
 # SOURCES CHECKER

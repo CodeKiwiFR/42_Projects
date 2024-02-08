@@ -6,13 +6,14 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/06 09:05:12 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:22:42 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdint.h>
 # include "libft.h"
 # include "stack.h"
 
@@ -35,6 +36,8 @@
 # define COST_TYPE_ROT_A_RROT_B 2
 # define COST_TYPE_RROT_A_ROT_B 3
 # define COST_TYPE_RROT_A_AND_B 4
+
+typedef int64_t	t_int_type;
 
 typedef struct s_cost
 {
@@ -89,13 +92,14 @@ void		push_swap_rra(t_ps_data *data, bool display);
 void		push_swap_rrb(t_ps_data *data, bool display);
 void		push_swap_rrr(t_ps_data *data, bool display);
 void		push_swap_handle_printf_errors(t_ps_data *data, int returned);
+void		push_swap_display(t_ps_data *data);
 
 bool		parse_args(t_ps_data *data, int argc, char **argv);
 bool		parse_one_arg(t_ps_data *data, char *str);
 
 size_t		get_min_index(t_stack *stack);
 size_t		get_max_index(t_stack *stack);
-int			*get_value_at_index(t_stack *stack, size_t index);
+t_int_type	*get_value_at_index(t_stack *stack, size_t index);
 void		sort_size_three(t_ps_data *data);
 size_t		min_size_t(size_t n1, size_t n2);
 void		sort1(t_ps_data *data);
@@ -103,6 +107,7 @@ void		sort2(t_ps_data *data);
 void		sort2_calc_min_cost(t_ps_data *data, t_cost *min_cost);
 size_t		sort2_get_index_in_b(t_ps_data *data, size_t index_in_a);
 void		sort2_a_to_b_move(t_ps_data *data, t_cost *min_cost);
+void		sort3(t_ps_data *data);
 void		multiple_ra(t_ps_data *data, size_t nb);
 void		multiple_rra(t_ps_data *data, size_t nb);
 void		multiple_rb(t_ps_data *data, size_t nb);

@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:49:03 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/06 09:12:18 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:15:03 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void	process_sort(t_ps_data *data)
 		sort_size_three(data);
 	else if (stack_size <= 5)
 		sort1(data);
+	else if (stack_size <= 100)
+		sort2(data);
 	else
 		sort2(data);
 }

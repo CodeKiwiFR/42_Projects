@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:32:09 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/05 16:56:53 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:24:29 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
  *	Sorts the given data where stack A has a size of 3
  *	v0, v1, and v3 are the numbers contained in stack A
  */
-static void	process_sort_size_three(t_ps_data *data, int v0, int v1, int v2)
+static void	process_sort_size_three(
+	t_ps_data *data, t_int_type v0, t_int_type v1, t_int_type v2
+)
 {
 	if (data == NULL || (v0 < v1 && v1 < v2))
 		return ;
@@ -44,10 +46,10 @@ static void	process_sort_size_three(t_ps_data *data, int v0, int v1, int v2)
  */
 void	sort_size_three(t_ps_data *data)
 {
-	int		v0;
-	int		v1;
-	int		v2;
-	t_list	*stack_content;
+	t_int_type	v0;
+	t_int_type	v1;
+	t_int_type	v2;
+	t_list		*stack_content;
 
 	if (
 		data == NULL || data->stack_a == NULL || (data->stack_a)->list == NULL
@@ -57,11 +59,11 @@ void	sort_size_three(t_ps_data *data)
 	)
 		return ;
 	stack_content = (data->stack_a)->list;
-	v0 = *((int *)(stack_content)->content);
+	v0 = *((t_int_type *)(stack_content)->content);
 	stack_content = stack_content->next;
-	v1 = *((int *)(stack_content)->content);
+	v1 = *((t_int_type *)(stack_content)->content);
 	stack_content = stack_content->next;
-	v2 = *((int *)(stack_content)->content);
+	v2 = *((t_int_type *)(stack_content)->content);
 	process_sort_size_three(data, v0, v1, v2);
 }
 
