@@ -6,7 +6,7 @@
 #    By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 20:48:41 by mhotting          #+#    #+#              #
-#    Updated: 2024/02/08 15:38:24 by mhotting         ###   ########.fr        #
+#    Updated: 2024/02/08 17:01:28 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,4 +125,4 @@ re: fclean all
 
 rre: ffclean re
 
-.PHONY: all clean fclean re clean-libft fclean-libft ffclean rre bonus
+.PHONY: all clean fclean re clean-libft fclean-libft ffclean rre bonus FORCE

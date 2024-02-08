@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/08 13:41:59 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:27:17 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_ps_data
 	bool		(*found_dup_a)(struct s_ps_data * data);
 	void		(*clear)(struct s_ps_data **data);
 	void		(*handle_printf_error)(struct s_ps_data *data, int returned);
-	void		(*display)(struct s_ps_data *data);
 	bool		(*is_sorted_stack)(struct s_ps_data * data, char stack_letter);
 	bool		(*is_rev_sorted_stack)(\
 			struct s_ps_data * data, char stack_letter);
@@ -96,7 +95,6 @@ void		push_swap_rra(t_ps_data *data, bool display);
 void		push_swap_rrb(t_ps_data *data, bool display);
 void		push_swap_rrr(t_ps_data *data, bool display);
 void		push_swap_handle_printf_errors(t_ps_data *data, int returned);
-void		push_swap_display(t_ps_data *data);
 bool		push_swap_stack_a_to_array(t_ps_data *data);
 bool		push_swap_clean_stack(t_ps_data *data);
 
