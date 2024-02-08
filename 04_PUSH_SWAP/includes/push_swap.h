@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/08 12:48:41 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/08 13:41:59 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ t_int_type	*get_value_at_index(t_stack *stack, size_t index);
 void		sort_size_three(t_ps_data *data);
 size_t		min_size_t(size_t n1, size_t n2);
 void		sort_int_array(t_int_type *array, size_t size);
+void		sort_failure(t_ps_data *data);
 
 void		sort1(t_ps_data *data);
 void		sort2(t_ps_data *data);

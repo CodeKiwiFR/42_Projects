@@ -68,11 +68,7 @@ size_t	sort2_get_index_in_b(t_ps_data *data, size_t index_in_a)
 		return (0);
 	val_a = get_value_at_index(data->stack_a, index_in_a);
 	if (val_a == NULL)
-	{
-		data->clear(&data);
-		ft_dprintf(STDERR_FILENO, ERROR_MESSAGE);
-		exit(EXIT_FAILURE);
-	}
+		sort_failure(data);
 	idx_max_b = get_max_index(data->stack_b);
 	idx_b = idx_max_b;
 	list = get_list_element_at_index((data->stack_b)->list, idx_b);

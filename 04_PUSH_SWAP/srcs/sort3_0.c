@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 09:25:58 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/08 12:47:16 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:37:27 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,10 @@
 static void	sort3_init(t_ps_data *data)
 {
 	if (data == NULL || !(data->stack_a_to_array(data)))
-	{
-		data->clear(&data);
-		ft_dprintf(STDERR_FILENO, ERROR_MESSAGE);
-		exit(EXIT_FAILURE);
-	}
+		sort_failure(data);
 	sort_int_array(data->stack_a_array, data->stack_a->size);
 	if (!(data->clean_stack(data)))
-	{
-		data->clear(&data);
-		ft_dprintf(STDERR_FILENO, ERROR_MESSAGE);
-		exit(EXIT_FAILURE);
-	}
+		sort_failure(data);
 }
 
 /*
@@ -46,13 +38,8 @@ static void	sort3_init(t_ps_data *data)
 void	sort3(t_ps_data *data)
 {
 	if (data == NULL)
-	{
-		data->clear(&data);
-		ft_dprintf(STDERR_FILENO, ERROR_MESSAGE);
-		exit(EXIT_FAILURE);
-	}
+		sort_failure(data);
 	sort3_init(data);
 	sort3_from_a_to_b(data);
 	sort3_from_b_to_a(data);
-	data->display(data);
 }

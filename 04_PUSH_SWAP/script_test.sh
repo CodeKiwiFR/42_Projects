@@ -44,11 +44,15 @@ stack_size="$1"
 nb_iteration="$2"
 for (( i=0; i<$nb_iteration; i++ ));
 do
+	if [ $(($i % 1000)) -eq 0 ];
+	then
+		echo $i
+	fi
 	res=$(ARG=$(python3 generator.py $stack_size); ./push_swap $ARG | wc -l)
-	#echo $res
 	if [ -z "$max" ] || [ "$res" -gt "$max" ];
 	then
 		max=$res
+		echo "$i $max"
 	fi
 done
 echo $max

@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:48:21 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/08 12:43:23 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/08 13:25:21 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	display_int_stack(t_stack *stack)
 	ft_printf("- content: ");
 	while (current != NULL)
 	{
-		dprintf(STDOUT_FILENO, "% 10ld", *((t_int_type *)(current->content)));
+		dprintf(STDOUT_FILENO, "% 4ld", *((t_int_type *)(current->content)));
 		current = current->next;
 		if (current != NULL)
 			ft_printf(" | ");

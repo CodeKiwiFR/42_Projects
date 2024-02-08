@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:32:09 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/08 12:47:52 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/08 13:41:43 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,16 @@ void	sort_int_array(t_int_type *array, size_t size)
 		}
 		i++;
 	}
+}
+
+/*
+ *	Cleans memory and exits the program when called
+ *	Helps to manage errors while sorting the stack
+ */
+void	sort_failure(t_ps_data *data)
+{
+	if (data != NULL)
+		data->clear(&data);
+	ft_dprintf(STDERR_FILENO, ERROR_MESSAGE);
+	exit(EXIT_FAILURE);
 }
