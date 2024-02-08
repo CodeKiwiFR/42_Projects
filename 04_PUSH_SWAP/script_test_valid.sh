@@ -38,21 +38,31 @@ if [ ! -f "./push_swap" ]; then
     exit 1
 fi
 
+# Checks if ./checker_linux exists
+if [ ! -f "./checker_linux" ]; then
+    echo "ERROR - checker_linux program has not been found"
+    exit 1
+fi
+
+
 ##################################################
 # Main program
 stack_size="$1"
 nb_iteration="$2"
 for (( i=0; i<$nb_iteration; i++ ));
 do
-	if [ $(($i % 1000)) -eq 0 ];
+	if [ $(($i % 100)) -eq 0 ];
 	then
-		echo $i
+		echo "#LOOP $i"
 	fi
-	res=$(ARG=$(python3 generator.py $stack_size); ./push_swap $ARG | wc -l)
-	if [ -z "$max" ] || [ "$res" -gt "$max" ];
+	ARG=$(python3 generator.py $stack_size);
+	res=$(./push_swap $ARG | ./checker_linux $ARG)
+	if [ "$res" != "OK" ];
 	then
-		max=$res
-		echo "$i $max"
+		echo "####################"
+		echo "ERROR"
+		echo $ARG
+		exit 1
 	fi
 done
-echo $max
+echo "####################"
