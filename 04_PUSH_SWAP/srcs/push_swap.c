@@ -6,13 +6,13 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:49:03 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/08 10:15:03 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/08 11:48:25 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/**
+/*
  *	Sorts stack A of given data using different methods 
  *	depending on the stack A length.
  */
@@ -28,19 +28,21 @@ static void	process_sort(t_ps_data *data)
 	stack_size = (data->stack_a)->size;
 	if (stack_size < 2)
 		return ;
+	/*
 	else if (stack_size == 2)
 		data->sa(data, true);
 	else if (stack_size == 3)
 		sort_size_three(data);
 	else if (stack_size <= 5)
 		sort1(data);
-	else if (stack_size <= 100)
+	else if (stack_size <= 6)
 		sort2(data);
 	else
-		sort2(data);
+	*/
+	sort3(data);
 }
 
-/**
+/*
  *	Checks the arguments, parses them while creating the main data structure
  *	If everything is ok, lauches the sort process in order to sort the stack
  *	built from the arguments

@@ -12,7 +12,7 @@
 
 #include "checker_bonus.h"
 
-/**
+/*
  *	Frees the data main structure, displays an error message
  *	and leaves the program
  */
@@ -23,7 +23,7 @@ static void	handle_error(t_ps_data *data)
 	exit(EXIT_FAILURE);
 }
 
-/**
+/*
  *	Applies the given instruction if it is a valid one
  *	If not, the program is interrupted
  */

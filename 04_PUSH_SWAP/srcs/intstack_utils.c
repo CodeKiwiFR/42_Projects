@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-/**
+/*
  *	Returns the index of the minimum element of the given stack
  *	In case of error, 0 is returned
  */
@@ -45,7 +45,7 @@ size_t	get_min_index(t_stack *stack)
 	return (min_index);
 }
 
-/**
+/*
  *	Returns the index of the maximum element of the given stack
  *	In case of error, 0 is returned
  */
@@ -78,7 +78,7 @@ size_t	get_max_index(t_stack *stack)
 	return (max_index);
 }
 
-/**
+/*
  *	Returns the pointer to value of the element at the given index
  *	from the given stack
  *	In case of error, or if the index is not a part of the stack

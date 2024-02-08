@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/08 10:22:42 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/08 12:48:41 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,31 @@ typedef struct s_cost
 
 typedef struct s_ps_data
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	void	(*sa)(struct s_ps_data *data, bool display);
-	void	(*sb)(struct s_ps_data *data, bool display);
-	void	(*ss)(struct s_ps_data *data, bool display);
-	void	(*pa)(struct s_ps_data *data, bool display);
-	void	(*pb)(struct s_ps_data *data, bool display);
-	void	(*ra)(struct s_ps_data *data, bool display);
-	void	(*rb)(struct s_ps_data *data, bool display);
-	void	(*rr)(struct s_ps_data *data, bool display);
-	void	(*rra)(struct s_ps_data *data, bool display);
-	void	(*rrb)(struct s_ps_data *data, bool display);
-	void	(*rrr)(struct s_ps_data *data, bool display);
-	bool	(*push_a)(struct s_ps_data * data, int nb);
-	void	(*reverse_a)(struct s_ps_data *data);
-	bool	(*found_dup_a)(struct s_ps_data * data);
-	void	(*clear)(struct s_ps_data **data);
-	void	(*handle_printf_error)(struct s_ps_data *data, int returned);
-	void	(*display)(struct s_ps_data *data);
-	bool	(*is_sorted_stack)(struct s_ps_data * data, char stack_letter);
-	bool	(*is_rev_sorted_stack)(struct s_ps_data * data, char stack_letter);
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+	t_int_type	*stack_a_array;
+	void		(*sa)(struct s_ps_data *data, bool display);
+	void		(*sb)(struct s_ps_data *data, bool display);
+	void		(*ss)(struct s_ps_data *data, bool display);
+	void		(*pa)(struct s_ps_data *data, bool display);
+	void		(*pb)(struct s_ps_data *data, bool display);
+	void		(*ra)(struct s_ps_data *data, bool display);
+	void		(*rb)(struct s_ps_data *data, bool display);
+	void		(*rr)(struct s_ps_data *data, bool display);
+	void		(*rra)(struct s_ps_data *data, bool display);
+	void		(*rrb)(struct s_ps_data *data, bool display);
+	void		(*rrr)(struct s_ps_data *data, bool display);
+	bool		(*push_a)(struct s_ps_data * data, int nb);
+	void		(*reverse_a)(struct s_ps_data *data);
+	bool		(*found_dup_a)(struct s_ps_data * data);
+	void		(*clear)(struct s_ps_data **data);
+	void		(*handle_printf_error)(struct s_ps_data *data, int returned);
+	void		(*display)(struct s_ps_data *data);
+	bool		(*is_sorted_stack)(struct s_ps_data * data, char stack_letter);
+	bool		(*is_rev_sorted_stack)(\
+			struct s_ps_data * data, char stack_letter);
+	bool		(*stack_a_to_array)(struct s_ps_data * data);
+	bool		(*clean_stack)(struct s_ps_data * data);
 }	t_ps_data;
 
 t_ps_data	*ps_data_init(void);
@@ -93,6 +97,8 @@ void		push_swap_rrb(t_ps_data *data, bool display);
 void		push_swap_rrr(t_ps_data *data, bool display);
 void		push_swap_handle_printf_errors(t_ps_data *data, int returned);
 void		push_swap_display(t_ps_data *data);
+bool		push_swap_stack_a_to_array(t_ps_data *data);
+bool		push_swap_clean_stack(t_ps_data *data);
 
 bool		parse_args(t_ps_data *data, int argc, char **argv);
 bool		parse_one_arg(t_ps_data *data, char *str);
@@ -102,12 +108,17 @@ size_t		get_max_index(t_stack *stack);
 t_int_type	*get_value_at_index(t_stack *stack, size_t index);
 void		sort_size_three(t_ps_data *data);
 size_t		min_size_t(size_t n1, size_t n2);
+void		sort_int_array(t_int_type *array, size_t size);
+
 void		sort1(t_ps_data *data);
 void		sort2(t_ps_data *data);
 void		sort2_calc_min_cost(t_ps_data *data, t_cost *min_cost);
 size_t		sort2_get_index_in_b(t_ps_data *data, size_t index_in_a);
 void		sort2_a_to_b_move(t_ps_data *data, t_cost *min_cost);
 void		sort3(t_ps_data *data);
+void		sort3_from_a_to_b(t_ps_data *data);
+void		sort3_from_b_to_a(t_ps_data *data);
+
 void		multiple_ra(t_ps_data *data, size_t nb);
 void		multiple_rra(t_ps_data *data, size_t nb);
 void		multiple_rb(t_ps_data *data, size_t nb);

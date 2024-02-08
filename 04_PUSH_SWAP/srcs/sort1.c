@@ -50,7 +50,7 @@ static void	all_b_to_a(t_ps_data *data)
 		data->pa(data, true);
 }
 
-/**
+/*
  *	Sorts basically the stack A of given data.
  *	All the minimum values of A are put on top of B
  *	Then B is reverse sorted and all its values are pushed back to A
