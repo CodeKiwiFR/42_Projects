@@ -6,7 +6,7 @@
 #    By: mhotting <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 14:28:05 by mhotting          #+#    #+#              #
-#    Updated: 2024/01/30 00:50:02 by mhotting         ###   ########.fr        #
+#    Updated: 2024/02/09 20:32:00 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,33 +70,36 @@ GNL				=	$(addprefix $(GNL_DIR), $(GNL_FILES))
 # SOURCES
 SRCS_MAIN_DIR	=	srcs/
 SRCS_FILES		=	$(STRING) $(MEMORY) $(LIST) $(BUFFER) $(FT_PRINTF) $(GNL)
-SRCS_DIRS		=	$(STRING_DIR) $(MEMORY_DIR) $(LIST_DIR) $(BUFFER_DIR)		\
-					$(FT_PRINTF_DIR) $(GNL_DIR)
 SRCS			=	$(addprefix $(SRCS_MAIN_DIR), $(SRCS_FILES))
 
 # OBJECTS
 OBJS_MAIN_DIR	=	objs/
-OBJS_DIRS		=	$(addprefix $(OBJS_MAIN_DIR), $(SRCS_DIRS))
-OBJS_ALL_DIRS	=	$(OBJS_MAIN_DIR) $(OBJS_DIRS)
 OBJS_FILES		=	$(SRCS_FILES:.c=.o)
 OBJS			=	$(addprefix $(OBJS_MAIN_DIR), $(OBJS_FILES))
+
+# DEPENDENCIES
+DEPS_MAIN_DIR	=	deps/
+DEPS_FILES		=	$(OBJS_FILES:.o=.d)
+DEPS			=	$(addprefix $(DEPS_MAIN_DIR), $(DEPS_FILES))
 
 #################################################
 
 # RULES
 all: $(NAME)
 
-$(NAME): $(OBJS_ALL_DIRS) $(OBJS)
+$(NAME): $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
 
-$(OBJS_MAIN_DIR)%.o: $(SRCS_MAIN_DIR)%.c $(HEADERS)
-	$(CC) $(CFLAGS) -c $< -o $@ -I$(HEADERS_DIR)
+$(OBJS_MAIN_DIR)%.o: $(SRCS_MAIN_DIR)%.c
+	@mkdir -p $(@D)
+	@mkdir -p $(DEPS_MAIN_DIR)$(dir $*)
+	$(CC) $(CFLAGS) -I$(HEADERS_DIR) -MP -MMD -MF $(DEPS_MAIN_DIR)$*.d -c $< -o $@ 
 
-$(OBJS_ALL_DIRS):
-	mkdir -p $@
+-include $(DEPS)
 
 clean:
 	rm -rf $(OBJS_MAIN_DIR)
+	rm -rf $(DEPS_MAIN_DIR)
 
 fclean: clean
 	rm -f $(NAME)

@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 00:50:05 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/08 16:27:17 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:47:00 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define RRB_INSTRUCTION "rrb\n"
 # define RRR_INSTRUCTION "rrr\n"
 # define ERROR_MESSAGE "Error\n"
+# define OK_MESSAGE "OK\n"
+# define KO_MESSAGE "KO\n"
 # define STACK_A_LETTER 'a'
 # define STACK_B_LETTER 'b'
 # define COST_TYPE_UNDEFINED 0
