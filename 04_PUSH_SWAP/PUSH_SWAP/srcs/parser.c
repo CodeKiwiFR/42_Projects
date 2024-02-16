@@ -6,7 +6,7 @@
 /*   By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 21:48:17 by mhotting          #+#    #+#             */
-/*   Updated: 2024/01/11 19:40:04 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:23:09 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static bool	is_integer_not_overflow(char *str)
 	while (*str == '0')
 		str++;
 	end = str;
+	while (*end != '\0' && ft_isdigit(*end))
+		end++;
 	if (end - str > 10)
 		return (false);
 	nb = ft_atol(mem_str);
