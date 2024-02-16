@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:29:33 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/09 20:32:19 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:49:37 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int				ft_atoi(const char *nptr);
 long			ft_atol(const char *nb_ptr);
 unsigned long	ft_atoul(const char *nb_ptr);
 char			*ft_ctoa(int c);
+void			ft_free_str_array(char ***res);
 size_t			ft_get_long_len(long num, size_t base_len);
 size_t			ft_get_ulong_len(unsigned long nb, size_t base_len);
 int				ft_isalnum(int c);

@@ -6,7 +6,7 @@
 #    By: mhotting <mhotting@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/02 20:48:41 by mhotting          #+#    #+#              #
-#    Updated: 2024/02/09 20:45:57 by mhotting         ###   ########.fr        #
+#    Updated: 2024/02/09 21:07:53 by mhotting         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,10 +94,10 @@ DEPS					=	$(addprefix $(DEPS_MAIN_DIR), $(DEPS_FILES))
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS) $(OBJS_PUSH_SWAP)
-	$(CC) $(CFLAGS) $(OBJS) $(OBJS_PUSH_SWAP) -I$(HEADERS_DIR) -I$(LIBFT_HEADERS_DIR) $(LIBFT_FLAGS) -o $@
+	$(CC) $(CFLAGS) $(HFLAGS) $(OBJS) $(OBJS_PUSH_SWAP) $(LIBFT_FLAGS) -o $@
 
 $(NAME_BONUS): $(LIBFT) $(OBJS) $(OBJS_CHECKER)
-	$(CC) $(CFLAGS) $(OBJS) $(OBJS_CHECKER) $(HFLAGS) $(LIBFT_FLAGS) -o $@
+	$(CC) $(CFLAGS) $(HFLAGS) $(OBJS) $(OBJS_CHECKER) $(LIBFT_FLAGS) -o $@
 
 $(OBJS_MAIN_DIR)%.o: $(SRCS_MAIN_DIR)%.c $(HEADERS) $(LIBFT_HEADERS)
 	@mkdir -p $(@D)
@@ -112,10 +112,10 @@ FORCE:
 bonus: $(NAME_BONUS)
 
 fsanitize: fclean $(LIBFT) $(OBJS) $(OBJS_PUSH_SWAP)
-	$(CC) $(CFLAGS) $(FSFLAGS) $(OBJS) $(OBJS_PUSH_SWAP) $(HFLAGS) $(LIBFT_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(HFLAGS) $(FSFLAGS) $(OBJS) $(OBJS_PUSH_SWAP) $(LIBFT_FLAGS) -o $(NAME)
 
 fsanitize_bonus: fclean $(LIBFT) $(OBJS) $(OBJS_CHECKER)
-	$(CC) $(CFLAGS) $(FSFLAGS) $(OBJS) $(OBJS_CHECKER) $(HFLAGS) $(LIBFT_FLAGS) -o $(NAME_BONUS)
+	$(CC) $(CFLAGS) $(HFLAGS)  $(FSFLAGS) $(OBJS) $(OBJS_CHECKER) $(LIBFT_FLAGS) -o $(NAME_BONUS)
 
 -include $(DEPS)
 

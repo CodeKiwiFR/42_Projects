@@ -6,23 +6,11 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:12:28 by mhotting          #+#    #+#             */
-/*   Updated: 2023/11/09 19:27:32 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:49:57 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static void	free_res_array(char **res)
-{
-	size_t	i;
-
-	i = 0;
-	while (res[i] != NULL)
-	{
-		free(res[i]);
-		i++;
-	}
-}
 
 static size_t	count_words(const char *s, char c)
 {
@@ -63,8 +51,7 @@ static char	**extract_words(const char *s, char c, char **res, size_t nb_words)
 		res[index_res] = ft_substr(s, i, (j - i));
 		if (res[index_res] == NULL)
 		{
-			free_res_array(res);
-			free(res);
+			ft_free_str_array(&res);
 			return (NULL);
 		}
 		i = j + 1;
