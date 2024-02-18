@@ -6,7 +6,7 @@
 /*   By: mhotting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:29:33 by mhotting          #+#    #+#             */
-/*   Updated: 2024/02/18 14:56:18 by mhotting         ###   ########.fr       */
+/*   Updated: 2024/02/18 16:24:23 by mhotting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ ssize_t			ft_putchar_fd(char c, int fd);
 ssize_t			ft_putendl_fd(char *s, int fd);
 ssize_t			ft_putnbr_fd(int n, int fd);
 ssize_t			ft_putstr_fd(char *s, int fd);
-char			**ft_split(char const *s, char c);
+char			**ft_split(char const *s, char *delim);
 char			*ft_strchr(const char *s, int c);
+size_t			ft_count_words(const char *s, char *delim);
 char			*ft_strdup(const char *s);
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 char			*ft_strjoin(char const *s1, char const *s2);
